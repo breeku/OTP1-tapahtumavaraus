@@ -1,0 +1,33 @@
+{
+    "name": "tapahtumavaraus",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev:server": "nodemon index.js",
+        "dev:client": "cd client && npm run start",
+        "dev": "run-p dev:server dev:client",
+        "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://breeku@gitlab.com/breeku/tapahtumavaraus.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://gitlab.com/breeku/tapahtumavaraus/issues"
+    },
+    "homepage": "https://gitlab.com/breeku/tapahtumavaraus#readme",
+    "dependencies": {
+        "axios": "^0.20.0",
+        "cors": "^2.8.5",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1"
+    },
+    "devDependencies": {
+        "npm-run-all": "^4.1.5",
+        "nodemon": "^2.0.4"
+    }
+}
