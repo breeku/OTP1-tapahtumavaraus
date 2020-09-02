@@ -7,7 +7,7 @@ eventsRouter.get('/', async (req, res) => {
 })
 
 eventsRouter.get('/:id', async (req, res) => {
-    const id = req.params.id
+    //const id = req.params.id
     res.send({ content: 'id' })
 })
 
