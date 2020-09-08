@@ -11,9 +11,9 @@ const app = express()
 
 app.use(cors())
 
-app.use('/activities', activitiesRouter)
-app.use('/events', eventsRouter)
-app.use('/places', placesRouter)
+app.use('/api/activities', activitiesRouter)
+app.use('/api/events', eventsRouter)
+app.use('/api/places', placesRouter)
 
 if (process.env.NODE_ENV === 'production') {
     // Serve any static files
