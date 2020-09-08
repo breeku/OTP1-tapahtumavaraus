@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
         display: 'block',
         marginTop: theme.spacing(2),
     },
-        formControl: {
+    formControl: {
         margin: theme.spacing(1),
         minWidth: 120,
     },
@@ -34,54 +34,91 @@ export default function Events() {
     const [events, setEvents] = useState(null)
     const classes = useStyles()
     const [language, setLanguage] = React.useState(null);
-    const [open, setOpen] = React.useState(false);
+    const [openLang, setOpenLang] = React.useState(false);
+    const [openResult, setOpenResult] = React.useState(false);
+    const [resultLimit, setResultLimit] = React.useState(10);
 
-    const handleChange = (event) => {
+    const handleChangeLang = (event) => {
         setLanguage(event.target.value);
-      };
+    };
+
+    const handleCloseLang = () => {
+        setOpenLang(false);
+    };
+
+    const handleOpenLang = () => {
+        setOpenLang(true);
+    };
+
+    const handleChangeResultLimit = (event) => {
+        setResultLimit(event.target.value);
+    };
     
-      const handleClose = () => {
-        setOpen(false);
-      };
+    const handleCloseResultLimit = () => {
+        setOpenResult(false);
+    };
     
-      const handleOpen = () => {
-        setOpen(true);
-      };
+    const handleOpenResultLimit = () => {
+        setOpenResult(true);
+    };
 
     useEffect(() => {
         const getData = async () => {
-            const response = await getEvents(language)
+            const response = await getEvents(language, resultLimit)
             setEvents(response.data)
         }
 
         if (language) getData()
-    }, [language])
+    }, [language, resultLimit])
 
     return (
         <>
-        <Button className={classes.button} onClick={handleOpen}>
-            Valitse kieli
-          </Button>
-          <FormControl className={classes.formControl}>
-            <InputLabel id="demo-controlled-open-select-label">Kieli</InputLabel>
-            <Select
-              labelId="demo-controlled-open-select-label"
-              id="demo-controlled-open-select"
-              open={open}
-              onClose={handleClose}
-              onOpen={handleOpen}
-              value={language}
-              onChange={handleChange}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={'fi'}>FI</MenuItem>
-              <MenuItem value={'en'}>EN</MenuItem>
-              <MenuItem value={'sv'}>SV</MenuItem>
-              <MenuItem value={'zh'}>ZH</MenuItem>
-            </Select>
-          </FormControl>
+            <div>
+                <Button className={classes.button} onClick={handleOpenLang}>
+                    Valitse kieli
+                </Button>
+                <FormControl className={classes.formControl}>
+                    <InputLabel id="demo-controlled-open-select-label">Kieli</InputLabel>
+                    <Select
+                    labelId="demo-controlled-open-select-label"
+                    id="demo-controlled-open-select"
+                    open={openLang}
+                    onClose={handleCloseLang}
+                    onOpen={handleOpenLang}
+                    value={language}
+                    onChange={handleChangeLang}
+                    >
+                    <MenuItem value="">
+                        <em>None</em>
+                    </MenuItem>
+                    <MenuItem value={'fi'}>FI</MenuItem>
+                    <MenuItem value={'en'}>EN</MenuItem>
+                    <MenuItem value={'sv'}>SV</MenuItem>
+                    <MenuItem value={'zh'}>ZH</MenuItem>
+                    </Select>
+                </FormControl>
+            </div>
+            <div>
+                <Button className={classes.button} id="resultLimit" onClick={handleOpenResultLimit}>
+                    Valitse hakutulosten määrä
+                </Button>
+                <FormControl className={classes.formControl}>
+                    <InputLabel id="demo-controlled-open-select-label">Määrä</InputLabel>
+                    <Select
+                    labelId="demo-controlled-open-select-label"
+                    id="demo-controlled-open-select"
+                    open={openResult}
+                    onClose={handleCloseResultLimit}
+                    onOpen={handleOpenResultLimit}
+                    value={resultLimit}
+                    onChange={handleChangeResultLimit}
+                    >
+                    <MenuItem value={10}>10</MenuItem>
+                    <MenuItem value={20}>20</MenuItem>
+                    <MenuItem value={30}>30</MenuItem>
+                    </Select>
+                </FormControl>
+            </div>
             <h1 className={classes.text_center}>Tapahtumat</h1>
             
             {events && (
