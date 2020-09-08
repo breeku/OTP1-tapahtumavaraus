@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import { makeStyles } from '@material-ui/core/styles'
 
-import { getActivities } from '../../services/activities'
+import { getEvents } from '../../services/events'
 
 const useStyles = makeStyles(theme => ({
     text_center: theme.text_center,
@@ -23,7 +23,7 @@ export default function Events() {
 
     useEffect(() => {
         const getData = async () => {
-            const response = await getActivities()
+            const response = await getEvents()
             setEvents(response.data)
         }
 
@@ -31,10 +31,10 @@ export default function Events() {
     }, [])
 
     return (
-        <div>
+        <>
             <h1 className={classes.text_center}>Tapahtumat</h1>
             {events && (
-                <div>
+                <>
                     {events.data.map(x => {
                         return (
                             <div className={classes.event}>
@@ -52,8 +52,8 @@ export default function Events() {
                             </div>
                         )
                     })}
-                </div>
+                </>
             )}
-        </div>
+        </>
     )
 }
