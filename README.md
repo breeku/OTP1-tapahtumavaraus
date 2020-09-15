@@ -32,7 +32,9 @@ Tapahtumien tagit saa ajamalla projektin rootista `node server/utils/get_tags.js
 
 1. Luo kehitysympäristössä (esim. Vs-codessa) projektin "client"-kansioon ".env"-niminen tiedosto, jonne lisäät tekstin "SKIP_PREFLIGHT_CHECK=true"
 
-2. Terminal:ia käyttäen projektin rootissa (`cd ("tapahtumavaraus"-projektin sijainti/polku)`) komento `npm run dev` käynnistää noden dev serverin ja reactin dev serverin.
+2. Node dev serverin saat käynnistettyä `backend` kansiosta ajamalla `npm run start`
+
+3. Reactin dev serverin saat käynnistettyä `frontend` kansiosta ajamalla `npm run start`
 
 ### Muuta
 

@@ -4,11 +4,9 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "dev:server": "nodemon index.js",
-        "dev:client": "cd client && npm run start",
-        "dev": "run-p dev:server dev:client",
-        "migrate": "sequelize-cli db:migrate",
-        "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+        "prod": "node index.js",
+        "start": "nodemon index.js",
+        "migrate": "sequelize-cli db:migrate"
     },
     "repository": {
         "type": "git",
