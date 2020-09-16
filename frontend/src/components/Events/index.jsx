@@ -8,6 +8,7 @@ import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 
 import { getEvents } from '../../services/events'
+import { getTagNames } from '../../services/getTagNames';
 
 const useStyles = makeStyles(theme => ({
     text_center: theme.text_center,
@@ -35,6 +36,7 @@ export default function Events() {
     const classes = useStyles()
     const [language, setLanguage] = React.useState(null);
     const [tags, setTags] = React.useState('music');
+    const [tagList, setTagList] = React.useState([]);
     const [openLang, setOpenLang] = React.useState(false);
     const [openResult, setOpenResult] = React.useState(false);
     const [openTags, setOpenTags] = React.useState(false);
@@ -84,6 +86,15 @@ export default function Events() {
 
         if (language && tags) getData()
     }, [language, resultLimit, tags])
+
+    useEffect(() => {
+        const getData = async () => {
+            const response = await getTagNames(tagNames)
+            setTagList(response.data)
+        }
+
+        console.log(response)
+    }, [tagNames])
 
     return (
         <>
