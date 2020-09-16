@@ -35,7 +35,7 @@ export default function Events() {
     const [events, setEvents] = useState(null)
     const classes = useStyles()
     const [language, setLanguage] = React.useState(null)
-    const [tags, setTags] = React.useState('music')
+    const [tags, setTags] = React.useState(null)
     const [tagList, setTagList] = React.useState([])
     const [openLang, setOpenLang] = React.useState(false)
     const [openResult, setOpenResult] = React.useState(false)
@@ -111,10 +111,9 @@ export default function Events() {
                         onOpen={handleOpenTags}
                         value={tags}
                         onChange={handleChangeTags}>
-                        <MenuItem value={'music'}>Music</MenuItem>
-                        <MenuItem value={'General'}>General</MenuItem>
-                        <MenuItem value={'Pupils'}>Pupils</MenuItem>
-                        <MenuItem value={'Libraries'}>Libraries</MenuItem>
+                        {tagList.map(tag => {
+                            return <MenuItem value={tag}>{tag}</MenuItem>
+                        })}
                     </Select>
                 </FormControl>
             </div>
