@@ -1,7 +1,6 @@
 require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
-const path = require('path')
 
 const activitiesRouter = require('./routes/activities')
 const eventsRouter = require('./routes/events')
