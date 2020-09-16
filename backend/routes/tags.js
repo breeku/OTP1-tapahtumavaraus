@@ -6,8 +6,8 @@ const tagsRouter = express.Router()
 tagsRouter.get('/', async (req, res) => {
     try {
         const allTags = await db.Tags.findAll({ raw: true })
-        console.log(allTags)
-        res.send(allTags)
+        const names = allTags.map(x => x.name)
+        res.send(names)
     } catch (e) {
         console.warn(e)
     }
