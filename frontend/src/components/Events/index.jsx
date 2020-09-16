@@ -28,7 +28,7 @@ export default function Events() {
         }
 
         if (!events) getData()
-    }, [])
+    }, [events])
 
     return (
         <>
