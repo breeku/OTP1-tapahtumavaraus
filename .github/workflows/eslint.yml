@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x]
+        node-version: [14.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -26,4 +26,4 @@ jobs:
       if: ${{ github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository }} 
       with:
         repo-token: ${{secrets.GITHUB_TOKEN}}
-        source-root: '/client/'
+        source-root: '/frontend/'
