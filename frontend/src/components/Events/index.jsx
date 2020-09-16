@@ -94,7 +94,7 @@ export default function Events() {
         }
         if (tagList.length === 0) getData()
     }, [])
-    console.log(tagList)
+
     return (
         <>
             <div>

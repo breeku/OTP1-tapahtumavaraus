@@ -10,9 +10,17 @@ eventsRouter.get('/:lang/:limit/:tags', async (req, res) => {
     const tags = req.params.tags
 
     try {
-    
         console.log(language, limit, tags)
-        const response = await axios.get(BASEURL + 'v1/events/' + '?tags_search=' + tags + '&language_filter=' + language + '&limit=' + limit)
+        const response = await axios.get(
+            BASEURL +
+                'v1/events/' +
+                '?tags_search=' +
+                tags +
+                '&language_filter=' +
+                language +
+                '&limit=' +
+                limit,
+        )
         res.send(response.data)
     } catch (e) {
         console.log(e)
