@@ -1,4 +1,5 @@
 const express = require('express')
+const { Op } = require('sequelize')
 const db = require('../database/models/index')
 
 const tagsRouter = express.Router()
@@ -13,9 +14,18 @@ tagsRouter.get('/', async (req, res) => {
     }
 })
 
-tagsRouter.get('/:id', async (req, res) => {
-    //const id = req.params.id
-    res.send({ content: 'id' })
+tagsRouter.get('/:search', async (req, res) => {
+    const search = req.params.search
+    const matchTags = await db.Tags.findAll({
+        raw: true,
+        where: {
+            name: {
+                [Op.iLike]: '%' + search + '%',
+            },
+        },
+    })
+    const names = matchTags.map(x => x.name)
+    res.send(names)
 })
 
 module.exports = tagsRouter
