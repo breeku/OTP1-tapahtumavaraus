@@ -10,6 +10,8 @@ on:
             - 'frontend/*'
     pull_request:
         branches: [master, gh_actions]
+        paths:
+            - 'frontend/*'
 
 jobs:
     build:
