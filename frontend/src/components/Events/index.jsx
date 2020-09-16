@@ -93,7 +93,7 @@ export default function Events() {
             setTagList(response.data)
         }
         if (tagList.length === 0) getData()
-    }, [])
+    }, [tagList.length])
 
     return (
         <>

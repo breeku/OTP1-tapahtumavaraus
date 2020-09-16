@@ -1,0 +1,38 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: backend
+
+on:
+    push:
+        branches: [master, gh_actions]
+        paths:
+            - 'backend/*'
+    pull_request:
+        branches: [master, gh_actions]
+        paths:
+            - 'backend/*'
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [14.x]
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Install Node.js dependencies
+              run: |
+                  cd backend
+                  npm i
+
+            - uses: hallee/eslint-action@1.0.3
+              # GITHUB_TOKEN in forked repositories is read-only
+              # https://help.github.com/en/actions/reference/events-that-trigger-workflows#pull-request-event-pull_request
+              if: ${{ github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository }}
+              with:
+                  repo-token: ${{secrets.GITHUB_TOKEN}}
+                  source-root: 'backend'

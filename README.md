@@ -12,7 +12,7 @@ Vs-code:ssa tai muussa kehitysympäristössä etsi "clone repository" -toiminto,
 
 Siirry kehitysympäristön (esim. Vs-code) terminaliin, jonne syötetään seuraavat komennot:
 
-`cd ("tapahtumavaraus"-projektin sijainti/polku)` -> `npm install` -> `cd client && npm install`
+`cd ("tapahtumavaraus"-projektin sijainti/polku)` -> `cd frontend && npm install` -> `cd ../backend && npm install`
 
 ### Tietokanta
 
