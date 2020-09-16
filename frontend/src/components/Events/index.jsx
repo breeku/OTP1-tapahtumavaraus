@@ -34,9 +34,23 @@ export default function Events() {
     const [events, setEvents] = useState(null)
     const classes = useStyles()
     const [language, setLanguage] = React.useState(null);
+    const [tags, setTags] = React.useState('music');
     const [openLang, setOpenLang] = React.useState(false);
     const [openResult, setOpenResult] = React.useState(false);
+    const [openTags, setOpenTags] = React.useState(false);
     const [resultLimit, setResultLimit] = React.useState(10);
+
+    const handleChangeTags = (event) => {
+        setTags(event.target.value);
+    };
+
+    const handleCloseTags = () => {
+        setOpenTags(false);
+    };
+
+    const handleOpenTags = () => {
+        setOpenTags(true);
+    };
 
     const handleChangeLang = (event) => {
         setLanguage(event.target.value);
@@ -64,15 +78,37 @@ export default function Events() {
 
     useEffect(() => {
         const getData = async () => {
-            const response = await getEvents(language, resultLimit)
+            const response = await getEvents(language, resultLimit, tags)
             setEvents(response.data)
         }
 
-        if (language) getData()
-    }, [language, resultLimit])
+        if (language && tags) getData()
+    }, [language, resultLimit, tags])
 
     return (
         <>
+            <div>
+                <Button className={classes.button} onClick={handleOpenTags}>
+                    Valitse haku-tag
+                </Button>
+                <FormControl className={classes.formControl}>
+                    <InputLabel id="demo-controlled-open-select-label">Tag</InputLabel>
+                    <Select
+                    labelId="demo-controlled-open-select-label"
+                    id="demo-controlled-open-select"
+                    open={openTags}
+                    onClose={handleCloseTags}
+                    onOpen={handleOpenTags}
+                    value={tags}
+                    onChange={handleChangeTags}
+                    >
+                    <MenuItem value={'music'}>Music</MenuItem>
+                    <MenuItem value={'General'}>General</MenuItem>
+                    <MenuItem value={'Pupils'}>Pupils</MenuItem>
+                    <MenuItem value={'Libraries'}>Libraries</MenuItem>
+                    </Select>
+                </FormControl>
+            </div>
             <div>
                 <Button className={classes.button} onClick={handleOpenLang}>
                     Valitse kieli
