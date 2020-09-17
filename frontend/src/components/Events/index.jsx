@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
+    Icon,
     Paper,
     InputLabel,
     MenuItem,
@@ -9,6 +10,7 @@ import {
     Select,
     Button,
 } from '@material-ui/core'
+import CloseIcon from '@material-ui/icons/Close'
 
 import { Link } from 'react-router-dom'
 
@@ -35,13 +37,13 @@ const useStyles = makeStyles(theme => ({
         minWidth: 120,
     },
     rootElement: {
-        position: "fixed", 
-        top: "20", 
-        left: "0", 
-        width: "100%",
-        height: "100%",
-        backgroundSize: "cover",
-        backgroundImage: "url(https://pixy.org/src2/570/5706051.jpg)"
+        position: 'relative',
+        top: '20',
+        left: '0',
+        width: '100%',
+        height: '100%',
+        backgroundSize: 'cover',
+        backgroundImage: 'url(https://pixy.org/src2/570/5706051.jpg)',
     },
 }))
 
@@ -92,9 +94,8 @@ export default function Events() {
         setOpenResult(true)
     }
 
-    const removeFromTags = (event) => {
-        console.log(event)
-        setTags(tags.filter((value) => value !== event))
+    const removeFromTags = event => {
+        setTags(tags.filter(value => value !== event))
     }
 
     useEffect(() => {
@@ -103,7 +104,7 @@ export default function Events() {
             setEvents(response.data)
         }
 
-        if (language && tags) getData()
+        if (language && tags.length > 0) getData()
     }, [language, resultLimit, tags])
 
     useEffect(() => {
@@ -137,7 +138,14 @@ export default function Events() {
                 </FormControl>
                 <ul>
                     {tags.map(tag => {
-                        return <><li value={tag}>{tag}</li><Button onClick={() => removeFromTags(tag)}>äks</Button></>
+                        return (
+                            <>
+                                <li value={tag}>{tag}</li>
+                                <Button onClick={() => removeFromTags(tag)}>
+                                    <CloseIcon />
+                                </Button>
+                            </>
+                        )
                     })}
                 </ul>
             </div>
@@ -190,18 +198,39 @@ export default function Events() {
             </div>
             <h1 className={classes.text_center}>Tapahtumat</h1>
 
-            {events && (
+            {events && tags.length > 0 && (
                 <>
                     {events.data.map(event => {
+                        console.log(event)
+                        const startDay = new Date(event.event_dates.starting_day).getDay()
+                        const startMonth = new Date(
+                            event.event_dates.starting_day,
+                        ).getMonth()
+                        const startYear = new Date(
+                            event.event_dates.starting_day,
+                        ).getFullYear()
+                        const startHour = new Date(
+                            event.event_dates.starting_day,
+                        ).getHours()
+                        const startMinutes = new Date(
+                            event.event_dates.starting_day,
+                        ).getMinutes()
+
                         return (
                             <Link to={{ pathname: `/events/${event.id}`, state: event }}>
                                 <Paper elevation={3} className={classes.paper}>
                                     <div className={classes.event}>
                                         <p className={classes.text_center}>
+                                            <h1>{event.name[language]}</h1>
+                                            <br />
                                             {event.description.intro}
                                             <br />
-                                            {event.event_dates.starting_day} --{'>'}
+                                            {startDay}.{startMonth}.{startYear},{' '}
+                                            {startHour}.{startMinutes} --{'>'}
                                             {event.event_dates.ending_day}
+                                            <br />
+                                            {event.location.address.locality},{' '}
+                                            {event.location.address.street_address}
                                         </p>
                                         {event.description.images[0] && (
                                             <img
