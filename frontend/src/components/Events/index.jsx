@@ -44,7 +44,7 @@ export default function Events() {
     const [events, setEvents] = useState(null)
     const classes = useStyles()
     const [language, setLanguage] = React.useState(null)
-    const [tags, setTags] = React.useState(null)
+    const [tags, setTags] = React.useState([])
     const [tagList, setTagList] = React.useState([])
     const [openLang, setOpenLang] = React.useState(false)
     const [openResult, setOpenResult] = React.useState(false)
@@ -52,7 +52,7 @@ export default function Events() {
     const [resultLimit, setResultLimit] = React.useState(10)
 
     const handleChangeTags = event => {
-        setTags(event.target.value)
+        setTags([...tags, event.target.value])
     }
 
     const handleCloseTags = () => {
@@ -85,6 +85,11 @@ export default function Events() {
 
     const handleOpenResultLimit = () => {
         setOpenResult(true)
+    }
+
+    const removeFromTags = (event) => {
+        console.log(event)
+        setTags(tags.filter((value) => value !== event))
     }
 
     useEffect(() => {
@@ -125,6 +130,11 @@ export default function Events() {
                         })}
                     </Select>
                 </FormControl>
+                <ul>
+                    {tags.map(tag => {
+                        return <><li value={tag}>{tag}</li><Button onClick={() => removeFromTags(tag)}>äks</Button></>
+                    })}
+                </ul>
             </div>
             <div>
                 <Button className={classes.button} onClick={handleOpenLang}>
