@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
+    Icon,
     Paper,
     InputLabel,
     MenuItem,
@@ -9,6 +10,7 @@ import {
     Select,
     Button,
 } from '@material-ui/core'
+import CloseIcon from '@material-ui/icons/Close'
 
 import { Link } from 'react-router-dom'
 
@@ -35,7 +37,7 @@ const useStyles = makeStyles(theme => ({
         minWidth: 120,
     },
     rootElement: {
-        position: 'fixed',
+        position: 'relative',
         top: '20',
         left: '0',
         width: '100%',
@@ -139,7 +141,9 @@ export default function Events() {
                         return (
                             <>
                                 <li value={tag}>{tag}</li>
-                                <Button onClick={() => removeFromTags(tag)}>äks</Button>
+                                <Button onClick={() => removeFromTags(tag)}>
+                                    <CloseIcon></CloseIcon>
+                                </Button>
                             </>
                         )
                     })}
@@ -197,15 +201,36 @@ export default function Events() {
             {events && tags.length > 0 && (
                 <>
                     {events.data.map(event => {
+                        console.log(event)
+                        const startDay = new Date(event.event_dates.starting_day).getDay()
+                        const startMonth = new Date(
+                            event.event_dates.starting_day,
+                        ).getMonth()
+                        const startYear = new Date(
+                            event.event_dates.starting_day,
+                        ).getFullYear()
+                        const startHour = new Date(
+                            event.event_dates.starting_day,
+                        ).getHours()
+                        const startMinutes = new Date(
+                            event.event_dates.starting_day,
+                        ).getMinutes()
+
                         return (
                             <Link to={{ pathname: `/events/${event.id}`, state: event }}>
                                 <Paper elevation={3} className={classes.paper}>
                                     <div className={classes.event}>
                                         <p className={classes.text_center}>
+                                            <h1>{event.name[language]}</h1>
+                                            <br />
                                             {event.description.intro}
                                             <br />
-                                            {event.event_dates.starting_day} --{'>'}
+                                            {startDay}.{startMonth}.{startYear},{' '}
+                                            {startHour}.{startMinutes} --{'>'}
                                             {event.event_dates.ending_day}
+                                            <br />
+                                            {event.location.address.locality},{' '}
+                                            {event.location.address.street_address}
                                         </p>
                                         {event.description.images[0] && (
                                             <img
