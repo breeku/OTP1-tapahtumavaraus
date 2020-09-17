@@ -30,7 +30,7 @@ Tapahtumien tagit saa ajamalla projektin rootista `node server/utils/get_tags.js
 
 ### Koodaus
 
-1. Luo kehitysympäristössä (esim. Vs-codessa) projektin "client"-kansioon ".env"-niminen tiedosto, jonne lisäät tekstin "SKIP_PREFLIGHT_CHECK=true"
+1. Siirrä node_modules projektin juuresta "backend"-kansioon (jos node_modules ei poistu rootista, vaan kopioituu backendiin, poista se manuaalisesti)
 
 2. Node dev serverin saat käynnistettyä `backend` kansiosta ajamalla `npm run start`
 
