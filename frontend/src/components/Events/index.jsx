@@ -111,7 +111,7 @@ export default function Events() {
                         onOpen={handleOpenTags}
                         value={tags}
                         onChange={handleChangeTags}>
-                        {tagList.map(tag => {
+                        {tagList.sort().map(tag => {
                             return <MenuItem value={tag}>{tag}</MenuItem>
                         })}
                     </Select>
