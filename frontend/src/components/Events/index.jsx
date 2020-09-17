@@ -35,8 +35,12 @@ const useStyles = makeStyles(theme => ({
         minWidth: 120,
     },
     rootElement: {
+        position: "fixed", 
+        top: "20", 
+        left: "0", 
         width: "100%",
         height: "100%",
+        backgroundSize: "cover",
         backgroundImage: "url(https://pixy.org/src2/570/5706051.jpg)"
     },
 }))
@@ -117,10 +121,10 @@ export default function Events() {
                     Valitse haku-tag
                 </Button>
                 <FormControl className={classes.formControl}>
-                    <InputLabel id="demo-controlled-open-select-label">Tag</InputLabel>
+                    <InputLabel id="tag-label">Tag</InputLabel>
                     <Select
-                        labelId="demo-controlled-open-select-label"
-                        id="demo-controlled-open-select"
+                        labelId="tag-label"
+                        id="tag-label"
                         open={openTags}
                         onClose={handleCloseTags}
                         onOpen={handleOpenTags}
@@ -142,10 +146,10 @@ export default function Events() {
                     Valitse kieli
                 </Button>
                 <FormControl className={classes.formControl}>
-                    <InputLabel id="demo-controlled-open-select-label">Kieli</InputLabel>
+                    <InputLabel id="lang-label">Kieli</InputLabel>
                     <Select
-                        labelId="demo-controlled-open-select-label"
-                        id="demo-controlled-open-select"
+                        labelId="lang-label"
+                        id="lang-label"
                         open={openLang}
                         onClose={handleCloseLang}
                         onOpen={handleOpenLang}
@@ -169,10 +173,10 @@ export default function Events() {
                     Valitse hakutulosten määrä
                 </Button>
                 <FormControl className={classes.formControl}>
-                    <InputLabel id="demo-controlled-open-select-label">Määrä</InputLabel>
+                    <InputLabel id="count-label">Määrä</InputLabel>
                     <Select
-                        labelId="demo-controlled-open-select-label"
-                        id="demo-controlled-open-select"
+                        labelId="count-label"
+                        id="count-label"
                         open={openResult}
                         onClose={handleCloseResultLimit}
                         onOpen={handleOpenResultLimit}
@@ -201,6 +205,7 @@ export default function Events() {
                                         </p>
                                         {event.description.images[0] && (
                                             <img
+                                                alt='Tapahtuman kuva'
                                                 className={classes.eventImage}
                                                 src={
                                                     event.description.images[0].url
