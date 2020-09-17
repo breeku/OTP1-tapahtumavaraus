@@ -35,13 +35,13 @@ const useStyles = makeStyles(theme => ({
         minWidth: 120,
     },
     rootElement: {
-        position: "fixed", 
-        top: "20", 
-        left: "0", 
-        width: "100%",
-        height: "100%",
-        backgroundSize: "cover",
-        backgroundImage: "url(https://pixy.org/src2/570/5706051.jpg)"
+        position: 'fixed',
+        top: '20',
+        left: '0',
+        width: '100%',
+        height: '100%',
+        backgroundSize: 'cover',
+        backgroundImage: 'url(https://pixy.org/src2/570/5706051.jpg)',
     },
 }))
 
@@ -92,9 +92,8 @@ export default function Events() {
         setOpenResult(true)
     }
 
-    const removeFromTags = (event) => {
-        console.log(event)
-        setTags(tags.filter((value) => value !== event))
+    const removeFromTags = event => {
+        setTags(tags.filter(value => value !== event))
     }
 
     useEffect(() => {
@@ -103,7 +102,7 @@ export default function Events() {
             setEvents(response.data)
         }
 
-        if (language && tags) getData()
+        if (language && tags.length > 0) getData()
     }, [language, resultLimit, tags])
 
     useEffect(() => {
@@ -137,7 +136,12 @@ export default function Events() {
                 </FormControl>
                 <ul>
                     {tags.map(tag => {
-                        return <><li value={tag}>{tag}</li><Button onClick={() => removeFromTags(tag)}>äks</Button></>
+                        return (
+                            <>
+                                <li value={tag}>{tag}</li>
+                                <Button onClick={() => removeFromTags(tag)}>äks</Button>
+                            </>
+                        )
                     })}
                 </ul>
             </div>
@@ -190,7 +194,7 @@ export default function Events() {
             </div>
             <h1 className={classes.text_center}>Tapahtumat</h1>
 
-            {events && (
+            {events && tags.length > 0 && (
                 <>
                     {events.data.map(event => {
                         return (
