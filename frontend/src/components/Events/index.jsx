@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react'
 
 import { makeStyles } from '@material-ui/core/styles'
-import InputLabel from '@material-ui/core/InputLabel'
-import MenuItem from '@material-ui/core/MenuItem'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
-import Button from '@material-ui/core/Button'
+import {
+    Paper,
+    InputLabel,
+    MenuItem,
+    FormControl,
+    Select,
+    Button,
+} from '@material-ui/core'
+
+import { Link } from 'react-router-dom'
 
 import { getEvents } from '../../services/events'
 import { getTagNames } from '../../services/getTagNames'
@@ -28,6 +33,10 @@ const useStyles = makeStyles(theme => ({
     formControl: {
         margin: theme.spacing(1),
         minWidth: 120,
+    },
+    paper: {
+        margin: 20,
+        padding: 10,
     },
 }))
 
@@ -168,21 +177,27 @@ export default function Events() {
 
             {events && (
                 <>
-                    {events.data.map(x => {
+                    {events.data.map(event => {
                         return (
-                            <div className={classes.event}>
-                                <p className={classes.text_center}>
-                                    {x.description.intro}
-                                    <br />
-                                    {x.event_dates.starting_day} --{'>'}
-                                    {x.event_dates.ending_day}
-                                </p>
-                                {x.description.images[0] && (
-                                    <img
-                                        className={classes.eventImage}
-                                        src={x.description.images[0].url}></img>
-                                )}
-                            </div>
+                            <Link to={{ pathname: `/events/${event.id}`, state: event }}>
+                                <Paper elevation={3} className={classes.paper}>
+                                    <div className={classes.event}>
+                                        <p className={classes.text_center}>
+                                            {event.description.intro}
+                                            <br />
+                                            {event.event_dates.starting_day} --{'>'}
+                                            {event.event_dates.ending_day}
+                                        </p>
+                                        {event.description.images[0] && (
+                                            <img
+                                                className={classes.eventImage}
+                                                src={
+                                                    event.description.images[0].url
+                                                }></img>
+                                        )}
+                                    </div>
+                                </Paper>
+                            </Link>
                         )
                     })}
                 </>
