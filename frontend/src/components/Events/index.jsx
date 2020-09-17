@@ -142,7 +142,7 @@ export default function Events() {
                             <>
                                 <li value={tag}>{tag}</li>
                                 <Button onClick={() => removeFromTags(tag)}>
-                                    <CloseIcon></CloseIcon>
+                                    <CloseIcon />
                                 </Button>
                             </>
                         )
