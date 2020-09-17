@@ -29,6 +29,11 @@ const useStyles = makeStyles(theme => ({
         margin: theme.spacing(1),
         minWidth: 120,
     },
+    rootElement: {
+        width: "100%",
+        height: "100%",
+        backgroundImage: "url(https://pixy.org/src2/570/5706051.jpg)"
+    },
 }))
 
 export default function Events() {
@@ -101,7 +106,7 @@ export default function Events() {
     }, [tagList.length])
 
     return (
-        <>
+        <div className={classes.rootElement}>
             <div>
                 <Button className={classes.button} onClick={handleOpenTags}>
                     Valitse haku-tag
@@ -197,6 +202,6 @@ export default function Events() {
                     })}
                 </>
             )}
-        </>
+        </div>
     )
 }
