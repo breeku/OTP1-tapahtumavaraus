@@ -9,8 +9,6 @@ eventsRouter.get('/:lang/:limit/:tags', async (req, res) => {
     const limit = req.params.limit
     const tags = req.params.tags
 
-    console.log(tags)
-
     try {
         console.log(language, limit, tags)
         const response = await axios.get(

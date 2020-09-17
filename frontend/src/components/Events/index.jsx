@@ -205,7 +205,7 @@ export default function Events() {
                                         </p>
                                         {event.description.images[0] && (
                                             <img
-                                                alt='Tapahtuman kuva'
+                                                alt={event.description.intro}
                                                 className={classes.eventImage}
                                                 src={
                                                     event.description.images[0].url
