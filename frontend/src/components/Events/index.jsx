@@ -9,6 +9,7 @@ import {
     Select,
     Button,
 } from '@material-ui/core'
+import CloseIcon from '@material-ui/icons/Close'
 
 import { Link } from 'react-router-dom'
 
@@ -123,7 +124,6 @@ export default function Events() {
     }
 
     const removeFromTags = event => {
-        console.log(event)
         setTags(tags.filter(value => value !== event))
     }
 
@@ -154,7 +154,7 @@ export default function Events() {
             setEvents(response.data)
         }
 
-        if (language && tags) getData()
+        if (language && tags.length > 0) getData()
     }, [language, resultLimit, tags])
 
     useEffect(() => {
@@ -258,9 +258,24 @@ export default function Events() {
             </MuiThemeProvider>
             <h1 className={classes.text_center}>Tapahtumat</h1>
 
-            {events && (
+            {events && tags.length > 0 && (
                 <>
                     {events.data.map(event => {
+                        console.log(event)
+                        const startDay = new Date(event.event_dates.starting_day).getDay()
+                        const startMonth = new Date(
+                            event.event_dates.starting_day,
+                        ).getMonth()
+                        const startYear = new Date(
+                            event.event_dates.starting_day,
+                        ).getFullYear()
+                        const startHour = new Date(
+                            event.event_dates.starting_day,
+                        ).getHours()
+                        const startMinutes = new Date(
+                            event.event_dates.starting_day,
+                        ).getMinutes()
+
                         return (
                             <Link
                                 className={classes.link}
@@ -268,10 +283,16 @@ export default function Events() {
                                 <Paper elevation={3} className={classes.paper}>
                                     <div className={classes.event}>
                                         <p className={classes.text_center}>
+                                            <h1>{event.name[language]}</h1>
+                                            <br />
                                             {event.description.intro}
                                             <br />
-                                            {event.event_dates.starting_day} --{'>'}
+                                            {startDay}.{startMonth}.{startYear},{' '}
+                                            {startHour}.{startMinutes} --{'>'}
                                             {event.event_dates.ending_day}
+                                            <br />
+                                            {event.location.address.locality},{' '}
+                                            {event.location.address.street_address}
                                         </p>
                                         {event.description.images[0] && (
                                             <img
