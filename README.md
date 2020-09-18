@@ -26,7 +26,7 @@ Sen jälkeen luodaan tietokanta, `npx sequelize-cli db:create`, ja sen jälkeen 
 
 #### Tietokannan sisältö
 
-Tapahtumien tagit saa ajamalla projektin rootista `node server/utils/get_tags.js`
+Tietokannan sisällön saat ajamalla `node backend/utils/populate_db.js`
 
 ### Koodaus
 
