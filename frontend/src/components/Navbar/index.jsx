@@ -22,6 +22,9 @@ const useStyles = makeStyles(theme => ({
         textDecoration: 'none',
         color: 'white',
     },
+    appBar: {
+        backgroundColor: 'rgba(0, 0, 0, 0.9)',
+    },
 }))
 
 export default function Navbar() {
@@ -29,7 +32,7 @@ export default function Navbar() {
 
     return (
         <div className={classes.root}>
-            <AppBar position="static">
+            <AppBar position="static" className={classes.appBar}>
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
                         <Link to="/" className={classes.link}>
