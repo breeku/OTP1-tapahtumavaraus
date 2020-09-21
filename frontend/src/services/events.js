@@ -1,8 +1,14 @@
 import axios from 'axios'
+import { BASEURL } from './config'
 
 export const getEvents = async (language, resultLimit, tags) => {
     const response = await axios.get(
-        'api/events/' + language + '/' + resultLimit + '/' + tags,
+        BASEURL + '/api/events/' + language + '/' + resultLimit + '/' + tags,
     )
+    return response
+}
+
+export const getEvent = async eventId => {
+    const response = await axios.get(BASEURL + '/api/events/' + eventId)
     return response
 }
