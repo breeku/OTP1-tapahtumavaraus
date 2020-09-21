@@ -36,6 +36,10 @@ Tietokannan sisällön saat ajamalla `node backend/utils/populate_db.js`
 
 3. Reactin dev serverin saat käynnistettyä `frontend` kansiosta ajamalla `npm run start`
 
+### Testaus
+
+Testit voi ajaa Cypressillä ajamalla projektin rootissa `npx cypress open`
+
 ### Muuta
 
 **[prettier](https://prettier.io/)**
