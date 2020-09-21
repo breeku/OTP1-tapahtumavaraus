@@ -1,23 +1,53 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
-import { MuiThemeProvider } from '@material-ui/core/styles'
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import { InputLabel, MenuItem, FormControl, Select, Button } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
 
-const SearchBarComponents = ({
-    colortheme,
+import { getTagNames } from '../../../services/getTagNames'
+
+const colortheme = createMuiTheme({
+    palette: {
+        primary: { main: '#ffffff', contrastText: '#fff' },
+    },
+    overrides: {
+        MuiSelect: {
+            icon: {
+                color: '#ffffff',
+            },
+            selectMenu: {
+                color: '#ffffff',
+            },
+        },
+        MuiInputLabel: {
+            root: {
+                color: '#ffffff',
+            },
+        },
+    },
+})
+
+export default function SearchBarComponents({
     classes,
     tags,
-    tagList,
     language,
     resultLimit,
     setTags,
     setLanguage,
     setResultLimit,
-}) => {
-    const [openLang, setOpenLang] = React.useState(false)
-    const [openResult, setOpenResult] = React.useState(false)
-    const [openTags, setOpenTags] = React.useState(false)
+}) {
+    const [openLang, setOpenLang] = useState(false)
+    const [openResult, setOpenResult] = useState(false)
+    const [openTags, setOpenTags] = useState(false)
+    const [tagList, setTagList] = useState([])
+
+    useEffect(() => {
+        const getData = async () => {
+            const response = await getTagNames()
+            setTagList(response.data)
+        }
+        if (tagList.length === 0) getData()
+    }, [tagList.length])
 
     const handleChangeTags = event => {
         setTags([...tags, event.target.value])
@@ -153,4 +183,3 @@ const SearchBarComponents = ({
         </div>
     )
 }
-export default SearchBarComponents
