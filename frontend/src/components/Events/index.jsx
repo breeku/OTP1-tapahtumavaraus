@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
 
-import { makeStyles, createMuiTheme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 
 import { getEvents } from '../../services/events'
-import { getTagNames } from '../../services/getTagNames'
-import EventsList from './EventsList'
-import SearchBarComponents from './SearchBarComponents'
+import EventList from './EventList'
+import SearchBarComponents from './SearchBar'
 
 const useStyles = makeStyles(theme => ({
     text_center: {
@@ -67,34 +66,12 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-const colortheme = createMuiTheme({
-    palette: {
-        primary: { main: '#ffffff', contrastText: '#fff' },
-    },
-    overrides: {
-        MuiSelect: {
-            icon: {
-                color: '#ffffff',
-            },
-            selectMenu: {
-                color: '#ffffff',
-            },
-        },
-        MuiInputLabel: {
-            root: {
-                color: '#ffffff',
-            },
-        },
-    },
-})
-
 export default function Events() {
     const [events, setEvents] = useState(null)
+    const [language, setLanguage] = useState(null)
+    const [tags, setTags] = useState([])
+    const [resultLimit, setResultLimit] = useState(10)
     const classes = useStyles()
-    const [language, setLanguage] = React.useState(null)
-    const [tags, setTags] = React.useState([])
-    const [tagList, setTagList] = React.useState([])
-    const [resultLimit, setResultLimit] = React.useState(10)
 
     useEffect(() => {
         const getData = async () => {
@@ -105,32 +82,22 @@ export default function Events() {
         if (language && tags.length > 0) getData()
     }, [language, resultLimit, tags])
 
-    useEffect(() => {
-        const getData = async () => {
-            const response = await getTagNames()
-            setTagList(response.data)
-        }
-        if (tagList.length === 0) getData()
-    }, [tagList.length])
-
     return (
         <div className={classes.rootElement}>
             <SearchBarComponents
-                colortheme={colortheme}
                 classes={classes}
                 tags={tags}
-                tagList={tagList}
-                language={language}
-                resultLimit={resultLimit}
                 setTags={setTags}
+                language={language}
                 setLanguage={setLanguage}
+                resultLimit={resultLimit}
                 setResultLimit={setResultLimit}
             />
-            <EventsList
-                events={events}
+            <EventList
                 classes={classes}
-                language={language}
                 tags={tags}
+                language={language}
+                events={events}
             />
         </div>
     )

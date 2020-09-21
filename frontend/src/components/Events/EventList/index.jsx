@@ -2,7 +2,8 @@ import React from 'react'
 import { Paper } from '@material-ui/core'
 
 import { Link } from 'react-router-dom'
-const EventsList = ({ events, classes, language, tags }) => {
+
+export default function EventsList({ events, classes, language, tags }) {
     return (
         <div>
             <h1 className={classes.text_center}>Tapahtumat</h1>
@@ -61,5 +62,3 @@ const EventsList = ({ events, classes, language, tags }) => {
         </div>
     )
 }
-
-export default EventsList
