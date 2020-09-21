@@ -18,4 +18,19 @@ describe('Ensimmäiset testit', () => {
        .get('#resultLimit > span.MuiButton-label').click()
        .get('#menu- > div.MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded > ul > li:nth-child(2)').click()
     })
+    it('Hakusivulle saadaan tapahtuma ja löydetään se', () => {
+      cy.visit('/events')
+
+      cy.get('#root > div.makeStyles-rootElement-10 > div:nth-child(1) > button > span.MuiButton-label').click()
+        .get('#menu- > div.MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded > ul > li:nth-child(1)').click()
+
+        .get('#root > div.makeStyles-rootElement-10 > div:nth-child(2) > button').click()
+        .get('#menu- > div.MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded > ul > li:nth-child(2)').click()
+
+        .get('#resultLimit > span.MuiButton-label').click()
+        .get('#menu- > div.MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded > ul > li:nth-child(2)').click()
+        .wait(1)
+
+        .get('#root > div.makeStyles-rootElement-10 > a:nth-child(5) > div > div')
+      })
   })
