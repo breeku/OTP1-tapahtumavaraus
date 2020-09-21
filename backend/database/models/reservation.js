@@ -12,6 +12,10 @@ module.exports = (sequelize, DataTypes) => {
                 foreignKey: 'event_id',
                 targetKey: 'event_id',
             })
+            this.belongsTo(models.User, {
+                foreignKey: 'account_id',
+                targetKey: 'user',
+            })
         }
     }
     Reservation.init(
