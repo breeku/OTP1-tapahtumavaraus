@@ -32,7 +32,10 @@ eventsRouter.get('/:id', async (req, res) => {
     const id = req.params.id
     const data = await db.Event.findOne({
         where: { event_id: id },
-        include: [db.Reservation, db.Review],
+        include: [
+            db.Reservation,
+            { model: db.Review, include: { model: db.User, attributes: ['name'] } },
+        ],
     })
     res.send(data)
 })
