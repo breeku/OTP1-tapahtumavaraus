@@ -1,4 +1,4 @@
-describe('Ensimmäiset testit', () => {
+describe('Toiminnalisuuksien testailua', () => {
     it('Pääsee onnistuneesti etusivulle', function () {
       cy.visit('/')
 
