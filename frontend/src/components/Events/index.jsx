@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
 import {
+    Icon,
     Paper,
     InputLabel,
     MenuItem,
@@ -9,6 +10,7 @@ import {
     Select,
     Button,
 } from '@material-ui/core'
+import CloseIcon from '@material-ui/icons/Close'
 
 import { Link } from 'react-router-dom'
 
@@ -16,7 +18,11 @@ import { getEvents } from '../../services/events'
 import { getTagNames } from '../../services/getTagNames'
 
 const useStyles = makeStyles(theme => ({
-    text_center: theme.text_center,
+    text_center: {
+        color: 'white',
+        textAlign: 'center',
+        textShadow: '-2px 0 black, 0 2px black, 2px 0 black, 0 -2px black',
+    },
     eventImage: {
         width: '300px',
         height: '300px',
@@ -29,19 +35,45 @@ const useStyles = makeStyles(theme => ({
     button: {
         display: 'block',
         marginTop: theme.spacing(2),
+        color: 'white',
     },
     formControl: {
         margin: theme.spacing(1),
         minWidth: 120,
     },
     rootElement: {
-        position: "fixed", 
-        top: "20", 
-        left: "0", 
-        width: "100%",
-        height: "100%",
-        backgroundSize: "cover",
-        backgroundImage: "url(https://pixy.org/src2/570/5706051.jpg)"
+        background:
+            'url("https://upload.wikimedia.org/wikipedia/commons/b/b8/The_Stairs_Paola_Italy_Black_And_White_Street_Photography_%28233602113%29.jpeg") no-repeat center center fixed',
+        backgroundSize: 'cover',
+        height: '100%',
+        margin: '0',
+        padding: '0',
+        position: 'relative',
+        minHeight: '100vh',
+    },
+    paper: {
+        width: '40%',
+        marginLeft: '23%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(44, 44, 44, 0.9)',
+        padding: '4rem 8rem',
+        border: '3px solid #ffffff',
+        borderRadius: '2% 6% 5% 4% / 1% 1% 2% 4%',
+        color: '#ffffff',
+    },
+    searchElement: {
+        display: 'inline-block',
+    },
+    searchBar: {
+        backgroundColor: 'rgba(44, 44, 44, 0.9)',
+    },
+    closeIcon: {
+        color: '#ffffff',
+    },
+    removeTag: {
+        color: '#ffffff',
     },
 }))
 
@@ -92,10 +124,30 @@ export default function Events() {
         setOpenResult(true)
     }
 
-    const removeFromTags = (event) => {
-        console.log(event)
-        setTags(tags.filter((value) => value !== event))
+    const removeFromTags = event => {
+        setTags(tags.filter(value => value !== event))
     }
+
+    const colortheme = createMuiTheme({
+        palette: {
+            primary: { main: '#ffffff', contrastText: '#fff' },
+        },
+        overrides: {
+            MuiSelect: {
+                icon: {
+                    color: '#ffffff',
+                },
+                selectMenu: {
+                    color: '#ffffff',
+                },
+            },
+            MuiInputLabel: {
+                root: {
+                    color: '#ffffff',
+                },
+            },
+        },
+    })
 
     useEffect(() => {
         const getData = async () => {
@@ -103,7 +155,7 @@ export default function Events() {
             setEvents(response.data)
         }
 
-        if (language && tags) getData()
+        if (language && tags.length > 0) getData()
     }, [language, resultLimit, tags])
 
     useEffect(() => {
@@ -116,92 +168,132 @@ export default function Events() {
 
     return (
         <div className={classes.rootElement}>
-            <div>
-                <Button className={classes.button} onClick={handleOpenTags}>
-                    Valitse haku-tag
-                </Button>
-                <FormControl className={classes.formControl}>
-                    <InputLabel id="tag-label">Tag</InputLabel>
-                    <Select
-                        labelId="tag-label"
-                        id="tag-label"
-                        open={openTags}
-                        onClose={handleCloseTags}
-                        onOpen={handleOpenTags}
-                        value={tags}
-                        onChange={handleChangeTags}>
-                        {tagList.sort().map(tag => {
-                            return <MenuItem value={tag}>{tag}</MenuItem>
+            <MuiThemeProvider theme={colortheme}>
+                <div className={classes.searchBar}>
+                    <div className={classes.searchElement}>
+                        <Button className={classes.button} onClick={handleOpenTags}>
+                            Valitse haku-tag
+                        </Button>
+                        <FormControl className={classes.formControl}>
+                            <InputLabel id="tag-label">Tag</InputLabel>
+                            <Select
+                                disableUnderline
+                                class={classes.searchSelect}
+                                labelId="tag-label"
+                                id="tag-label"
+                                open={openTags}
+                                onClose={handleCloseTags}
+                                onOpen={handleOpenTags}
+                                value={tags}
+                                onChange={handleChangeTags}>
+                                {tagList.sort().map(tag => {
+                                    return <MenuItem value={tag}>{tag}</MenuItem>
+                                })}
+                            </Select>
+                        </FormControl>
+                    </div>
+                    <ul className={classes.searchElement}>
+                        {tags.map(tag => {
+                            return (
+                                <>
+                                    <li className={classes.removeTag} value={tag}>
+                                        {tag}
+                                    </li>
+                                    <Button onClick={() => removeFromTags(tag)}>
+                                        <CloseIcon className={classes.closeIcon} />
+                                    </Button>
+                                </>
+                            )
                         })}
-                    </Select>
-                </FormControl>
-                <ul>
-                    {tags.map(tag => {
-                        return <><li value={tag}>{tag}</li><Button onClick={() => removeFromTags(tag)}>äks</Button></>
-                    })}
-                </ul>
-            </div>
-            <div>
-                <Button className={classes.button} onClick={handleOpenLang}>
-                    Valitse kieli
-                </Button>
-                <FormControl className={classes.formControl}>
-                    <InputLabel id="lang-label">Kieli</InputLabel>
-                    <Select
-                        labelId="lang-label"
-                        id="lang-label"
-                        open={openLang}
-                        onClose={handleCloseLang}
-                        onOpen={handleOpenLang}
-                        value={language}
-                        onChange={handleChangeLang}>
-                        <MenuItem value="">
-                            <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={'fi'}>FI</MenuItem>
-                        <MenuItem value={'en'}>EN</MenuItem>
-                        <MenuItem value={'sv'}>SV</MenuItem>
-                        <MenuItem value={'zh'}>ZH</MenuItem>
-                    </Select>
-                </FormControl>
-            </div>
-            <div>
-                <Button
-                    className={classes.button}
-                    id="resultLimit"
-                    onClick={handleOpenResultLimit}>
-                    Valitse hakutulosten määrä
-                </Button>
-                <FormControl className={classes.formControl}>
-                    <InputLabel id="count-label">Määrä</InputLabel>
-                    <Select
-                        labelId="count-label"
-                        id="count-label"
-                        open={openResult}
-                        onClose={handleCloseResultLimit}
-                        onOpen={handleOpenResultLimit}
-                        value={resultLimit}
-                        onChange={handleChangeResultLimit}>
-                        <MenuItem value={10}>10</MenuItem>
-                        <MenuItem value={20}>20</MenuItem>
-                        <MenuItem value={30}>30</MenuItem>
-                    </Select>
-                </FormControl>
-            </div>
+                    </ul>
+                    <div className={classes.searchElement}>
+                        <Button className={classes.button} onClick={handleOpenLang}>
+                            Valitse kieli
+                        </Button>
+                        <FormControl className={classes.formControl}>
+                            <InputLabel id="lang-label">Kieli</InputLabel>
+                            <Select
+                                disableUnderline
+                                labelId="lang-label"
+                                id="lang-label"
+                                open={openLang}
+                                onClose={handleCloseLang}
+                                onOpen={handleOpenLang}
+                                value={language}
+                                onChange={handleChangeLang}>
+                                <MenuItem value="">
+                                    <em>None</em>
+                                </MenuItem>
+                                <MenuItem value={'fi'}>FI</MenuItem>
+                                <MenuItem value={'en'}>EN</MenuItem>
+                                <MenuItem value={'sv'}>SV</MenuItem>
+                                <MenuItem value={'zh'}>ZH</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </div>
+                    <div className={classes.searchElement}>
+                        <Button
+                            className={classes.button}
+                            id="resultLimit"
+                            onClick={handleOpenResultLimit}>
+                            Valitse hakutulosten määrä
+                        </Button>
+                        <FormControl className={classes.formControl}>
+                            <InputLabel id="count-label">Määrä</InputLabel>
+                            <Select
+                                disableUnderline
+                                labelId="count-label"
+                                id="count-label"
+                                open={openResult}
+                                onClose={handleCloseResultLimit}
+                                onOpen={handleOpenResultLimit}
+                                value={resultLimit}
+                                onChange={handleChangeResultLimit}>
+                                <MenuItem value={10}>10</MenuItem>
+                                <MenuItem value={20}>20</MenuItem>
+                                <MenuItem value={30}>30</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </div>
+                </div>
+            </MuiThemeProvider>
             <h1 className={classes.text_center}>Tapahtumat</h1>
 
-            {events && (
+            {events && tags.length > 0 && (
                 <>
                     {events.data.map(event => {
+                        console.log(event)
+                        const startDay = new Date(event.event_dates.starting_day).getDay()
+                        const startMonth = new Date(
+                            event.event_dates.starting_day,
+                        ).getMonth()
+                        const startYear = new Date(
+                            event.event_dates.starting_day,
+                        ).getFullYear()
+                        const startHour = new Date(
+                            event.event_dates.starting_day,
+                        ).getHours()
+                        const startMinutes = new Date(
+                            event.event_dates.starting_day,
+                        ).getMinutes()
+
                         return (
-                            <Link to={{ pathname: `/events/${event.id}`, state: event }}>
+                            <Link
+                                className={classes.link}
+                                to={{ pathname: `/events/${event.id}`, state: event }}>
                                 <Paper elevation={3} className={classes.paper}>
                                     <div className={classes.event}>
                                         <p className={classes.text_center}>
+                                            <h1>{event.name[language]}</h1>
+                                            <br />
                                             {event.description.intro}
                                             <br />
-                                            {event.event_dates.starting_day} --{'>'}
+                                            {startDay}.{startMonth}.{startYear},{' '}
+                                            {startHour}.{startMinutes} --{'>'}
                                             {event.event_dates.ending_day}
+                                            <br />
+                                            {event.location.address.locality},{' '}
+                                            {event.location.address.street_address}
                                         </p>
                                         {event.description.images[0] && (
                                             <img

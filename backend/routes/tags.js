@@ -6,7 +6,7 @@ const tagsRouter = express.Router()
 
 tagsRouter.get('/', async (req, res) => {
     try {
-        const allTags = await db.Tags.findAll({ raw: true })
+        const allTags = await db.Tag.findAll({ raw: true })
         const names = allTags.map(x => x.name)
         res.send(names)
     } catch (e) {
@@ -16,7 +16,7 @@ tagsRouter.get('/', async (req, res) => {
 
 tagsRouter.get('/:search', async (req, res) => {
     const search = req.params.search
-    const matchTags = await db.Tags.findAll({
+    const matchTags = await db.Tag.findAll({
         raw: true,
         where: {
             name: {
