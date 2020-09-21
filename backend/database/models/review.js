@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
                 targetKey: 'event_id',
             })
             this.belongsTo(models.User, {
-                foreignKey: 'user',
+                foreignKey: 'account_id',
                 targetKey: 'account_id',
             })
         }
@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         {
             event_id: DataTypes.STRING,
             rating: DataTypes.INTEGER,
-            user: DataTypes.STRING,
+            account_id: DataTypes.STRING,
             header: DataTypes.STRING,
             content: DataTypes.STRING,
         },

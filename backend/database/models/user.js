@@ -10,18 +10,20 @@ module.exports = (sequelize, DataTypes) => {
         static associate(models) {
             // define association here
             this.hasOne(models.Reservation, {
-                foreignKey: 'user',
+                foreignKey: 'account_id',
                 sourceKey: 'account_id',
             })
             this.hasOne(models.Review, {
-                foreignKey: 'user',
+                foreignKey: 'account_id',
                 sourceKey: 'account_id',
             })
         }
     }
     User.init(
         {
-            name: DataTypes.STRING,
+            first_name: DataTypes.STRING,
+            last_name: DataTypes.STRING,
+            username: DataTypes.STRING,
             password: DataTypes.STRING,
             account_id: DataTypes.STRING,
         },

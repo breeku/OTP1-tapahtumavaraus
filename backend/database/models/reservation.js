@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
                 targetKey: 'event_id',
             })
             this.belongsTo(models.User, {
-                foreignKey: 'user',
+                foreignKey: 'account_id',
                 targetKey: 'account_id',
             })
         }
@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     Reservation.init(
         {
             event_id: DataTypes.STRING,
-            user: DataTypes.STRING,
+            account_id: DataTypes.STRING,
         },
         {
             sequelize,
