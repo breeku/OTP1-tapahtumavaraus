@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
         backgroundSize: 'cover',
         height: '100%',
         margin: '0',
-        padding: '0',
+        padding: '2%',
         position: 'relative',
         minHeight: '100vh',
     },
