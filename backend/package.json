@@ -6,7 +6,10 @@
     "scripts": {
         "prod": "node index.js",
         "start": "nodemon index.js",
-        "migrate": "sequelize-cli db:migrate"
+        "migrate": "sequelize-cli db:migrate",
+        "migrate:undo": "sequelize-cli db:migrate:undo",
+        "seed": "sequelize-cli db:seed:all",
+        "seed:undo": "sequelize-cli db:seed:undo:all"
     },
     "repository": {
         "type": "git",
