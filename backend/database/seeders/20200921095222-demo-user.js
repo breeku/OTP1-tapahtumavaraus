@@ -21,6 +21,13 @@ module.exports = {
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
+                {
+                    name: 'Samperi',
+                    password: '4321',
+                    account_id: 'a2192c1d-df09-4690-beeb-b10c0db8ba29',
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
             ],
             {},
         )

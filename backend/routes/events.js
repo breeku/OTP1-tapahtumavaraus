@@ -30,9 +30,9 @@ eventsRouter.get('/:lang/:limit/:tags', async (req, res) => {
 
 eventsRouter.get('/:id', async (req, res) => {
     const id = req.params.id
-    const data = await db.Event.findAll({
+    const data = await db.Event.findOne({
         where: { event_id: id },
-        include: [{ model: db.Reservation }, { model: db.Review }],
+        include: [db.Reservation, db.Review],
     })
     res.send(data)
 })
