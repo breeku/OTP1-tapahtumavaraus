@@ -28,6 +28,8 @@ Sen jälkeen luodaan tietokanta, `npx sequelize-cli db:create`, ja sen jälkeen 
 
 Tietokannan sisällön saat ajamalla `node backend/utils/populate_db.js`
 
+Tietokannalle on myös mock dataa, jotka saat ajamalla `npm run seed` backend kansiosta.
+
 ### Koodaus
 
 1. Siirrä node_modules projektin juuresta "backend"-kansioon (jos node_modules ei poistu rootista, vaan kopioituu backendiin, poista se manuaalisesti)
