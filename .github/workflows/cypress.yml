@@ -52,3 +52,18 @@ jobs:
 
       - name: tietokannan sisältö
         run: cd backend && npm run migrate && npm run seed
+        env: 
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+
+      - name: käynnistä serveri
+        run: cd backend && npm run start:coverage
+        env: 
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+
+      - name: käynnistä sivu
+        run: cd frontend && npm run start
+
+      - name: aja testit rootista
+        run: npm run test && npm run coverage
