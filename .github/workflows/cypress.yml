@@ -60,13 +60,15 @@ jobs:
           DB_PORT: 5432
 
       - name: käynnistä serveri
-        run: cd backend && npm run start:coverage
+        run: cd backend && npm run start:coverage &
         env: 
           DB_USER: ${{ secrets.DB_USER }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_HOST: localhost
+          DB_PORT: 5432
 
       - name: käynnistä sivu
-        run: cd frontend && npm run start
+        run: cd frontend && npm run start &
 
       - name: aja testit rootista
         run: npm run test && npm run coverage
