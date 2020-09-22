@@ -1,6 +1,7 @@
 const express = require('express')
 const axios = require('axios')
 const BASEURL = require('../config/index')
+const db = require('../database/models')
 
 const eventsRouter = express.Router()
 
@@ -28,8 +29,15 @@ eventsRouter.get('/:lang/:limit/:tags', async (req, res) => {
 })
 
 eventsRouter.get('/:id', async (req, res) => {
-    //const id = req.params.id
-    res.send({ content: 'id' })
+    const id = req.params.id
+    const data = await db.Event.findOne({
+        where: { event_id: id },
+        include: [
+            db.Reservation,
+            { model: db.Review, include: { model: db.User, attributes: ['name'] } },
+        ],
+    })
+    res.send(data)
 })
 
 module.exports = eventsRouter
