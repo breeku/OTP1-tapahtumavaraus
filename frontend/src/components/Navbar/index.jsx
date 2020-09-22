@@ -41,11 +41,11 @@ export default function Navbar() {
                     </Typography>
 
                     <Link to="/events" className={classes.link}>
-                        <Button color="inherit">Tapahtumat</Button>
+                        <Button data-cy="tapahtumaNav" color="inherit">Tapahtumat</Button>
                     </Link>
 
                     <Link to="/login" className={classes.link}>
-                        <Button color="inherit">Kirjaudu</Button>
+                        <Button data-cy="kirjauduNav" color="inherit">Kirjaudu</Button>
                     </Link>
                 </Toolbar>
             </AppBar>
