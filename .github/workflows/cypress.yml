@@ -52,7 +52,7 @@ jobs:
         run: npm i
 
       - name: tietokannan sisältö
-        run: cd backend && npm run migrate && npm run seed
+        run: cd backend && npx sequelize-cli db:create && npm run migrate && npm run seed
         env: 
           DB_USER: ${{ secrets.DB_USER }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
