@@ -7,6 +7,8 @@ const tagsRouter = require('./routes/tags')
 
 const app = express()
 
+require('@cypress/code-coverage/middleware/express')(app)
+
 app.use(cors())
 
 app.use('/api/events', eventsRouter)
