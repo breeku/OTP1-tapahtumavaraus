@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Paper, makeStyles, Button, Grid } from '@material-ui/core/'
+import Review from './review'
+import ReviewTextField from './reviewTextField'
 
 const useStyles = makeStyles(theme => ({
     eventHeader: {
@@ -66,6 +68,7 @@ const useStyles = makeStyles(theme => ({
 
 const EventItem = ({ event }) => {
     const classes = useStyles()
+    const [reviewElement, setHidden] = useState(false)
 
     console.log(event)
 
@@ -89,7 +92,11 @@ const EventItem = ({ event }) => {
                                 {' '}
                                 <p className={classes.p}>{event.description.intro}</p>
                                 <Button className={classes.button}>Varaa</Button>
-                                <Button className={classes.button}>Arvostele</Button>
+                                <Button
+                                    className={classes.button}
+                                    onClick={() => setHidden(true)}>
+                                    Arvostele
+                                </Button>
                             </Grid>
                             <Grid item sm={6}>
                                 {event.description.images[0] && (
@@ -100,6 +107,14 @@ const EventItem = ({ event }) => {
                                 )}
                             </Grid>
                         </Grid>
+                        <div>
+                            {reviewElement && (
+                                <>
+                                    <Review />
+                                    <ReviewTextField />
+                                </>
+                            )}
+                        </div>
                     </Paper>
                 </>
             )}
