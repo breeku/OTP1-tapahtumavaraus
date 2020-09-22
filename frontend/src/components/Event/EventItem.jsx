@@ -70,8 +70,6 @@ const EventItem = ({ event }) => {
     const classes = useStyles()
     const [reviewElement, setHidden] = useState(false)
 
-    console.log(event)
-
     return (
         <div>
             {event && (
