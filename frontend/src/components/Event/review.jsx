@@ -12,6 +12,7 @@ const Review = () => {
                 <Box component="fieldset" mb={3} borderColor="transparent">
                     <Typography component="legend">Arvostele</Typography>
                     <Rating
+                        data-cy="arvosteluTahdet"
                         name="Arvostelun tähdet"
                         value={rating}
                         onChange={(event, newValue) => {
