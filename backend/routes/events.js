@@ -36,8 +36,12 @@ eventsRouter.get('/:id/:fetch', async (req, res) => {
     const dbEvent = await db.Event.findOne({
         where: { event_id: id },
         include: [
-            db.Reservation,
-            { model: db.Review, include: { model: db.User, attributes: ['name'] } },
+            { model: db.Reservation, required: false },
+            {
+                model: db.Review,
+                required: false,
+                include: { model: db.User, attributes: ['name'] },
+            },
         ],
     })
 
@@ -49,9 +53,11 @@ eventsRouter.get('/:id/:fetch', async (req, res) => {
         response = { Event: event.data }
     }
 
-    if (dbEvent.Reviews) response = { ...response, Reviews: dbEvent.Reviews }
-    if (dbEvent.Reservations)
-        response = { ...response, Reservations: dbEvent.Reservations }
+    if (dbEvent) {
+        if (dbEvent.Reviews) response = { ...response, Reviews: dbEvent.Reviews }
+        if (dbEvent.Reservations)
+            response = { ...response, Reservations: dbEvent.Reservations }
+    }
 
     res.send(response)
 })
