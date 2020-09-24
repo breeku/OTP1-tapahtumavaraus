@@ -18,7 +18,7 @@ const ReviewTextField = () => {
         <form className={classes.root}>
             <div>
                 <TextField
-                    id="standard-multiline-static"
+                    id="Arvostelun tekstikenttä"
                     label="Lisätietoja"
                     multiline
                     rows={9}

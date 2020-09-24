@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 
 const Review = () => {
-    const [value, setValue] = React.useState(2)
+    const [rating, setRating] = React.useState(2)
 
     return (
         <>
@@ -12,10 +12,10 @@ const Review = () => {
                 <Box component="fieldset" mb={3} borderColor="transparent">
                     <Typography component="legend">Arvostele</Typography>
                     <Rating
-                        name="simple-controlled"
-                        value={value}
+                        name="Arvostelun tähdet"
+                        value={rating}
                         onChange={(event, newValue) => {
-                            setValue(newValue)
+                            setRating(newValue)
                         }}
                     />
                 </Box>

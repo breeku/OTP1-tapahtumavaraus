@@ -3,8 +3,6 @@ import React from 'react'
 import Rating from '@material-ui/lab/Rating'
 
 const Reviews = ({ data }) => {
-    console.log(data)
-
     return (
         <ul>
             {data.map(review => (

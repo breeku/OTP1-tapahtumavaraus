@@ -68,7 +68,7 @@ const useStyles = makeStyles(theme => ({
 
 const EventItem = ({ event }) => {
     const classes = useStyles()
-    const [reviewElement, setHidden] = useState(false)
+    const [reviewView, setReviewView] = useState(false)
 
     return (
         <div>
@@ -87,12 +87,11 @@ const EventItem = ({ event }) => {
                     <Paper elevation={3} className={classes.eventDescription}>
                         <Grid container spacing={3}>
                             <Grid item sm={6}>
-                                {' '}
                                 <p className={classes.p}>{event.description.intro}</p>
                                 <Button className={classes.button}>Varaa</Button>
                                 <Button
                                     className={classes.button}
-                                    onClick={() => setHidden(true)}>
+                                    onClick={() => setReviewView(true)}>
                                     Arvostele
                                 </Button>
                             </Grid>
@@ -106,7 +105,7 @@ const EventItem = ({ event }) => {
                             </Grid>
                         </Grid>
                         <div>
-                            {reviewElement && (
+                            {reviewView && (
                                 <>
                                     <Review />
                                     <ReviewTextField />
