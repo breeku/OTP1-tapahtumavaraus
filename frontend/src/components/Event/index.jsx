@@ -119,6 +119,7 @@ export default function Event() {
                                 {' '}
                                 <p className={classes.p}>{event.description.intro}</p>
                                 <Button
+                                    data-cy="varaaNappi"
                                     className={classes.button}
                                     onClick={() => {
                                         setReservationElement(true)
@@ -127,6 +128,7 @@ export default function Event() {
                                     Varaa
                                 </Button>
                                 <Button
+                                    data-cy="arvosteluNappi"
                                     className={classes.button}
                                     onClick={() => {
                                         setReviewElement(true)

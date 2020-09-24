@@ -27,5 +27,13 @@ describe('Toiminnalisuuksien testailua', () => {
 
       cy.get('[data-cy=tapahtumaLista]').eq(0).click()
 
+      cy.get('[data-cy=arvosteluNappi]').click()
+      cy.get('[data-cy=arvosteluTekstikentta]').type("Arvostelu tekstiä")
+
+      cy.get('[data-cy=arvosteluTahdet]').click()
+
+      cy.get('[data-cy=varaaNappi]').click()
       })
+
+    
   })

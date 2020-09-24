@@ -29,6 +29,7 @@ const ReservationElement = ({ data }) => {
                 <Badge color="secondary" badgeContent={count}></Badge>
                 <ButtonGroup>
                     <Button
+                        data-cy="vahennaNappiVaraus"
                         aria-label="reduce"
                         onClick={() => {
                             setCount(Math.max(count - 1, 0))
@@ -36,6 +37,7 @@ const ReservationElement = ({ data }) => {
                         <RemoveIcon fontSize="small" />
                     </Button>
                     <Button
+                        data-cy="lisaaNappiVaraus"
                         aria-label="increase"
                         onClick={() => {
                             setCount(count + 1)
