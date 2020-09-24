@@ -28,16 +28,32 @@ eventsRouter.get('/:lang/:limit/:tags', async (req, res) => {
     }
 })
 
-eventsRouter.get('/:id', async (req, res) => {
+eventsRouter.get('/:id/:fetch', async (req, res) => {
     const id = req.params.id
-    const data = await db.Event.findOne({
+    const fetch = req.params.fetch
+    let response = {}
+
+    const dbEvent = await db.Event.findOne({
         where: { event_id: id },
         include: [
             db.Reservation,
             { model: db.Review, include: { model: db.User, attributes: ['name'] } },
         ],
     })
-    res.send(data)
+
+    if (fetch || !dbEvent) {
+        const event = await axios.get(BASEURL + 'v1/event/' + id)
+        if (!dbEvent) {
+            // laita event tietokantaan
+        }
+        response = { Event: event.data }
+    }
+
+    if (dbEvent.Reviews) response = { ...response, Reviews: dbEvent.Reviews }
+    if (dbEvent.Reservations)
+        response = { ...response, Reservations: dbEvent.Reservations }
+
+    res.send(response)
 })
 
 module.exports = eventsRouter
