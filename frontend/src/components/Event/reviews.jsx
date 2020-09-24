@@ -6,7 +6,7 @@ const Reviews = ({ data }) => {
     return (
         <ul>
             {data.map(review => (
-                <div key={data.id}>
+                <div data-cy="arvosteluLista" key={data.id}>
                     <h1>{review.header}</h1>
                     <p>{review.User.name}</p>
                     <p>{review.content}</p>

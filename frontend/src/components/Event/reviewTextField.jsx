@@ -18,6 +18,7 @@ const ReviewTextField = () => {
         <form className={classes.root}>
             <div>
                 <TextField
+                    data-cy="arvosteluTekstikentta"
                     id="Arvostelun tekstikenttä"
                     label="Lisätietoja"
                     multiline

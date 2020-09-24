@@ -13,7 +13,7 @@ describe('Toiminnalisuuksien testailua', () => {
 
 
     })
-    it('Hakee tapahtumia ja painaa niistä ensimmäistä', () => {
+    it('Hakee tapahtumia, painaa niistä ensimmäistä, arvostelee tapahtuman ja varaa lipun', () => {
       cy.visit('/events')
 
       cy.contains('Valitse kieli').click()
@@ -27,5 +27,20 @@ describe('Toiminnalisuuksien testailua', () => {
 
       cy.get('[data-cy=tapahtumaLista]').eq(0).click()
 
+      cy.get('[data-cy=arvosteluNappi]').click()
+      cy.get('[data-cy=arvosteluTekstikentta]').type("Arvostelu tekstiä")
+
+      cy.get('[data-cy=arvosteluTahdet]').click()
+
+      cy.get('[data-cy=varaaNappi]').click()
+      cy.get('[data-cy=vahennaNappivaraus]').click()
+      cy.get('[data-cy=omavarausMaara]').contains('0')
+      cy.get('[data-cy=lisaaNappivaraus]').click()
+      cy.get('[data-cy=omavarausMaara]').contains('1')
+      
+      })
+      it('Tapahtumasta löytyy arvosteluja', () => {
+        cy.visit('/events/helsinki:afyho6epwy')
+        cy.get('[data-cy=arvosteluLista]').eq(1).contains('Hederi')
       })
   })

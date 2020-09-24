@@ -26,9 +26,10 @@ const ReservationElement = ({ data }) => {
     return (
         <div className={classes.root}>
             <div>
-                <Badge color="secondary" badgeContent={count}></Badge>
+                <Badge data-cy="omavarausMaara" color="secondary" badgeContent={count}></Badge>
                 <ButtonGroup>
                     <Button
+                        data-cy="vahennaNappivaraus"
                         aria-label="reduce"
                         onClick={() => {
                             setCount(Math.max(count - 1, 0))
@@ -36,6 +37,7 @@ const ReservationElement = ({ data }) => {
                         <RemoveIcon fontSize="small" />
                     </Button>
                     <Button
+                        data-cy="lisaaNappivaraus"
                         aria-label="increase"
                         onClick={() => {
                             setCount(count + 1)
