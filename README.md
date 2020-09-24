@@ -40,7 +40,7 @@ Tietokannalle on myös mock dataa, jotka saat ajamalla `npm run seed` backend ka
 
 ### Testaus
 
-Testit voi ajaa projektin rootista ´npm run test` , ja testien kattavuuden saa `npm run coverage`.
+Testit voi ajaa projektin rootista `npm run test` , ja testien kattavuuden saa `npm run coverage`.
 
 ### Muuta
 
