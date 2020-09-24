@@ -6,7 +6,11 @@
     "scripts": {
         "prod": "node index.js",
         "start": "nodemon index.js",
-        "migrate": "sequelize-cli db:migrate"
+        "start:coverage": "nyc --silent node index.js",
+        "migrate": "sequelize-cli db:migrate",
+        "migrate:undo": "sequelize-cli db:migrate:undo",
+        "seed": "sequelize-cli db:seed:all",
+        "seed:undo": "sequelize-cli db:seed:undo:all"
     },
     "repository": {
         "type": "git",
@@ -23,6 +27,7 @@
         "axios": "^0.20.0",
         "cors": "^2.8.5",
         "express": "^4.17.1",
+        "nyc": "^15.1.0",
         "pg": "^8.3.3",
         "sequelize": "^6.3.5"
     },
