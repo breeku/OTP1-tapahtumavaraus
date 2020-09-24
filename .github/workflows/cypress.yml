@@ -37,7 +37,6 @@ jobs:
             path: |
                     backend/node_modules
                     frontend/node_modules
-                    node_modules
             key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
       
       # Performs a clean installation of all dependencies in the `package.json` file
