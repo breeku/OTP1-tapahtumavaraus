@@ -83,7 +83,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function Event() {
     const location = useLocation()
-    const event = location && location.state
+    const [event, setEvent] = useState(location && location.state)
+    const eventId = location && location.pathname.substring(8)
     const classes = useStyles()
     const [reviewElement, setReviewElement] = useState(false)
     const [reviews, setReviews] = useState([])
@@ -92,13 +93,13 @@ export default function Event() {
 
     useEffect(() => {
         const getData = async () => {
-            const { data } = await getEvent(event.id)
-            console.log(data)
-            setReviews(data.Reviews)
-            setReservationCount(data.Reservations.length)
+            const { data } = await getEvent(eventId, !event)
+            if (!event) setEvent(data.Event)
+            if (data.Reviews) setReviews(data.Reviews)
+            if (data.Reservations) setReservationCount(data.Reservations.length)
         }
-        if (event) getData()
-    }, [event])
+        if (eventId) getData()
+    }, [event, eventId])
     return (
         <div className={classes.root}>
             {event && (
@@ -119,6 +120,7 @@ export default function Event() {
                                 {' '}
                                 <p className={classes.p}>{event.description.intro}</p>
                                 <Button
+                                    data-cy="varaaNappi"
                                     className={classes.button}
                                     onClick={() => {
                                         setReservationElement(true)
@@ -127,6 +129,7 @@ export default function Event() {
                                     Varaa
                                 </Button>
                                 <Button
+                                    data-cy="arvosteluNappi"
                                     className={classes.button}
                                     onClick={() => {
                                         setReviewElement(true)
