@@ -38,25 +38,17 @@ const SignUp = () => {
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
 
-    const handlePostAccount = event => {
-        event.preventDefault()
-
+    const handlePostAccount = () => {
         const postData = async () => {
             await postAccount(firstName, lastName, username, email, password)
         }
 
-        if (
-            firstName !== null &&
-            lastName !== null &&
-            username !== null &&
-            email !== null &&
-            password !== null
-        )
-            postData()
+        if (firstName && lastName && username && email && password) postData()
     }
 
     const handleChangeFirstName = event => {
         setFirstName(event.target.value)
+        console.log(firstName)
     }
 
     const handleChangeLastName = event => {
@@ -150,12 +142,11 @@ const SignUp = () => {
                         </Grid>
                     </Grid>
                     <Button
-                        type="submit"
                         fullWidth
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        onClick={() => handlePostAccount}>
+                        onClick={handlePostAccount}>
                         Luo tunnus
                     </Button>
                 </form>
