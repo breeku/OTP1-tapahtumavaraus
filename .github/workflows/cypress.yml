@@ -1,5 +1,10 @@
 name: PostgreSQL service example
-on: ["push", "pull_request"]
+on:
+  push:
+    branches: [master, gh_actions, dev]
+  pull_request:
+    branches: [master, gh_actions, dev]
+  
 
 jobs:
   # Label of the container job
