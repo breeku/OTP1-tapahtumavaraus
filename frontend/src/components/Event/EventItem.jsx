@@ -1,24 +1,9 @@
-import React, { useEffect, useState } from 'react'
-
-import { useLocation } from 'react-router-dom'
-import { makeStyles, Paper, Button, Grid } from '@material-ui/core/'
-import { getEvent } from '../../services/events'
+import React, { useState } from 'react'
+import { Paper, makeStyles, Button, Grid } from '@material-ui/core/'
 import Review from './review'
 import ReviewTextField from './reviewTextField'
-import Reviews from './reviews'
-import ReservationElement from './reservationElement'
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        background:
-            'url("https://upload.wikimedia.org/wikipedia/commons/b/b8/The_Stairs_Paola_Italy_Black_And_White_Street_Photography_%28233602113%29.jpeg") no-repeat center center fixed',
-        backgroundSize: 'cover',
-        height: '100%',
-        margin: '0',
-        padding: '2%',
-        position: 'relative',
-        minHeight: '100vh',
-    },
     eventHeader: {
         width: '80%',
         margin: 'auto',
@@ -81,27 +66,12 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-export default function Event() {
-    const location = useLocation()
-    const [event, setEvent] = useState(location && location.state)
-    const eventId = location && location.pathname.substring(8)
+const EventItem = ({ event }) => {
     const classes = useStyles()
-    const [reviewElement, setReviewElement] = useState(false)
-    const [reviews, setReviews] = useState([])
-    const [reservationElement, setReservationElement] = useState(false)
-    const [reservationCount, setReservationCount] = useState('')
+    const [reviewView, setReviewView] = useState(false)
 
-    useEffect(() => {
-        const getData = async () => {
-            const { data } = await getEvent(eventId, !event)
-            if (!event) setEvent(data.Event)
-            if (data.Reviews) setReviews(data.Reviews)
-            if (data.Reservations) setReservationCount(data.Reservations.length)
-        }
-        if (eventId) getData()
-    }, [event, eventId])
     return (
-        <div className={classes.root}>
+        <div>
             {event && (
                 <>
                     <Paper elevation={3} className={classes.eventHeader}>
@@ -117,22 +87,11 @@ export default function Event() {
                     <Paper elevation={3} className={classes.eventDescription}>
                         <Grid container spacing={3}>
                             <Grid item sm={6}>
-                                {' '}
                                 <p className={classes.p}>{event.description.intro}</p>
+                                <Button className={classes.button}>Varaa</Button>
                                 <Button
                                     className={classes.button}
-                                    onClick={() => {
-                                        setReservationElement(true)
-                                        setReviewElement(false)
-                                    }}>
-                                    Varaa
-                                </Button>
-                                <Button
-                                    className={classes.button}
-                                    onClick={() => {
-                                        setReviewElement(true)
-                                        setReservationElement(false)
-                                    }}>
+                                    onClick={() => setReviewView(true)}>
                                     Arvostele
                                 </Button>
                             </Grid>
@@ -146,21 +105,10 @@ export default function Event() {
                             </Grid>
                         </Grid>
                         <div>
-                            {reservationElement && !reviewElement && (
-                                <>
-                                    <ReservationElement />
-                                    <h1>{reservationCount}</h1>
-                                </>
-                            )}
-                            {reviewElement && !reservationElement && (
+                            {reviewView && (
                                 <>
                                     <Review />
                                     <ReviewTextField />
-                                </>
-                            )}
-                            {!reviewElement && !reservationElement && (
-                                <>
-                                    <Reviews data={reviews} />
                                 </>
                             )}
                         </div>
@@ -170,3 +118,5 @@ export default function Event() {
         </div>
     )
 }
+
+export default EventItem

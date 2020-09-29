@@ -5,11 +5,11 @@ name: frontend
 
 on:
     push:
-        branches: [master, gh_actions]
+        branches: [master, gh_actions, dev]
         paths:
             - 'frontend/*'
     pull_request:
-        branches: [master, gh_actions]
+        branches: [master, gh_actions, dev]
         paths:
             - 'frontend/*'
 

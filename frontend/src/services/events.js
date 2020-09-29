@@ -8,7 +8,9 @@ export const getEvents = async (language, resultLimit, tags) => {
     return response
 }
 
-export const getEvent = async eventId => {
-    const response = await axios.get(BASEURL + '/api/events/' + eventId)
+export const getEvent = async (eventId, fetchEvent) => {
+    const response = await axios.get(
+        BASEURL + '/api/events/' + eventId + '/' + fetchEvent,
+    )
     return response
 }
