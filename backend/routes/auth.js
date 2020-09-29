@@ -2,7 +2,6 @@ const express = require('express')
 const bcrypt = require('bcryptjs')
 const { Op } = require('sequelize')
 const db = require('../database/models/index')
-const SALTROUNDS = require('../config/index')
 
 const authRouter = express.Router()
 
