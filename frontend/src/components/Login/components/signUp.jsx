@@ -8,7 +8,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
-import { postAccount } from '../../../services/postAccount'
+import { postAccount } from '../../../services/auth'
 
 const useStyles = makeStyles(theme => ({
     paper: {
