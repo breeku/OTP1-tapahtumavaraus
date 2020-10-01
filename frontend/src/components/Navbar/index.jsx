@@ -7,7 +7,7 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
-import { getToken } from '/src/services/auth.js'
+import { getToken } from '../../services/auth.js'
 
 const useStyles = makeStyles(theme => ({
     root: {
