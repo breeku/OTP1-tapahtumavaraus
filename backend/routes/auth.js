@@ -1,13 +1,13 @@
 const express = require('express')
 const bcrypt = require('bcryptjs')
-const { Op } = require('sequelize')
+const jwt = require('jsonwebtoken')
 const db = require('../database/models/index')
 
+const JWTKEY = process.env.JWTKEY
 const authRouter = express.Router()
 
 authRouter.post('/login', async (req, res) => {
     const credentials = req.body
-    console.log(credentials)
     if (credentials.email && credentials.password) {
         try {
             const user = await db.User.findOne({
@@ -16,14 +16,13 @@ authRouter.post('/login', async (req, res) => {
                 },
                 raw: true,
             })
-            console.log(user)
             const match = await bcrypt.compare(credentials.password, user.password)
             if (match) {
-                console.log('match!')
-                res.send(true)
+                const token = jwt.sign({ user: user.email }, JWTKEY)
+                console.log({ ...user, token })
+                res.status(200).send({ ...user, token })
             } else {
-                console.log('incorrect credentials')
-                res.send(false)
+                res.sendStatus(401)
             }
         } catch (e) {
             console.warn(e)
@@ -35,13 +34,12 @@ authRouter.post('/login', async (req, res) => {
 
 authRouter.post('/register', async (req, res) => {
     const credentials = req.body
-    console.log(credentials)
     try {
         const created = await db.User.create(credentials)
         if (created) {
-            res.send(true)
+            res.sendStatus(200)
         } else {
-            res.send(false)
+            res.sendStatus(500)
         }
     } catch (e) {
         console.warn(e)
