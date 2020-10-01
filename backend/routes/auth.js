@@ -22,6 +22,7 @@ authRouter.post('/login', async (req, res) => {
                 console.log({ token })
                 res.status(200).send({ token })
             } else {
+                console.log('incorrect password')
                 res.sendStatus(401)
             }
         } catch (e) {

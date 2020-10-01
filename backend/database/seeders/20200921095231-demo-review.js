@@ -1,4 +1,5 @@
 'use strict'
+const db = require('../models/index')
 
 module.exports = {
     up: async (queryInterface, Sequelize) => {
@@ -11,26 +12,29 @@ module.exports = {
          *   isBetaMember: false
          * }], {});
          */
-        await queryInterface.bulkInsert(
-            'Reviews',
+        await db.Review.bulkCreate(
             [
                 {
                     event_id: 'helsinki:afyho6epwy',
                     rating: 5,
-                    account_id: '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d',
+                    ...(await db.User.findOne({
+                        where: { username: 'Santeri' },
+                        raw: true,
+                        attributes: ['account_id'],
+                    })),
                     header: 'Tää o headeri',
                     content: 'Tää o kontent',
-                    createdAt: new Date(),
-                    updatedAt: new Date(),
                 },
                 {
                     event_id: 'helsinki:afyho6epwy',
                     rating: 4,
-                    account_id: 'a2192c1d-df09-4690-beeb-b10c0db8ba29',
+                    ...(await db.User.findOne({
+                        where: { username: 'Samperi' },
+                        raw: true,
+                        attributes: ['account_id'],
+                    })),
                     header: 'Hederi',
                     content: 'Konontti',
-                    createdAt: new Date(),
-                    updatedAt: new Date(),
                 },
             ],
             {},
