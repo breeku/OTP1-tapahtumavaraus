@@ -46,7 +46,7 @@ authRouter.post('/register', async (req, res) => {
             res.sendStatus(500)
         }
     } catch (e) {
-        res.status(400).send({ error: e.errors[0].message })
+        res.status(400).send({ error: e })
         console.warn(e)
     }
 })
