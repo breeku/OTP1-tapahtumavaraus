@@ -18,30 +18,35 @@ authRouter.post('/login', async (req, res) => {
             })
             const match = await bcrypt.compare(credentials.password, password)
             if (match) {
-                const token = jwt.sign({ ...user }, JWTKEY)
+                const token = jwt.sign(user, JWTKEY)
                 console.log({ token })
                 res.status(200).send({ token })
             } else {
                 res.sendStatus(401)
             }
         } catch (e) {
+            res.sendStatus(401)
             console.warn(e)
         }
     } else {
-        res.send(false)
+        res.send(500)
     }
 })
 
 authRouter.post('/register', async (req, res) => {
     const credentials = req.body
     try {
-        const created = await db.User.create(credentials)
+        const { password, ...created } = (await db.User.create(credentials)).get({
+            plain: true,
+        })
         if (created) {
-            res.sendStatus(200)
+            const token = jwt.sign(created, JWTKEY)
+            res.status(200).send({ token })
         } else {
             res.sendStatus(500)
         }
     } catch (e) {
+        res.status(400).send({ error: e.errors[0].message })
         console.warn(e)
     }
 })
