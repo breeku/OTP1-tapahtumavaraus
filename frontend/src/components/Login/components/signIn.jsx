@@ -72,6 +72,7 @@ const SignIn = () => {
                 </Typography>
                 <form className={classes.form} noValidate>
                     <TextField
+                        data-cy="kirjSahkoposti"
                         variant="outlined"
                         margin="normal"
                         required
@@ -84,6 +85,7 @@ const SignIn = () => {
                         onChange={handleChangeEmail}
                     />
                     <TextField
+                        data-cy="kirjSalasana"
                         variant="outlined"
                         margin="normal"
                         required
@@ -96,6 +98,7 @@ const SignIn = () => {
                         onChange={handleChangePassword}
                     />
                     <Button
+                        data-cy="kirjauduNappi"
                         fullWidth
                         variant="contained"
                         color="primary"

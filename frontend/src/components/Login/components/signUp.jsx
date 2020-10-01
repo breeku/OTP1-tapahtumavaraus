@@ -84,6 +84,7 @@ const SignUp = () => {
                                 variant="outlined"
                                 required
                                 fullWidth
+                                data-cy="luoEtunimi"
                                 id="firstName"
                                 label="Etunimi"
                                 name="firstName"
@@ -96,6 +97,7 @@ const SignUp = () => {
                                 variant="outlined"
                                 required
                                 fullWidth
+                                data-cy="luoSukunimi"
                                 id="lastName"
                                 label="Sukunimi"
                                 name="lastName"
@@ -108,6 +110,7 @@ const SignUp = () => {
                                 variant="outlined"
                                 required
                                 fullWidth
+                                data-cy="luoKayttajaTunnus"
                                 id="username"
                                 label="Käyttäjätunnus"
                                 name="username"
@@ -120,6 +123,7 @@ const SignUp = () => {
                                 variant="outlined"
                                 required
                                 fullWidth
+                                data-cy="luoSalasana"
                                 name="password"
                                 label="Salasana"
                                 type="password"
@@ -133,6 +137,7 @@ const SignUp = () => {
                                 variant="outlined"
                                 required
                                 fullWidth
+                                data-cy="luoSahkoposti"
                                 id="email"
                                 label="Sähköposti"
                                 name="email"
@@ -145,6 +150,7 @@ const SignUp = () => {
                         fullWidth
                         variant="contained"
                         color="primary"
+                        data-cy="luoTunnuksetNappi"
                         className={classes.submit}
                         onClick={handlePostAccount}>
                         Luo tunnus
