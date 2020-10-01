@@ -10,17 +10,17 @@ authRouter.post('/login', async (req, res) => {
     const credentials = req.body
     if (credentials.email && credentials.password) {
         try {
-            const user = await db.User.findOne({
+            const { password, ...user } = await db.User.scope('withPassword').findOne({
                 where: {
                     email: credentials.email,
                 },
                 raw: true,
             })
-            const match = await bcrypt.compare(credentials.password, user.password)
+            const match = await bcrypt.compare(credentials.password, password)
             if (match) {
-                const token = jwt.sign({ user: user.email }, JWTKEY)
-                console.log({ ...user, token })
-                res.status(200).send({ ...user, token })
+                const token = jwt.sign({ ...user }, JWTKEY)
+                console.log({ token })
+                res.status(200).send({ token })
             } else {
                 res.sendStatus(401)
             }
