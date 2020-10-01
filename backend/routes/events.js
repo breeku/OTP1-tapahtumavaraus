@@ -1,6 +1,6 @@
 const express = require('express')
 const axios = require('axios')
-const BASEURL = require('../config/index')
+const { BASEURL } = require('../config/index')
 const db = require('../database/models')
 
 const eventsRouter = express.Router()
