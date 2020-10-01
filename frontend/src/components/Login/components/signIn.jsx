@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Avatar from '@material-ui/core/Avatar'
@@ -8,6 +9,7 @@ import TextField from '@material-ui/core/TextField'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
+import { login } from '../../../services/auth'
 
 const useStyles = makeStyles(theme => ({
     text_center: theme.text_center,
@@ -28,10 +30,35 @@ const useStyles = makeStyles(theme => ({
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
+    loginFail: {
+        color: 'red',
+    },
 }))
 
 const SignIn = () => {
     const classes = useStyles()
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [loginFail, setLoginFail] = useState(false)
+    let history = useHistory()
+
+    const handleChangeEmail = event => {
+        setEmail(event.target.value)
+    }
+
+    const handleChangePassword = event => {
+        setPassword(event.target.value)
+    }
+
+    const handleLogin = async () => {
+        const logged = await login(email, password)
+
+        if (logged) {
+            history.push('/')
+        } else {
+            setLoginFail(true)
+        }
+    }
 
     return (
         <Container component="main" maxWidth="xs">
@@ -50,10 +77,11 @@ const SignIn = () => {
                         required
                         fullWidth
                         id="email"
-                        label="Käyttäjätunnus"
+                        label="Sähköposti"
                         name="email"
                         autoComplete="email"
                         autoFocus
+                        onChange={handleChangeEmail}
                     />
                     <TextField
                         variant="outlined"
@@ -65,15 +93,19 @@ const SignIn = () => {
                         type="password"
                         id="password"
                         autoComplete="current-password"
+                        onChange={handleChangePassword}
                     />
                     <Button
-                        type="submit"
                         fullWidth
                         variant="contained"
                         color="primary"
-                        className={classes.submit}>
+                        className={classes.submit}
+                        onClick={handleLogin}>
                         Kirjaudu sisään
                     </Button>
+                    {loginFail && (
+                        <div className={classes.loginFail}>Kirjautuminen epäonnistui</div>
+                    )}
                 </form>
             </div>
         </Container>

@@ -28,12 +28,34 @@ module.exports = (sequelize, DataTypes) => {
         {
             first_name: DataTypes.STRING,
             last_name: DataTypes.STRING,
-            username: DataTypes.STRING,
-            password: DataTypes.STRING,
-            account_id: DataTypes.STRING,
-            email: DataTypes.STRING,
+            username: {
+                type: DataTypes.STRING,
+                allowNull: false,
+                unique: true,
+            },
+            password: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            account_id: {
+                type: DataTypes.STRING,
+                unique: true,
+            },
+            email: {
+                type: DataTypes.STRING,
+                allowNull: false,
+                unique: true,
+            },
         },
         {
+            defaultScope: {
+                attributes: { exclude: ['password'] },
+            },
+            scopes: {
+                withPassword: {
+                    attributes: {},
+                },
+            },
             sequelize,
             modelName: 'User',
         },
@@ -41,11 +63,9 @@ module.exports = (sequelize, DataTypes) => {
 
     User.beforeCreate(async (user, options) => {
         const account_id = uuidv4()
-        console.log(account_id)
         user.account_id = account_id
 
         const hashedPassword = await bcrypt.hash(user.password, SALTROUNDS)
-        console.log(hashedPassword)
         user.password = hashedPassword
     })
     return User

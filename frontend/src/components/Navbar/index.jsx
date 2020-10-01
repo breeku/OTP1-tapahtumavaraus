@@ -7,6 +7,7 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
+import { getToken } from '/src/services/auth.js'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -41,11 +42,15 @@ export default function Navbar() {
                     </Typography>
 
                     <Link to="/events" className={classes.link}>
-                        <Button data-cy="tapahtumaNav" color="inherit">Tapahtumat</Button>
+                        <Button data-cy="tapahtumaNav" color="inherit">
+                            Tapahtumat
+                        </Button>
                     </Link>
 
                     <Link to="/login" className={classes.link}>
-                        <Button data-cy="kirjauduNav" color="inherit">Kirjaudu</Button>
+                        <Button data-cy="kirjauduNav" color="inherit">
+                            Kirjaudu
+                        </Button>
                     </Link>
                 </Toolbar>
             </AppBar>
