@@ -36,11 +36,21 @@ eventsRouter.get('/:id/:fetch', async (req, res) => {
     const dbEvent = await db.Event.findOne({
         where: { event_id: id },
         include: [
-            { model: db.Reservation, required: false },
+            {
+                model: db.Reservation,
+                required: false,
+                include: {
+                    model: db.User,
+                    attributes: ['username'],
+                },
+            },
             {
                 model: db.Review,
                 required: false,
-                include: { model: db.User, attributes: ['name'] },
+                include: {
+                    model: db.User,
+                    attributes: ['username'],
+                },
             },
         ],
     })
