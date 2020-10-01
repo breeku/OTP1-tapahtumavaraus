@@ -35,12 +35,12 @@ export const logout = () => {
     localStorage.removeItem('token')
 }
 
-export const getUser = () => {
-    const token = JSON.parse(localStorage.getItem('token'))
+export const getProfileData = () => {
+    const token = localStorage.getItem('token')
     const decoded = jwt_decode(token)
-    return decoded.username
+    return decoded
 }
 
 export const getToken = () => {
-    return JSON.parse(localStorage.getItem('token'))
+    return localStorage.getItem('token')
 }

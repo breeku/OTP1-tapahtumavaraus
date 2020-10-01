@@ -7,6 +7,7 @@ import Home from './components/Home/'
 import Events from './components/Events/'
 import Event from './components/Event/'
 import Login from './components/Login/'
+import Profile from './components/Profile/'
 
 export const App = () => {
     return (
@@ -21,6 +22,9 @@ export const App = () => {
                 </Route>
                 <Route path="/login">
                     <Login />
+                </Route>
+                <Route path="/profile">
+                    <Profile />
                 </Route>
                 <Route path="/">
                     <Home />
