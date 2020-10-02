@@ -8,7 +8,6 @@ export const getEvent = async token => {
                 authorization: token,
             },
         })
-
         return data
     } catch (error) {
         console.log(error)

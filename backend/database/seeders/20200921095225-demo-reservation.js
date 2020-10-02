@@ -30,6 +30,22 @@ module.exports = {
                         attributes: ['account_id'],
                     })),
                 },
+                {
+                    event_id: 'helsinki:afykkxgoxy',
+                    ...(await db.User.findOne({
+                        where: { username: 'Santeri' },
+                        raw: true,
+                        attributes: ['account_id'],
+                    })),
+                },
+                {
+                    event_id: 'helsinki:afykkxgoxy',
+                    ...(await db.User.findOne({
+                        where: { username: 'Samperi' },
+                        raw: true,
+                        attributes: ['account_id'],
+                    })),
+                },
             ],
             {},
         )
