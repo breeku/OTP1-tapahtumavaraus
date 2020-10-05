@@ -33,6 +33,9 @@ const useStyles = makeStyles(theme => ({
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
+    signUpFail: {
+        color: 'red',
+    },
 }))
 
 const SignUp = () => {
@@ -44,6 +47,7 @@ const SignUp = () => {
     const [email, setEmail] = useState('')
     const history = useHistory()
     const { authDispatch } = React.useContext(AuthContext)
+    const [signUpFail, setSignUpFail] = useState(false)
 
     const handlePostAccount = () => {
         const postData = async () => {
@@ -55,7 +59,7 @@ const SignUp = () => {
                 })
                 history.push('/')
             } else {
-                //register failed
+                setSignUpFail(true)
             }
         }
 
@@ -164,6 +168,11 @@ const SignUp = () => {
                         onClick={handlePostAccount}>
                         Luo tunnus
                     </Button>
+                    {signUpFail && (
+                        <div className={classes.signUpFail}>
+                            Käyttäjätunnuksen luominen epäonnistui
+                        </div>
+                    )}
                 </form>
             </div>
         </Container>
