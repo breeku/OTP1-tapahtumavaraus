@@ -51,6 +51,7 @@ userRouter.get('/', async (req, res) => {
                 })
             }
         }
+        // eslint-disable-next-line no-unused-vars
         const { Reservations, Reviews, ...rest } = user.get({ plain: true })
         response.User = rest
         res.status(200).send(response)
