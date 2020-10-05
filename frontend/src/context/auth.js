@@ -11,7 +11,7 @@ export const authInitialState = {
 
 export const authReducer = (state, action) => {
     switch (action.type) {
-        case 'CHECKTOKEN':
+        case 'CHECK_TOKEN':
             const token = getToken()
             return {
                 ...state,

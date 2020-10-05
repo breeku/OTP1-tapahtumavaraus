@@ -14,7 +14,7 @@ import { AuthContext, authInitialState, authReducer } from './context/auth'
 export const App = () => {
     const [authState, authDispatch] = React.useReducer(authReducer, authInitialState)
     useEffect(() => {
-        authDispatch({ type: 'CHECKTOKEN' })
+        authDispatch({ type: 'CHECK_TOKEN' })
     }, [])
     return (
         <AuthContext.Provider
