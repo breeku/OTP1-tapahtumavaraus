@@ -36,14 +36,14 @@ export default function Home() {
             {signInElement && !signUpElement && (
                 <>
                     <SignIn />
-                    <Button className={classes.link_button} onClick={handleShowSignUp}>
+                    <Button data-cy="luokayttajaNappi" className={classes.link_button} onClick={handleShowSignUp}>
                         Luo käyttäjätunnus
                     </Button>
                 </>
             )}
             {!signInElement && signUpElement && (
                 <>
-                    <SignUp />
+                    <SignUp/>
                     <Button className={classes.link_button} onClick={handleShowSignIn}>
                         Kirjaudu sisään
                     </Button>

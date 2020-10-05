@@ -52,15 +52,16 @@ export default function Navbar() {
                     </Link>
 
                     <Link to="/login" className={classes.link}>
+
                         {authToken ? (
                             <Link to="/profile" className={classes.link}>
-                                <Button data-cy="tapahtumaNav" color="inherit">
+                                <Button data-cy="profiiliNav" color="inherit">
                                     Profiili
                                 </Button>
                             </Link>
                         ) : (
                             <Link to="/login" className={classes.link}>
-                                <Button data-cy="tapahtumaNav" color="inherit">
+                                <Button data-cy="kirjauduNav" color="inherit">
                                     Kirjaudu
                                 </Button>
                             </Link>
