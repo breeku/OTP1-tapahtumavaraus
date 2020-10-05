@@ -122,7 +122,7 @@ export default function SearchBarComponents({
                                     <li className={classes.removeTag} value={tag}>
                                         {tag}
                                     </li>
-                                    <Button onClick={() => removeFromTags(tag)}>
+                                    <Button data-cy="taginPoisto" onClick={() => removeFromTags(tag)}>
                                         <CloseIcon className={classes.closeIcon} />
                                     </Button>
                                 </>
