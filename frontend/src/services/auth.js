@@ -10,14 +10,13 @@ export const login = async (email, password) => {
 
     try {
         const { data } = await axios.post(BASEURL + '/api/auth/login', account)
-        localStorage.setItem('token', data.token)
-        return true
+        return data.token
     } catch (error) {
-        return false
+        return null
     }
 }
 
-export const postAccount = async (firstName, lastName, username, email, password) => {
+export const register = async (firstName, lastName, username, email, password) => {
     const account = {
         first_name: firstName,
         last_name: lastName,
@@ -28,7 +27,7 @@ export const postAccount = async (firstName, lastName, username, email, password
 
     const { data } = await axios.post(BASEURL + '/api/auth/register', account)
 
-    localStorage.setItem('token', data.token)
+    return data.token
 }
 
 export const logout = () => {
