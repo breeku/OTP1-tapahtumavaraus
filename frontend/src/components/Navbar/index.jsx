@@ -53,9 +53,17 @@ export default function Navbar() {
 
                     <Link to="/login" className={classes.link}>
                         {authToken ? (
-                            <Link to="/profile">Profiili</Link>
+                            <Link to="/profile" className={classes.link}>
+                                <Button data-cy="tapahtumaNav" color="inherit">
+                                    Profiili
+                                </Button>
+                            </Link>
                         ) : (
-                            <Link to="/login">Kirjaudu</Link>
+                            <Link to="/login" className={classes.link}>
+                                <Button data-cy="tapahtumaNav" color="inherit">
+                                    Kirjaudu
+                                </Button>
+                            </Link>
                         )}
                     </Link>
                 </Toolbar>
