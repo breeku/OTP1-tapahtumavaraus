@@ -76,7 +76,7 @@ describe('Toiminnalisuuksien testailua', () => {
       cy.contains('TeTe')   
     })
 
-    it('Kirjaudutaan testikäyttäjälle', () => {
+    it('Kirjaudutaan testikäyttäjälle ja katsotaan sieltä käyttäjän varattuja tapahtumia', () => {
       cy.visit('/')
 
       cy.get('[data-cy=kirjauduNav]').click()
