@@ -22,6 +22,11 @@ describe('Toiminnalisuuksien testailua', () => {
 
       cy.get('[data-cy=tagSearchButton]').click()
       cy.get('[data-cy=tagiLista]').eq(2).click()
+      cy.get('[data-cy=tagSearchButton]').click()
+      cy.get('[data-cy=tagiLista]').eq(1).click()
+      cy.get('[data-cy=taginPoisto]').eq(1).click()
+      cy.get('[data-cy=tagSearchButton]').click()
+      cy.get('[data-cy=tagiLista]').eq(2).click()
 
       cy.get('[data-cy=tapahtumaLista]').eq(0).click()
 
@@ -38,14 +43,13 @@ describe('Toiminnalisuuksien testailua', () => {
       
       })
 
-     //Voidaan ajaa vain jos, jostain tapahtumasta löytyy arvosteluja.
-     /*
+     //Voidaan ajaa vain jos, jostain tietystä tapahtumasta löytyy arvosteluja.
+     
       it('Tapahtumasta löytyy arvosteluja', () => {
         cy.visit('/events/helsinki:afyho6epwy')
         cy.get('[data-cy=arvosteluLista]').eq(1).contains('Hederi')
       })
-        */    
-
+            
     it('Luo käyttäjän', () => {
       cy.visit('/')
       cy.get('[data-cy=kirjauduNav]').click()
@@ -59,7 +63,6 @@ describe('Toiminnalisuuksien testailua', () => {
       cy.wait(1000)
        
     })
-
 
     it('Epäonnistunut kirjautuminen sekä kirjautuminen edellisessä testissä luodulla käyttäjällä', () => {
       cy.visit('/')
@@ -87,6 +90,7 @@ describe('Toiminnalisuuksien testailua', () => {
       cy.reload()
       cy.get('[data-cy=profiiliNav]').click()
       cy.contains('Santeri')
+      cy.contains('Varaukset')
         
     })
   })
