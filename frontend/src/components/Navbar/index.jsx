@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Link } from 'react-router-dom'
 
@@ -7,7 +7,8 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
-import { getToken } from '../../services/auth.js'
+
+import { AuthContext } from '../../context/auth'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -30,6 +31,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function Navbar() {
     const classes = useStyles()
+    const {
+        authState: { token: authToken },
+    } = React.useContext(AuthContext)
 
     return (
         <div className={classes.root}>
@@ -48,9 +52,12 @@ export default function Navbar() {
                     </Link>
 
                     <Link to="/login" className={classes.link}>
-                        <Button data-cy="kirjauduNav" color="inherit">
-                            Kirjaudu
-                        </Button>
+
+                        {authToken ? (
+                            <Link data-cy="profiiliNav" to="/profile">Profiili</Link>
+                        ) : (
+                            <Link data-cy="kirjauduNav" to="/login">Kirjaudu</Link>
+                        )}
                     </Link>
                 </Toolbar>
             </AppBar>
