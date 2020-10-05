@@ -7,7 +7,9 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
+
 import { getToken } from '../../services/auth.js'
+import { AuthContext } from '../../context/auth'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -29,21 +31,21 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function Navbar() {
-    const classes = useStyles()
     const [loginProfileSwitch, setLoginProfileSwitch] = useState(false)
+    const classes = useStyles()
+    const {
+        authState: { token: authToken },
+    } = React.useContext(AuthContext)
 
     const handleChangeLoginToProfile = () => {
         setLoginProfileSwitch(true)
     }
 
     useEffect(() => {
-        const token = getToken()
-
-        console.log(token)
-        if (token) {
+        if (authToken) {
             handleChangeLoginToProfile()
         }
-    }, [])
+    }, [authToken])
 
     return (
         <div className={classes.root}>

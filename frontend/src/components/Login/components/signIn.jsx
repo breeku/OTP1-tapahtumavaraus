@@ -9,7 +9,9 @@ import TextField from '@material-ui/core/TextField'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
+
 import { login } from '../../../services/auth'
+import { AuthContext } from '../../../context/auth'
 
 const useStyles = makeStyles(theme => ({
     text_center: theme.text_center,
@@ -36,11 +38,12 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const SignIn = () => {
-    const classes = useStyles()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loginFail, setLoginFail] = useState(false)
-    let history = useHistory()
+    const classes = useStyles()
+    const { authDispatch } = React.useContext(AuthContext)
+    const history = useHistory()
 
     const handleChangeEmail = event => {
         setEmail(event.target.value)
@@ -51,9 +54,13 @@ const SignIn = () => {
     }
 
     const handleLogin = async () => {
-        const logged = await login(email, password)
+        const token = await login(email, password)
 
-        if (logged) {
+        if (token) {
+            authDispatch({
+                type: 'LOGIN',
+                payload: token,
+            })
             history.push('/')
         } else {
             setLoginFail(true)
