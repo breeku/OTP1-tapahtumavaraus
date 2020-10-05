@@ -40,7 +40,7 @@ export default function Home() {
                     varustettuna. Voit varata tapahtumiin lippuja, arvostella niitä, luoda
                     oman käyttäjätunnuksen ja tarkastella omaa tapahtumavierailu- ja
                     arvosteluhistoriaasi. Sivut toimivat Metropolian
-                    ohjelmistotuotantoprojekti 1:n ja 2:n työnä.
+                    ohjelmistotuotantoprojekti 1:n ja 2:n toteutustyönä.
                     <br />
                     <br />
                     Matias Mäkelä
