@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
+
+import { useHistory } from 'react-router-dom'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Avatar from '@material-ui/core/Avatar'
@@ -8,6 +10,9 @@ import TextField from '@material-ui/core/TextField'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
+
+import { login } from '../../../services/auth'
+import { AuthContext } from '../../../context/auth'
 
 const useStyles = makeStyles(theme => ({
     text_center: theme.text_center,
@@ -28,10 +33,40 @@ const useStyles = makeStyles(theme => ({
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
+    loginFail: {
+        color: 'red',
+    },
 }))
 
 const SignIn = () => {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [loginFail, setLoginFail] = useState(false)
     const classes = useStyles()
+    const { authDispatch } = React.useContext(AuthContext)
+    const history = useHistory()
+
+    const handleChangeEmail = event => {
+        setEmail(event.target.value)
+    }
+
+    const handleChangePassword = event => {
+        setPassword(event.target.value)
+    }
+
+    const handleLogin = async () => {
+        const token = await login(email, password)
+
+        if (token) {
+            authDispatch({
+                type: 'LOGIN',
+                payload: token,
+            })
+            history.push('/')
+        } else {
+            setLoginFail(true)
+        }
+    }
 
     return (
         <Container component="main" maxWidth="xs">
@@ -45,17 +80,20 @@ const SignIn = () => {
                 </Typography>
                 <form className={classes.form} noValidate>
                     <TextField
+                        data-cy="kirjSahkoposti"
                         variant="outlined"
                         margin="normal"
                         required
                         fullWidth
                         id="email"
-                        label="Käyttäjätunnus"
+                        label="Sähköposti"
                         name="email"
                         autoComplete="email"
                         autoFocus
+                        onChange={handleChangeEmail}
                     />
                     <TextField
+                        data-cy="kirjSalasana"
                         variant="outlined"
                         margin="normal"
                         required
@@ -65,15 +103,20 @@ const SignIn = () => {
                         type="password"
                         id="password"
                         autoComplete="current-password"
+                        onChange={handleChangePassword}
                     />
                     <Button
-                        type="submit"
+                        data-cy="kirjauduNappi"
                         fullWidth
                         variant="contained"
                         color="primary"
-                        className={classes.submit}>
+                        className={classes.submit}
+                        onClick={handleLogin}>
                         Kirjaudu sisään
                     </Button>
+                    {loginFail && (
+                        <div className={classes.loginFail}>Kirjautuminen epäonnistui</div>
+                    )}
                 </form>
             </div>
         </Container>

@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
+
+import { useHistory } from 'react-router-dom'
+
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -8,6 +11,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
+
+import { AuthContext } from '../../../context/auth'
+import { register } from '../../../services/auth'
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -27,10 +33,58 @@ const useStyles = makeStyles(theme => ({
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
+    signUpFail: {
+        color: 'red',
+    },
 }))
 
 const SignUp = () => {
     const classes = useStyles()
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('')
+    const history = useHistory()
+    const { authDispatch } = React.useContext(AuthContext)
+    const [signUpFail, setSignUpFail] = useState(false)
+
+    const handlePostAccount = () => {
+        const postData = async () => {
+            const token = await register(firstName, lastName, username, email, password)
+            if (token) {
+                authDispatch({
+                    type: 'LOGIN',
+                    payload: token,
+                })
+                history.push('/')
+            } else {
+                setSignUpFail(true)
+            }
+        }
+
+        if (firstName && lastName && username && email && password) postData()
+    }
+
+    const handleChangeFirstName = event => {
+        setFirstName(event.target.value)
+    }
+
+    const handleChangeLastName = event => {
+        setLastName(event.target.value)
+    }
+
+    const handleChangeUsername = event => {
+        setUsername(event.target.value)
+    }
+
+    const handleChangePassword = event => {
+        setPassword(event.target.value)
+    }
+
+    const handleChangeEmail = event => {
+        setEmail(event.target.value)
+    }
 
     return (
         <Container component="main" maxWidth="xs">
@@ -49,10 +103,12 @@ const SignUp = () => {
                                 variant="outlined"
                                 required
                                 fullWidth
-                                id="email"
-                                label="Käyttäjätunnus"
-                                name="email"
-                                autoComplete="email"
+                                data-cy="luoEtunimi"
+                                id="firstName"
+                                label="Etunimi"
+                                name="firstName"
+                                autoComplete="firstName"
+                                onChange={handleChangeFirstName}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -60,22 +116,69 @@ const SignUp = () => {
                                 variant="outlined"
                                 required
                                 fullWidth
+                                data-cy="luoSukunimi"
+                                id="lastName"
+                                label="Sukunimi"
+                                name="lastName"
+                                autoComplete="email"
+                                onChange={handleChangeLastName}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                data-cy="luoKayttajaTunnus"
+                                id="username"
+                                label="Käyttäjätunnus"
+                                name="username"
+                                autoComplete="username"
+                                onChange={handleChangeUsername}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                data-cy="luoSalasana"
                                 name="password"
                                 label="Salasana"
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
+                                onChange={handleChangePassword}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                data-cy="luoSahkoposti"
+                                id="email"
+                                label="Sähköposti"
+                                name="email"
+                                autoComplete="email"
+                                onChange={handleChangeEmail}
                             />
                         </Grid>
                     </Grid>
                     <Button
-                        type="submit"
                         fullWidth
                         variant="contained"
                         color="primary"
-                        className={classes.submit}>
+                        data-cy="luoTunnuksetNappi"
+                        className={classes.submit}
+                        onClick={handlePostAccount}>
                         Luo tunnus
                     </Button>
+                    {signUpFail && (
+                        <div className={classes.signUpFail}>
+                            Käyttäjätunnuksen luominen epäonnistui
+                        </div>
+                    )}
                 </form>
             </div>
         </Container>

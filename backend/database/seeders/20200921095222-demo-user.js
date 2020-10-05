@@ -1,4 +1,5 @@
 'use strict'
+const db = require('../models/index')
 
 module.exports = {
     up: async (queryInterface, Sequelize) => {
@@ -11,25 +12,24 @@ module.exports = {
          *   isBetaMember: false
          * }], {});
          */
-        await queryInterface.bulkInsert(
-            'Users',
+        await db.User.bulkCreate(
             [
                 {
-                    name: 'Santeri',
+                    first_name: 'Santeri',
+                    last_name: 'Virtanen',
+                    username: 'Santeri',
                     password: '1234',
-                    account_id: '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d',
-                    createdAt: new Date(),
-                    updatedAt: new Date(),
+                    email: 'aaa@email.com',
                 },
                 {
-                    name: 'Samperi',
+                    first_name: 'Samperi',
+                    last_name: 'Virkanen',
+                    username: 'Samperi',
                     password: '4321',
-                    account_id: 'a2192c1d-df09-4690-beeb-b10c0db8ba29',
-                    createdAt: new Date(),
-                    updatedAt: new Date(),
+                    email: 'bbb@email.com',
                 },
             ],
-            {},
+            { individualHooks: true, validate: true },
         )
     },
 

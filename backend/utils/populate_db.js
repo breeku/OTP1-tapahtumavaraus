@@ -1,5 +1,5 @@
 const axios = require('axios')
-const BASEURL = require('../config/index')
+const { BASEURL } = require('../config/index')
 const db = require('../database/models/index')
 ;(async () => {
     const events = await axios.get(BASEURL + 'v1/events/')
