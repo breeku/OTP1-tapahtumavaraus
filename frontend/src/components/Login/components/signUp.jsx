@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+
+import { useHistory } from 'react-router-dom'
+
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -8,7 +11,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
-import { postAccount } from '../../../services/auth'
+
+import { AuthContext } from '../../../context/auth'
+import { register } from '../../../services/auth'
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -28,6 +33,9 @@ const useStyles = makeStyles(theme => ({
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
+    signUpFail: {
+        color: 'red',
+    },
 }))
 
 const SignUp = () => {
@@ -37,10 +45,22 @@ const SignUp = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
+    const history = useHistory()
+    const { authDispatch } = React.useContext(AuthContext)
+    const [signUpFail, setSignUpFail] = useState(false)
 
     const handlePostAccount = () => {
         const postData = async () => {
-            await postAccount(firstName, lastName, username, email, password)
+            const token = await register(firstName, lastName, username, email, password)
+            if (token) {
+                authDispatch({
+                    type: 'LOGIN',
+                    payload: token,
+                })
+                history.push('/')
+            } else {
+                setSignUpFail(true)
+            }
         }
 
         if (firstName && lastName && username && email && password) postData()
@@ -48,7 +68,6 @@ const SignUp = () => {
 
     const handleChangeFirstName = event => {
         setFirstName(event.target.value)
-        console.log(firstName)
     }
 
     const handleChangeLastName = event => {
@@ -155,6 +174,11 @@ const SignUp = () => {
                         onClick={handlePostAccount}>
                         Luo tunnus
                     </Button>
+                    {signUpFail && (
+                        <div className={classes.signUpFail}>
+                            Käyttäjätunnuksen luominen epäonnistui
+                        </div>
+                    )}
                 </form>
             </div>
         </Container>

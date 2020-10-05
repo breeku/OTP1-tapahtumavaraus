@@ -10,6 +10,16 @@ const theme = createMuiTheme({
     text_center: {
         textAlign: 'center',
     },
+    rootElement: {
+        background:
+            'url("https://upload.wikimedia.org/wikipedia/commons/b/b8/The_Stairs_Paola_Italy_Black_And_White_Street_Photography_%28233602113%29.jpeg") no-repeat center center fixed',
+        backgroundSize: 'cover',
+        height: '80%',
+        margin: '0',
+        padding: '3%',
+        position: 'relative',
+        minHeight: '100vh',
+    },
 })
 
 ReactDOM.render(
