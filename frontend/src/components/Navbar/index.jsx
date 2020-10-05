@@ -52,10 +52,11 @@ export default function Navbar() {
                     </Link>
 
                     <Link to="/login" className={classes.link}>
+
                         {authToken ? (
-                            <Link to="/profile">Profiili</Link>
+                            <Link data-cy="profiiliNav" to="/profile">Profiili</Link>
                         ) : (
-                            <Link to="/login">Kirjaudu</Link>
+                            <Link data-cy="kirjauduNav" to="/login">Kirjaudu</Link>
                         )}
                     </Link>
                 </Toolbar>
