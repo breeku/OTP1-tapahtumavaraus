@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 import { Link } from 'react-router-dom'
 
@@ -52,7 +52,6 @@ export default function Navbar() {
                     </Link>
 
                     <Link to="/login" className={classes.link}>
-
                         {authToken ? (
                             <Link to="/profile" className={classes.link}>
                                 <Button data-cy="profiiliNav" color="inherit">

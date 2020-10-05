@@ -37,6 +37,7 @@ authRouter.post('/login', async (req, res) => {
 authRouter.post('/register', async (req, res) => {
     const credentials = req.body
     try {
+        // eslint-disable-next-line no-unused-vars
         const { password, ...created } = (await db.User.create(credentials)).get({
             plain: true,
         })
