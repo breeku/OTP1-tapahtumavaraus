@@ -7,6 +7,10 @@ import { getToken } from '../../services/auth'
 import Reviews from '../Event/reviews'
 import { Link } from 'react-router-dom'
 import Rating from '@material-ui/lab/Rating'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
+import { Button } from '@material-ui/core'
+import { useHistory } from 'react-router-dom'
+import { AuthContext } from '../../context/auth'
 
 const useStyles = makeStyles(theme => ({
     text_center: {
@@ -50,12 +54,18 @@ const useStyles = makeStyles(theme => ({
     link: {
         color: '#00d4db',
     },
+    logOutButton: {
+        color: '#ff5454',
+        fontSize: '100px',
+    },
 }))
 
 export default function Profile() {
     const classes = useStyles()
     const data = getProfileData()
     const [events, setEvents] = useState(null)
+    const history = useHistory()
+    const { authDispatch } = React.useContext(AuthContext)
 
     useEffect(() => {
         const getData = async () => {
@@ -67,6 +77,13 @@ export default function Profile() {
         getData()
     }, [])
 
+    const handleLogout = async () => {
+        authDispatch({
+            type: 'LOGOUT',
+        })
+        history.push('/')
+    }
+
     return (
         <>
             <div className={classes.rootElement}>
@@ -76,6 +93,9 @@ export default function Profile() {
                     </p>
                     <p className={classes.listElement}>Sähköposti : {data.email}</p>
                     <p className={classes.listElement}>Käyttäjänimi : {data.username}</p>
+                    <Button className={classes.logOutButton} onClick={handleLogout}>
+                        <ExitToAppIcon className={classes.logOutButton} />
+                    </Button>
 
                     {events && (
                         <>
