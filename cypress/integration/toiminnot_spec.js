@@ -9,10 +9,8 @@ describe('Toiminnalisuuksien testailua', () => {
 
       cy.get('[data-cy=tapahtumaNav]').click()
 
-      //cy.get('[data-cy=kirjauduNav]').click()
-
-
     })
+
     it('Hakee tapahtumia, painaa niistä ensimmäistä, arvostelee tapahtuman ja varaa lipun', () => {
       cy.visit('/events')
 
@@ -39,6 +37,7 @@ describe('Toiminnalisuuksien testailua', () => {
       cy.get('[data-cy=omavarausMaara]').contains('1')
       
       })
+
      //Voidaan ajaa vain jos, jostain tapahtumasta löytyy arvosteluja.
      /*
       it('Tapahtumasta löytyy arvosteluja', () => {
@@ -74,12 +73,20 @@ describe('Toiminnalisuuksien testailua', () => {
       cy.wait(1000)
       cy.reload()
       cy.get('[data-cy=profiiliNav]').click()
-      cy.contains('TeTe')
-
-        
+      cy.contains('TeTe')   
     })
 
+    it('Kirjaudutaan testikäyttäjälle', () => {
+      cy.visit('/')
 
-          
-
+      cy.get('[data-cy=kirjauduNav]').click()
+      cy.get('[data-cy=kirjSahkoposti]').type("aaa@email.com")
+      cy.get('[data-cy=kirjSalasana]').type("1234")
+      cy.get('[data-cy=kirjauduNappi]').click()
+      cy.wait(1000)
+      cy.reload()
+      cy.get('[data-cy=profiiliNav]').click()
+      cy.contains('Santeri')
+        
+    })
   })
