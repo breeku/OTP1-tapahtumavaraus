@@ -15,21 +15,18 @@ export const authReducer = (state, action) => {
             const token = getToken()
             return {
                 ...state,
-                isAuthenticated: !!token,
                 token,
             }
         case 'LOGIN':
             localStorage.setItem('token', action.payload)
             return {
                 ...state,
-                isAuthenticated: true,
                 token: action.payload,
             }
         case 'LOGOUT':
             localStorage.clear()
             return {
                 ...state,
-                isAuthenticated: false,
                 token: null,
             }
         default:

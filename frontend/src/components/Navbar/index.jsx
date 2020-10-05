@@ -30,21 +30,10 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function Navbar() {
-    const [loginProfileSwitch, setLoginProfileSwitch] = useState(false)
     const classes = useStyles()
     const {
         authState: { token: authToken },
     } = React.useContext(AuthContext)
-
-    const handleChangeLoginToProfile = () => {
-        setLoginProfileSwitch(true)
-    }
-
-    useEffect(() => {
-        if (authToken) {
-            handleChangeLoginToProfile()
-        }
-    }, [authToken])
 
     return (
         <div className={classes.root}>
@@ -63,7 +52,7 @@ export default function Navbar() {
                     </Link>
 
                     <Link to="/login" className={classes.link}>
-                        {loginProfileSwitch ? (
+                        {authToken ? (
                             <Link to="/profile">Profiili</Link>
                         ) : (
                             <Link to="/login">Kirjaudu</Link>
