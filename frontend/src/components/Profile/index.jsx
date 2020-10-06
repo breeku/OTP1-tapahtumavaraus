@@ -92,7 +92,7 @@ export default function Profile() {
                     </p>
                     <p className={classes.listElement}>Sähköposti : {data.email}</p>
                     <p className={classes.listElement}>Käyttäjänimi : {data.username}</p>
-                    <Button className={classes.logOutButton} onClick={handleLogout}>
+                    <Button data-cy="ulosKirjNappi" className={classes.logOutButton} onClick={handleLogout}>
                         <ExitToAppIcon className={classes.logOutButton} />
                     </Button>
 
