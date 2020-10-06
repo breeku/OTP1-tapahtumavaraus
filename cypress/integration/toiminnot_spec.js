@@ -47,7 +47,7 @@ describe('Toiminnalisuuksien testailua', () => {
      
       it('Tapahtumasta löytyy arvosteluja', () => {
         cy.visit('/events/helsinki:afyho6epwy')
-        cy.get('[data-cy=arvosteluLista]').eq(0).contains('Hederi')
+        cy.get('[data-cy=arvosteluLista]').eq(1).contains('Hederi')
       })
 
 //testi toimii jos tietokanta on tyhjä    
