@@ -1,4 +1,5 @@
 # Tapahtumavaraus
+[![Coverage Status](https://coveralls.io/repos/github/breeku/OTP1-tapahtumavaraus/badge.svg?branch=master)](https://coveralls.io/github/breeku/OTP1-tapahtumavaraus?branch=master)
 
 ## Devaus
 
