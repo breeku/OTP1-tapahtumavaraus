@@ -47,7 +47,7 @@ describe('Toiminnalisuuksien testailua', () => {
      
       it('Tapahtumasta löytyy arvosteluja', () => {
         cy.visit('/events/helsinki:afyho6epwy')
-        cy.get('[data-cy=arvosteluLista]').eq(1).contains('Hederi')
+        cy.get('[data-cy=arvosteluLista]').eq(0).contains('Hederi')
       })
 
 //testi toimii jos tietokanta on tyhjä    
@@ -74,10 +74,9 @@ describe('Toiminnalisuuksien testailua', () => {
       cy.get('[data-cy=luoSalasana]').type('1234')
       cy.get('[data-cy=luoSahkoposti]').type('tepi.testaaja@email.com')
       cy.get('[data-cy=luoTunnuksetNappi]').click()
-      cy.wait(1000)
     })
   
-    it('Epäonnistunut kirjautuminen sekä kirjautuminen testikäyttäjälle', () => {
+    it('Epäonnistunut kirjautuminen sekä kirjautuminen testikäyttäjälle ja uloskirjautuminen', () => {
       cy.visit('/')
 
       cy.get('[data-cy=kirjauduNav]').click()
@@ -87,6 +86,8 @@ describe('Toiminnalisuuksien testailua', () => {
       cy.get('[data-cy=kirjSalasana]').type("1234")
       cy.get('[data-cy=kirjauduNappi]').click()
       cy.get('[data-cy=profiiliNav]').click() 
+      cy.get('[data-cy=ulosKirjNappi]').click()
+      cy.get('[data-cy=kirjauduNav]')
     })
 
     Cypress.Commands.add('login', () => { 
