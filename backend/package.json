@@ -32,13 +32,12 @@
         "nyc": "^15.1.0",
         "pg": "^8.3.3",
         "sequelize": "^6.3.5",
-        "uuid": "^8.3.0"
-    },
-    "devDependencies": {
+        "uuid": "^8.3.0",
         "dotenv": "^8.2.0",
         "eslint": "^7.8.1",
         "nodemon": "^2.0.4",
         "npm-run-all": "^4.1.5",
         "sequelize-cli": "^6.2.0"
-    }
+    },
+    "devDependencies": {}
 }
