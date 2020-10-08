@@ -21,7 +21,7 @@ Lataa ja asenna [postgres](https://www.postgresql.org/download/)
 
 Asennuksen mukana tulee pgAdmin jolla pystyt katselemaan tietokantaa.
 
-Projektin root kansioon luo ".env" jonka sisään tulee tietokantasi käyttäjä ja salasana, malliin `DB_USER=käyttäjä` ja `DB_PASSWORD=salasana`. Oletusarvoisesti käyttäjä on `postgres` ja salasanan asetat postgressia asentaessa.
+Backend kansioon luo ".env" jonka sisään tulee tietokantasi käyttäjä, salasana, host, tietokannan nimi ja jwtkey, malliin `DB_USER=käyttäjä`, `DB_PASSWORD=salasana` `DB_HOST=host`, `DB_DATABASE=tietokanta` ja `JWTKEY=avain`. Oletusarvoisesti käyttäjä on `postgres`, salasanan asetat postgressia asentaessa, host on `127.0.0.1`, tietokannan nimen saat itse valita ja jwtkeyn saat myös itse valita.
 
 Sen jälkeen luodaan tietokanta, `npx sequelize-cli db:create`, ja sen jälkeen migrate `npm run migrate`.
 
@@ -33,11 +33,9 @@ Tietokannalle on myös mock dataa, jotka saat ajamalla `npm run seed` backend ka
 
 ### Koodaus
 
-1. Siirrä node_modules projektin juuresta "backend"-kansioon (jos node_modules ei poistu rootista, vaan kopioituu backendiin, poista se manuaalisesti)
+1. Node dev serverin saat käynnistettyä `backend` kansiosta ajamalla `npm run start`
 
-2. Node dev serverin saat käynnistettyä `backend` kansiosta ajamalla `npm run start`
-
-3. Reactin dev serverin saat käynnistettyä `frontend` kansiosta ajamalla `npm run start`
+2. Reactin dev serverin saat käynnistettyä `frontend` kansiosta ajamalla `npm run start`
 
 ### Testaus
 
