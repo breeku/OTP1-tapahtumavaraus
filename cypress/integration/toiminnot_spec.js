@@ -59,7 +59,7 @@ describe('Toiminnalisuuksien testailua', () => {
       cy.get('[data-cy=luoEtunimi]').type('Tepi')
       cy.get('[data-cy=luoSukunimi]').type('Testaaja')
       cy.get('[data-cy=luoKayttajaTunnus]').type('TeTe')
-      cy.get('[data-cy=luoSalasana]').type('1234')
+      cy.get('[data-cy=luoSalasana]').type('12345')
       cy.get('[data-cy=luoSahkoposti]').type('aaa@email.com')
       cy.get('[data-cy=luoTunnuksetNappi]').click()
       cy.contains('Käyttäjätunnuksen luominen epäonnistui')
@@ -71,7 +71,7 @@ describe('Toiminnalisuuksien testailua', () => {
       cy.get('[data-cy=luoEtunimi]').type('Tepi')
       cy.get('[data-cy=luoSukunimi]').type('Testaaja')
       cy.get('[data-cy=luoKayttajaTunnus]').type('TeTe')
-      cy.get('[data-cy=luoSalasana]').type('1234')
+      cy.get('[data-cy=luoSalasana]').type('12345')
       cy.get('[data-cy=luoSahkoposti]').type('tepi.testaaja@email.com')
       cy.get('[data-cy=luoTunnuksetNappi]').click()
     })
@@ -83,7 +83,7 @@ describe('Toiminnalisuuksien testailua', () => {
       cy.get('[data-cy=kirjauduNappi]').click()
       cy.contains('Kirjautuminen epäonnistui')
       cy.get('[data-cy=kirjSahkoposti]').type("tepi.testaaja@email.com")
-      cy.get('[data-cy=kirjSalasana]').type("1234")
+      cy.get('[data-cy=kirjSalasana]').type("12345")
       cy.get('[data-cy=kirjauduNappi]').click()
       cy.get('[data-cy=profiiliNav]').click() 
       cy.get('[data-cy=ulosKirjNappi]').click()
@@ -96,7 +96,7 @@ describe('Toiminnalisuuksien testailua', () => {
         url: 'http://localhost:5000/api/auth/login',
         body: {
             email: 'aaa@email.com',
-            password: '1234',
+            password: '12345',
         }
       })
       .then((resp) => {
