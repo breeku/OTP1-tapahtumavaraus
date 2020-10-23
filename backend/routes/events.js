@@ -1,9 +1,96 @@
 const express = require('express')
 const axios = require('axios')
-const { BASEURL } = require('../config/index')
-const db = require('../database/models')
+const jwt = require('jsonwebtoken')
 
+const db = require('../database/models')
+const { BASEURL } = require('../config/index')
 const eventsRouter = express.Router()
+const JWTKEY = process.env.JWTKEY
+
+eventsRouter.get('/reservation/:id/', async (req, res) => {
+    const token = req.headers.authorization
+    const event_id = req.params.id
+    try {
+        const { account_id } = jwt.verify(token, JWTKEY)
+        const found = await db.Reservation.findOne({ where: { event_id, account_id } })
+        if (!found) {
+            await db.Reservation.create({ event_id, account_id })
+            res.sendStatus(200)
+        } else {
+            res.sendStatus(500)
+        }
+    } catch (e) {
+        res.sendStatus(500)
+        console.warn(e)
+    }
+})
+
+eventsRouter.post('/review/:id/', async (req, res) => {
+    const token = req.headers.authorization
+    const event_id = req.params.id
+    const review = req.body
+    console.log(review)
+    try {
+        const { account_id } = jwt.verify(token, JWTKEY)
+        const found = await db.Review.findOne({ where: { event_id, account_id } })
+        if (!found) {
+            await db.Review.create({ account_id, event_id, ...review })
+            res.sendStatus(200)
+        } else {
+            res.sendStatus(500)
+        }
+    } catch (e) {
+        res.sendStatus(500)
+        console.warn(e)
+    }
+})
+
+eventsRouter.get('/:id/:fetch', async (req, res) => {
+    const id = req.params.id
+    const fetch = req.params.fetch
+    let response = {}
+
+    try {
+        const dbEvent = await db.Event.findOne({
+            where: { event_id: id },
+            include: [
+                {
+                    model: db.Reservation,
+                    required: false,
+                    include: {
+                        model: db.User,
+                        attributes: ['username'],
+                    },
+                },
+                {
+                    model: db.Review,
+                    required: false,
+                    include: {
+                        model: db.User,
+                        attributes: ['username'],
+                    },
+                },
+            ],
+        })
+
+        if (fetch || !dbEvent) {
+            const event = await axios.get(BASEURL + 'v1/event/' + id)
+            if (!dbEvent) {
+                await db.Event.create({ event_id: event.data.id })
+            }
+            response = { Event: event.data }
+        }
+
+        if (dbEvent) {
+            if (dbEvent.Reviews) response = { ...response, Reviews: dbEvent.Reviews }
+            if (dbEvent.Reservations)
+                response = { ...response, Reservations: dbEvent.Reservations }
+        }
+        res.send(response)
+    } catch (e) {
+        console.warn(e)
+    }
+})
 
 eventsRouter.get('/:lang/:limit/:tags', async (req, res) => {
     const language = req.params.lang
@@ -26,50 +113,6 @@ eventsRouter.get('/:lang/:limit/:tags', async (req, res) => {
     } catch (e) {
         console.log(e)
     }
-})
-
-eventsRouter.get('/:id/:fetch', async (req, res) => {
-    const id = req.params.id
-    const fetch = req.params.fetch
-    let response = {}
-
-    const dbEvent = await db.Event.findOne({
-        where: { event_id: id },
-        include: [
-            {
-                model: db.Reservation,
-                required: false,
-                include: {
-                    model: db.User,
-                    attributes: ['username'],
-                },
-            },
-            {
-                model: db.Review,
-                required: false,
-                include: {
-                    model: db.User,
-                    attributes: ['username'],
-                },
-            },
-        ],
-    })
-
-    if (fetch || !dbEvent) {
-        const event = await axios.get(BASEURL + 'v1/event/' + id)
-        if (!dbEvent) {
-            // laita event tietokantaan
-        }
-        response = { Event: event.data }
-    }
-
-    if (dbEvent) {
-        if (dbEvent.Reviews) response = { ...response, Reviews: dbEvent.Reviews }
-        if (dbEvent.Reservations)
-            response = { ...response, Reservations: dbEvent.Reservations }
-    }
-
-    res.send(response)
 })
 
 module.exports = eventsRouter
