@@ -49,7 +49,7 @@ const SignUp = () => {
     const history = useHistory()
     const { authDispatch } = React.useContext(AuthContext)
     const [signUpFail, setSignUpFail] = useState(false)
-    const [t, i18n] = useTranslation()
+    const [t] = useTranslation()
 
     const handlePostAccount = () => {
         const postData = async () => {

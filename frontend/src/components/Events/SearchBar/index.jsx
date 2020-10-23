@@ -41,7 +41,7 @@ export default function SearchBarComponents({
     const [openResult, setOpenResult] = useState(false)
     const [openTags, setOpenTags] = useState(false)
     const [tagList, setTagList] = useState([])
-    const { t, i18n } = useTranslation()
+    const { t } = useTranslation()
 
     useEffect(() => {
         const getData = async () => {

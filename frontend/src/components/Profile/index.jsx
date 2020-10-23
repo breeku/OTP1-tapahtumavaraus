@@ -66,7 +66,7 @@ export default function Profile() {
     const [events, setEvents] = useState(null)
     const history = useHistory()
     const { authDispatch } = React.useContext(AuthContext)
-    const [t, i18n] = useTranslation()
+    const [t] = useTranslation()
 
     useEffect(() => {
         const getData = async () => {

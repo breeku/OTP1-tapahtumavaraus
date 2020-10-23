@@ -70,7 +70,7 @@ const useStyles = makeStyles(theme => ({
 const EventItem = ({ event }) => {
     const classes = useStyles()
     const [reviewView, setReviewView] = useState(false)
-    const { t, i18n } = useTranslation()
+    const { t } = useTranslation()
 
     return (
         <div>
