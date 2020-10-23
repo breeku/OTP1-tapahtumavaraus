@@ -32,10 +32,22 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.STRING,
                 allowNull: false,
                 unique: true,
+                validate: {
+                    len: {
+                        args: [3, 99],
+                        msg: 'Minimum 3 characters required in username',
+                    },
+                },
             },
             password: {
                 type: DataTypes.STRING,
                 allowNull: false,
+                validate: {
+                    len: {
+                        args: [5, 99],
+                        msg: 'Minimum 5 characters required in password',
+                    },
+                },
             },
             account_id: {
                 type: DataTypes.STRING,
@@ -45,6 +57,9 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.STRING,
                 allowNull: false,
                 unique: true,
+                validate: {
+                    isEmail: true,
+                },
             },
         },
         {

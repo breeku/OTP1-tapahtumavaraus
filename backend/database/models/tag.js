@@ -14,7 +14,10 @@ module.exports = (sequelize, DataTypes) => {
     Tag.init(
         {
             name: DataTypes.STRING,
-            uuid: DataTypes.STRING,
+            uuid: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
         },
         {
             sequelize,

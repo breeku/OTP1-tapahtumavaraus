@@ -20,11 +20,31 @@ module.exports = (sequelize, DataTypes) => {
     }
     Review.init(
         {
-            event_id: DataTypes.STRING,
-            rating: DataTypes.INTEGER,
-            account_id: DataTypes.STRING,
-            header: DataTypes.STRING,
-            content: DataTypes.STRING,
+            event_id: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            rating: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                validate: {
+                    isInt: true,
+                    min: 0,
+                    max: 5,
+                },
+            },
+            account_id: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            header: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            content: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
         },
         {
             sequelize,
