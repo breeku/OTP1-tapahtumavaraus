@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 
 const Review = () => {
     const [rating, setRating] = React.useState(2)
-    const [t] = useTranslation()
+    const {t} = useTranslation()
 
     return (
         <>

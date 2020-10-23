@@ -46,7 +46,7 @@ const SignIn = () => {
     const classes = useStyles()
     const { authDispatch } = React.useContext(AuthContext)
     const history = useHistory()
-    const [t] = useTranslation()
+    const {t} = useTranslation()
 
     const handleChangeEmail = event => {
         setEmail(event.target.value)

@@ -21,7 +21,7 @@ export default function Home() {
     const classes = useStyles()
     const [signInElement, setSignInElement] = useState(true)
     const [signUpElement, setSignUpElement] = useState(false)
-    const [t] = useTranslation()
+    const {t} = useTranslation()
 
     const handleShowSignIn = () => {
         setSignInElement(true)
