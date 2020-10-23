@@ -45,6 +45,7 @@ const SignUp = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
+    const [passwordError, setPasswordError] = useState(false)
     const history = useHistory()
     const { authDispatch } = React.useContext(AuthContext)
     const [signUpFail, setSignUpFail] = useState(false)
@@ -63,7 +64,15 @@ const SignUp = () => {
             }
         }
 
-        if (firstName && lastName && username && email && password) postData()
+        if (firstName === '') {
+        } else if (email === '') {
+        } else if (username === '') {
+        } else if (lastName === '') {
+        } else if (password.length <= 5) {
+            setPasswordError(true)
+        } else {
+            postData()
+        }
     }
 
     const handleChangeFirstName = event => {
@@ -148,6 +157,12 @@ const SignUp = () => {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
+                                error={passwordError}
+                                helperText={
+                                    passwordError
+                                        ? 'Salasanan pitää olla väh. 5 merkkiä.'
+                                        : ''
+                                }
                                 onChange={handleChangePassword}
                             />
                         </Grid>
