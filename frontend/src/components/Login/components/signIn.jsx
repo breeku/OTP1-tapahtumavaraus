@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
 import { useHistory } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Avatar from '@material-ui/core/Avatar'
@@ -45,6 +46,7 @@ const SignIn = () => {
     const classes = useStyles()
     const { authDispatch } = React.useContext(AuthContext)
     const history = useHistory()
+    const [t, i18n] = useTranslation()
 
     const handleChangeEmail = event => {
         setEmail(event.target.value)
@@ -76,7 +78,7 @@ const SignIn = () => {
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    Kirjaudu sisään
+                    {t('Kirjaudu')}
                 </Typography>
                 <form className={classes.form} noValidate>
                     <TextField
@@ -112,10 +114,10 @@ const SignIn = () => {
                         color="primary"
                         className={classes.submit}
                         onClick={handleLogin}>
-                        Kirjaudu sisään
+                        {t('Kirjaudu')}
                     </Button>
                     {loginFail && (
-                        <div className={classes.loginFail}>Kirjautuminen epäonnistui</div>
+                        <div className={classes.loginFail}>{t('KirjautuminenEpaonnistui')}</div>
                     )}
                 </form>
             </div>

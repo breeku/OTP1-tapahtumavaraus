@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import SignIn from './components/signIn'
 import SignUp from './components/signUp'
 import { Button } from '@material-ui/core'
+import { useTranslation } from 'react-i18next'
 
 const useStyles = makeStyles(theme => ({
     link_button: {
@@ -20,6 +21,7 @@ export default function Home() {
     const classes = useStyles()
     const [signInElement, setSignInElement] = useState(true)
     const [signUpElement, setSignUpElement] = useState(false)
+    const [t, i18n] = useTranslation()
 
     const handleShowSignIn = () => {
         setSignInElement(true)
@@ -37,7 +39,7 @@ export default function Home() {
                 <>
                     <SignIn />
                     <Button data-cy="luokayttajaNappi" className={classes.link_button} onClick={handleShowSignUp}>
-                        Luo käyttäjätunnus
+                        {t('LuoKayttajatunnus')}
                     </Button>
                 </>
             )}
@@ -45,7 +47,7 @@ export default function Home() {
                 <>
                     <SignUp/>
                     <Button className={classes.link_button} onClick={handleShowSignIn}>
-                        Kirjaudu sisään
+                        {t('Kirjaudu')}
                     </Button>
                 </>
             )}

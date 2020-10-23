@@ -14,6 +14,7 @@ import Container from '@material-ui/core/Container'
 
 import { AuthContext } from '../../../context/auth'
 import { register } from '../../../services/auth'
+import { useTranslation } from 'react-i18next'
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -48,6 +49,7 @@ const SignUp = () => {
     const history = useHistory()
     const { authDispatch } = React.useContext(AuthContext)
     const [signUpFail, setSignUpFail] = useState(false)
+    const [t, i18n] = useTranslation()
 
     const handlePostAccount = () => {
         const postData = async () => {
@@ -94,7 +96,7 @@ const SignUp = () => {
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    Luo tunnus
+                    {t('LuoKayttajatunnus')}
                 </Typography>
                 <form className={classes.form} noValidate>
                     <Grid container spacing={2}>
@@ -172,11 +174,11 @@ const SignUp = () => {
                         data-cy="luoTunnuksetNappi"
                         className={classes.submit}
                         onClick={handlePostAccount}>
-                        Luo tunnus
+                        {t('LuoKayttajatunnus')}
                     </Button>
                     {signUpFail && (
                         <div className={classes.signUpFail}>
-                            Käyttäjätunnuksen luominen epäonnistui
+                            {t('TunnuksenLuominenEpaonnistui')}
                         </div>
                     )}
                 </form>
