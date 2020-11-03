@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { App } from './App'
+import './i18n'
 import './root.css'
 
 import { createMuiTheme } from '@material-ui/core/styles'

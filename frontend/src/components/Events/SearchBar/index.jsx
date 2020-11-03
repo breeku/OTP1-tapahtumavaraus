@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import { InputLabel, MenuItem, FormControl, Select, Button } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
+import { useTranslation } from 'react-i18next'
 
 import { getTagNames } from '../../../services/getTagNames'
 
@@ -40,6 +41,7 @@ export default function SearchBarComponents({
     const [openResult, setOpenResult] = useState(false)
     const [openTags, setOpenTags] = useState(false)
     const [tagList, setTagList] = useState([])
+    const { t } = useTranslation()
 
     useEffect(() => {
         const getData = async () => {
@@ -95,10 +97,10 @@ export default function SearchBarComponents({
                 <div className={classes.searchBar}>
                     <div className={classes.searchElement}>
                         <Button data-cy="tagSearchButton" className={classes.button} onClick={handleOpenTags}>
-                            Valitse haku-tag
+                            {t('HakuTag')}
                         </Button>
                         <FormControl className={classes.formControl}>
-                            <InputLabel id="tag-label">Tag</InputLabel>
+                            <InputLabel id="tag-label">{t('Tag')}</InputLabel>
                             <Select
                                 disableUnderline
                                 class={classes.searchSelect}
@@ -131,10 +133,10 @@ export default function SearchBarComponents({
                     </ul>
                     <div className={classes.searchElement}>
                         <Button className={classes.button} onClick={handleOpenLang}>
-                            Valitse kieli
+                            {t('ValitseKieli')}
                         </Button>
                         <FormControl className={classes.formControl}>
-                            <InputLabel id="lang-label">Kieli</InputLabel>
+                            <InputLabel id="lang-label">{t('Kieli')}</InputLabel>
                             <Select
                                 disableUnderline
                                 labelId="lang-label"
@@ -160,10 +162,10 @@ export default function SearchBarComponents({
                             className={classes.button}
                             id="resultLimit"
                             onClick={handleOpenResultLimit}>
-                            Valitse hakutulosten määrä
+                            {t('HakutulostenMaara')}
                         </Button>
                         <FormControl className={classes.formControl}>
-                            <InputLabel id="count-label">Määrä</InputLabel>
+                            <InputLabel id="count-label">{t('Maara')}</InputLabel>
                             <Select
                                 disableUnderline
                                 labelId="count-label"
