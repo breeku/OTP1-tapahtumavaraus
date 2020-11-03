@@ -2,6 +2,7 @@ const express = require('express')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const db = require('../database/models/index')
+const { ValidationError } = require('sequelize')
 
 const JWTKEY = process.env.JWTKEY
 const authRouter = express.Router()
@@ -48,8 +49,12 @@ authRouter.post('/register', async (req, res) => {
             res.sendStatus(500)
         }
     } catch (e) {
-        res.status(400).send({ error: e })
         console.warn(e)
+        if (e instanceof ValidationError) {
+            res.status(400).send({ error: e.errors[0].message })
+        } else {
+            res.status(400)
+        }
     }
 })
 

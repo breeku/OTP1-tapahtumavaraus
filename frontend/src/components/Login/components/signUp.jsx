@@ -48,6 +48,11 @@ const SignUp = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
+    const [passwordError, setPasswordError] = useState(false)
+    const [emailError, setEmailError] = useState(false)
+    const [usernameError, setUsernameError] = useState(false)
+    const [firstNameError, setFirstNameError] = useState(false)
+    const [lastNameError, setLastNameError] = useState(false)
     const history = useHistory()
     const { authDispatch } = React.useContext(AuthContext)
     const [signUpFail, setSignUpFail] = useState(false)
@@ -66,8 +71,20 @@ const SignUp = () => {
                 setSignUpFail(true)
             }
         }
-
-        if (firstName && lastName && username && email && password) postData()
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (firstName.length <= 3) {
+            setFirstNameError(true)
+        } else if (re.test(email)===false) {
+            setEmailError(true)
+        } else if (username.length <= 3) {
+            setUsernameError(true)
+        } else if (lastName.length <= 3) {
+            setLastNameError(true)
+        } else if (password.length <= 5) {
+            setPasswordError(true)
+        } else {
+            postData()
+        }
     }
 
     const handleChangeFirstName = event => {
@@ -113,6 +130,12 @@ const SignUp = () => {
                                 name="firstName"
                                 autoComplete="firstName"
                                 onChange={handleChangeFirstName}
+                                error={firstNameError}
+                                helperText={
+                                    firstNameError
+                                        ? 'Etunimen pitää olla väh. 3 merkkiä.'
+                                        : ''
+                                }
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -126,6 +149,12 @@ const SignUp = () => {
                                 name="lastName"
                                 autoComplete="email"
                                 onChange={handleChangeLastName}
+                                error={lastNameError}
+                                helperText={
+                                    lastNameError
+                                        ? 'Sukunimen pitää olla väh. 3 merkkiä.'
+                                        : ''
+                                }
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -139,6 +168,12 @@ const SignUp = () => {
                                 name="username"
                                 autoComplete="username"
                                 onChange={handleChangeUsername}
+                                error={usernameError}
+                                helperText={
+                                    usernameError
+                                        ? 'Käyttäjätunnuksen pitää olla väh. 3 merkkiä.'
+                                        : ''
+                                }
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -152,6 +187,12 @@ const SignUp = () => {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
+                                error={passwordError}
+                                helperText={
+                                    passwordError
+                                        ? 'Salasanan pitää olla väh. 5 merkkiä.'
+                                        : ''
+                                }
                                 onChange={handleChangePassword}
                             />
                         </Grid>
@@ -165,6 +206,12 @@ const SignUp = () => {
                                 label="Sähköposti"
                                 name="email"
                                 autoComplete="email"
+                                error={emailError}
+                                helperText={
+                                    emailError
+                                        ? 'Sähköposti on virheellinen, tarkista että "@" merkki löytyy'
+                                        : ''
+                                }
                                 onChange={handleChangeEmail}
                             />
                         </Grid>
