@@ -4,6 +4,8 @@ import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import { useTranslation } from 'react-i18next'
 
+//Item for making a review
+
 const Review = () => {
     const [rating, setRating] = React.useState(2)
     const {t} = useTranslation()

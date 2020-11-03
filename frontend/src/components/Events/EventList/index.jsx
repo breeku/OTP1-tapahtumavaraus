@@ -4,6 +4,8 @@ import { Paper } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
+// Item for rendering an event list
+
 export default function EventsList({ events, classes, language, tags }) {
     const { t } = useTranslation()
 

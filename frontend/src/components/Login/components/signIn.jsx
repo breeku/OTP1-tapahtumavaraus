@@ -15,6 +15,8 @@ import Container from '@material-ui/core/Container'
 import { login } from '../../../services/auth'
 import { AuthContext } from '../../../context/auth'
 
+// Sign in -functionality and rendering
+
 const useStyles = makeStyles(theme => ({
     text_center: theme.text_center,
     paper: {

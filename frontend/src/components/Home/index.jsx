@@ -3,6 +3,8 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { useTranslation } from 'react-i18next'
 
+// Frame for home page
+
 const useStyles = makeStyles(theme => ({
     text_center: {
         color: 'white',

@@ -2,6 +2,8 @@ import React from 'react'
 
 import Rating from '@material-ui/lab/Rating'
 
+// Item for rendering a review
+
 const Reviews = ({ data }) => {
     return (
         <ul>

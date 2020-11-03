@@ -6,6 +6,8 @@ import SignUp from './components/signUp'
 import { Button } from '@material-ui/core'
 import { useTranslation } from 'react-i18next'
 
+// Frame for sign in- and sign up-functionalities
+
 const useStyles = makeStyles(theme => ({
     link_button: {
         color: '#3f51b5',

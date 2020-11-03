@@ -16,6 +16,8 @@ import { AuthContext } from '../../../context/auth'
 import { register } from '../../../services/auth'
 import { useTranslation } from 'react-i18next'
 
+// Sign up -functionality and rendering
+
 const useStyles = makeStyles(theme => ({
     paper: {
         marginTop: theme.spacing(8),

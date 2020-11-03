@@ -7,6 +7,8 @@ import { useTranslation } from 'react-i18next'
 
 import { getTagNames } from '../../../services/getTagNames'
 
+// Search bar for event search
+
 const colortheme = createMuiTheme({
     palette: {
         primary: { main: '#ffffff', contrastText: '#fff' },

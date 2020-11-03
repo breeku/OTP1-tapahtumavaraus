@@ -11,6 +11,8 @@ import { useTranslation } from 'react-i18next'
 
 import { AuthContext } from '../../context/auth'
 
+// Navigation bar for the application
+
 const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,

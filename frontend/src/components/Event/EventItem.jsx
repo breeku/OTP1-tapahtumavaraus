@@ -4,6 +4,8 @@ import Review from './review'
 import ReviewTextField from './reviewTextField'
 import { useTranslation } from 'react-i18next'
 
+//Item for rendering a single event item
+
 const useStyles = makeStyles(theme => ({
     eventHeader: {
         width: '80%',

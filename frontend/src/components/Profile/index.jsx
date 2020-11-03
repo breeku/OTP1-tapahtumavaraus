@@ -12,6 +12,8 @@ import { useHistory } from 'react-router-dom'
 import { AuthContext } from '../../context/auth'
 import { useTranslation } from 'react-i18next'
 
+// Frame for personal profile data rendering
+
 const useStyles = makeStyles(theme => ({
     text_center: {
         color: 'white',
