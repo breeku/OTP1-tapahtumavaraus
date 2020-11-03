@@ -11,6 +11,8 @@ describe('Toiminnalisuuksien testailua', () => {
 
     })
 
+//Testien otsikot kertovat mitä toimintoja niillä testataan.
+
     it('Hakee tapahtumia, painaa niistä ensimmäistä, arvostelee tapahtuman ja varaa lipun', () => {
       cy.visit('/events')
 
@@ -49,8 +51,7 @@ describe('Toiminnalisuuksien testailua', () => {
         cy.visit('/events/helsinki:afyho6epwy')
         cy.get('[data-cy=arvosteluLista]').eq(1).contains('Hederi')
       })
-
-//testi toimii jos tietokanta on tyhjä    
+  
     it('Luo käyttäjä toiminnon testaus', () => {
 
       cy.visit('/')
@@ -78,7 +79,7 @@ describe('Toiminnalisuuksien testailua', () => {
       cy.get('[data-cy=luoSalasana]').type('2345')
       cy.get('[data-cy=luoTunnuksetNappi]').click()
     })
-  
+
     it('Epäonnistunut kirjautuminen sekä kirjautuminen testikäyttäjälle ja uloskirjautuminen', () => {
       cy.visit('/')
 
@@ -93,6 +94,7 @@ describe('Toiminnalisuuksien testailua', () => {
       cy.get('[data-cy=kirjauduNav]')
     })
 
+    //valmis kirjautuminen
     Cypress.Commands.add('login', () => { 
       cy.request({
         method: 'POST',
@@ -110,6 +112,7 @@ describe('Toiminnalisuuksien testailua', () => {
     it('Kirjaudutaan testikäyttäjälle ja katsotaan sieltä käyttäjän varattuja tapahtumia', () => {
       cy.login()
       cy.visit('/profile')
-      cy.contains('Varaukset')
+      //toimii vain jos testikäyttäjältä löytyy varattuja tapahtumia
+      //cy.contains('Varaukset')
     })
   })
