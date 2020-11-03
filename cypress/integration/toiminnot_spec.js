@@ -80,7 +80,7 @@ describe('Toiminnalisuuksien testailua', () => {
       cy.get('[data-cy=luoTunnuksetNappi]').click()
     })
 
-    it('Epäonnistunut kirjautuminen sekä kirjautuminen testikäyttäjälle ja uloskirjautuminen', () => {
+    it('Epäonnistunut kirjautuminen sekä kirjautuminen testikäyttäjälle', () => {
       cy.visit('/')
 
       cy.get('[data-cy=kirjauduNav]').click()
@@ -89,9 +89,6 @@ describe('Toiminnalisuuksien testailua', () => {
       cy.get('[data-cy=kirjSahkoposti]').type("tepi.testaaja@email.com")
       cy.get('[data-cy=kirjSalasana]').type("12345")
       cy.get('[data-cy=kirjauduNappi]').click()
-      cy.get('[data-cy=profiiliNav]').click() 
-      cy.get('[data-cy=ulosKirjNappi]').click()
-      cy.get('[data-cy=kirjauduNav]')
     })
 
     //valmis kirjautuminen
@@ -109,10 +106,13 @@ describe('Toiminnalisuuksien testailua', () => {
       })
     })
 
-    it('Kirjaudutaan testikäyttäjälle ja katsotaan sieltä käyttäjän varattuja tapahtumia', () => {
+    it('Kirjaudutaan testikäyttäjälle ja katsotaan sieltä käyttäjän varattuja tapahtumia ja uloskirjautuminen', () => {
       cy.login()
       cy.visit('/profile')
       //toimii vain jos testikäyttäjältä löytyy varattuja tapahtumia
       //cy.contains('Varaukset')
+      //cy.get('[data-cy=profiiliNav]').click() 
+      cy.get('[data-cy=ulosKirjNappi]').click()
+      cy.get('[data-cy=kirjauduNav]')
     })
   })
