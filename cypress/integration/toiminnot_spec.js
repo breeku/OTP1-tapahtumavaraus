@@ -4,10 +4,12 @@ describe('Toiminnalisuuksien testailua', () => {
 
       cy.contains('Koti')
     })
-    it('Navigoinnin testus', () => {
+    it('Navigoinnin ja kielenvaihdon testaus', () => {
       cy.visit('/')
 
       cy.get('[data-cy=tapahtumaNav]').click()
+
+      cy.get('[data-cy=kielenvaihtoNappi]').dblclick()
 
     })
 
