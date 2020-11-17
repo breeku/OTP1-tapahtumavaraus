@@ -19,7 +19,25 @@ export const getEvent = async (eventId, fetchEvent) => {
 export const postReservationCount = async (eventId, reservationCount) => {
     try {
         const token = getToken()
-        await axios.get(BASEURL + '/api/events/reservation/' + eventId + '/' + reservationCount, {
+        await axios.get(
+            BASEURL + '/api/events/reservation/' + eventId + '/' + reservationCount,
+            {
+                headers: {
+                    authorization: token,
+                },
+            },
+        )
+        return true
+    } catch (error) {
+        console.log(error)
+        return false
+    }
+}
+
+export const postReview = async (arvostelu, eventId) => {
+    try {
+        const token = getToken()
+        await axios.post(BASEURL + '/api/events/review/' + eventId, arvostelu, {
             headers: {
                 authorization: token,
             },

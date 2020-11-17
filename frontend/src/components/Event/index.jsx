@@ -4,7 +4,6 @@ import { useLocation } from 'react-router-dom'
 import { makeStyles, Paper, Button, Grid } from '@material-ui/core/'
 import { getEvent } from '../../services/events'
 import Review from './review'
-import ReviewTextField from './reviewTextField'
 import Reviews from './reviews'
 import ReservationElement from './reservationElement'
 
@@ -151,13 +150,16 @@ export default function Event() {
                             {reservationElement && !reviewElement && (
                                 <>
                                     <ReservationElement eventId={eventId} />
-                                    <h1>Varausten kokonaismäärä:<br/>{reservationCount}</h1>
+                                    <h1>
+                                        Varausten kokonaismäärä:
+                                        <br />
+                                        {reservationCount}
+                                    </h1>
                                 </>
                             )}
                             {reviewElement && !reservationElement && (
                                 <>
-                                    <Review />
-                                    <ReviewTextField />
+                                    <Review eventId={eventId} />
                                 </>
                             )}
                             {!reviewElement && !reservationElement && (

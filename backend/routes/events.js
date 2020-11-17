@@ -31,6 +31,7 @@ eventsRouter.post('/review/:id/', async (req, res) => {
     const token = req.headers.authorization
     const event_id = req.params.id
     const review = req.body
+    console.log(review)
     try {
         const { account_id } = jwt.verify(token, JWTKEY)
         const found = await db.Review.findOne({ where: { event_id, account_id } })
