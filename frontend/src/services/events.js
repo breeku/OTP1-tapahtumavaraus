@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { BASEURL } from './config'
+import { getToken } from './auth'
 
 export const getEvents = async (language, resultLimit, tags) => {
     const response = await axios.get(
@@ -13,4 +14,19 @@ export const getEvent = async (eventId, fetchEvent) => {
         BASEURL + '/api/events/' + eventId + '/' + fetchEvent,
     )
     return response
+}
+
+export const postReservationCount = async (eventId, reservationCount) => {
+    try {
+        const token = getToken()
+        await axios.get(BASEURL + '/api/events/reservation/' + eventId + '/' + reservationCount, {
+            headers: {
+                authorization: token,
+            },
+        })
+        return true
+    } catch (error) {
+        console.log(error)
+        return false
+    }
 }

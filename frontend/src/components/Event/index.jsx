@@ -150,8 +150,8 @@ export default function Event() {
                         <div>
                             {reservationElement && !reviewElement && (
                                 <>
-                                    <ReservationElement />
-                                    <h1>{reservationCount}</h1>
+                                    <ReservationElement eventId={eventId} />
+                                    <h1>Varausten kokonaismäärä:<br/>{reservationCount}</h1>
                                 </>
                             )}
                             {reviewElement && !reservationElement && (

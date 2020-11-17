@@ -12,7 +12,7 @@ eventsRouter.get('/reservation/:id/:count', async (req, res) => {
     const event_id = req.params.id
     const count = req.params.count
     if (count > 0) {
-        for (let i = 0; i !== count; i++) {
+        for (let i = 0; i < count; i++) {
             try {
                 const { account_id } = jwt.verify(token, JWTKEY)
                 await db.Reservation.create({ event_id, account_id })
