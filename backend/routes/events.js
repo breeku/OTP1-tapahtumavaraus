@@ -7,21 +7,30 @@ const { BASEURL } = require('../config/index')
 const eventsRouter = express.Router()
 const JWTKEY = process.env.JWTKEY
 
-eventsRouter.get('/reservation/:id/', async (req, res) => {
+eventsRouter.get('/reservation/:id/:count', async (req, res) => {
     const token = req.headers.authorization
     const event_id = req.params.id
-    try {
-        const { account_id } = jwt.verify(token, JWTKEY)
-        const found = await db.Reservation.findOne({ where: { event_id, account_id } })
-        if (!found) {
-            await db.Reservation.create({ event_id, account_id })
-            res.sendStatus(200)
-        } else {
-            res.sendStatus(500)
+    const count = req.params.count
+    if (count > 0) {
+        for (let i = 0; i !== count; i++) {
+            try {
+                const { account_id } = jwt.verify(token, JWTKEY)
+                const found = await db.Reservation.findOne({
+                    where: { event_id, account_id },
+                })
+                if (!found) {
+                    await db.Reservation.create({ event_id, account_id })
+                    res.sendStatus(200)
+                } else {
+                    res.sendStatus(500)
+                }
+            } catch (e) {
+                res.sendStatus(500)
+                console.warn(e)
+            }
         }
-    } catch (e) {
+    } else {
         res.sendStatus(500)
-        console.warn(e)
     }
 })
 
