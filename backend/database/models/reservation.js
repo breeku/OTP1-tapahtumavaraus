@@ -20,8 +20,14 @@ module.exports = (sequelize, DataTypes) => {
     }
     Reservation.init(
         {
-            event_id: DataTypes.STRING,
-            account_id: DataTypes.STRING,
+            event_id: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            account_id: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
         },
         {
             sequelize,

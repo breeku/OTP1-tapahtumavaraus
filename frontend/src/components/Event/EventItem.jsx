@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { Paper, makeStyles, Button, Grid } from '@material-ui/core/'
 import Review from './review'
 import ReviewTextField from './reviewTextField'
+import { useTranslation } from 'react-i18next'
+
+//Item for rendering a single event item
 
 const useStyles = makeStyles(theme => ({
     eventHeader: {
@@ -69,6 +72,7 @@ const useStyles = makeStyles(theme => ({
 const EventItem = ({ event }) => {
     const classes = useStyles()
     const [reviewView, setReviewView] = useState(false)
+    const { t } = useTranslation()
 
     return (
         <div>
@@ -88,11 +92,11 @@ const EventItem = ({ event }) => {
                         <Grid container spacing={3}>
                             <Grid item sm={6}>
                                 <p className={classes.p}>{event.description.intro}</p>
-                                <Button className={classes.button}>Varaa</Button>
+                                <Button className={classes.button}>{t('Varaa')}</Button>
                                 <Button
                                     className={classes.button}
                                     onClick={() => setReviewView(true)}>
-                                    Arvostele
+                                    {t('Arvostele')}
                                 </Button>
                             </Grid>
                             <Grid item sm={6}>

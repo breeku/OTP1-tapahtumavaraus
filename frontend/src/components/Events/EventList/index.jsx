@@ -2,11 +2,16 @@ import React from 'react'
 import { Paper } from '@material-ui/core'
 
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+
+// Item for rendering an event list
 
 export default function EventsList({ events, classes, language, tags }) {
+    const { t } = useTranslation()
+
     return (
         <div>
-            <h1 className={classes.text_center}>Tapahtumat</h1>
+            <h1 className={classes.text_center}>{t('Tapahtumat')}</h1>
 
             {events && tags.length > 0 && (
                 <>

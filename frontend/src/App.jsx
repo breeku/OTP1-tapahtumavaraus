@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, Suspense } from 'react'
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
@@ -17,6 +17,7 @@ export const App = () => {
         authDispatch({ type: 'CHECK_TOKEN' })
     }, [])
     return (
+        <Suspense fallback="loading">
         <AuthContext.Provider
             value={{
                 authState,
@@ -43,5 +44,6 @@ export const App = () => {
                 </Switch>
             </Router>
         </AuthContext.Provider>
+        </Suspense>
     )
 }

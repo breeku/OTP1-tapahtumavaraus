@@ -2,6 +2,8 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 
+// Item for a text field used in a review
+
 const useStyles = makeStyles(theme => ({
     root: {
         '& .MuiTextField-root': {

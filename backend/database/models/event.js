@@ -20,7 +20,10 @@ module.exports = (sequelize, DataTypes) => {
     }
     Event.init(
         {
-            event_id: DataTypes.STRING,
+            event_id: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
         },
         {
             sequelize,

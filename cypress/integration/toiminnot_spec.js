@@ -11,6 +11,8 @@ describe('Toiminnalisuuksien testailua', () => {
 
     })
 
+//Testien otsikot kertovat mitä toimintoja niillä testataan.
+
     it('Hakee tapahtumia, painaa niistä ensimmäistä, arvostelee tapahtuman ja varaa lipun', () => {
       cy.visit('/events')
 
@@ -49,54 +51,54 @@ describe('Toiminnalisuuksien testailua', () => {
         cy.visit('/events/helsinki:afyho6epwy')
         cy.get('[data-cy=arvosteluLista]').eq(1).contains('Hederi')
       })
-
-//testi toimii jos tietokanta on tyhjä    
+  
     it('Luo käyttäjä toiminnon testaus', () => {
 
       cy.visit('/')
       cy.get('[data-cy=kirjauduNav]').click()
       cy.get('[data-cy=luokayttajaNappi]').click()
-      cy.get('[data-cy=luoEtunimi]').type('Tepi')
-      cy.get('[data-cy=luoSukunimi]').type('Testaaja')
-      cy.get('[data-cy=luoKayttajaTunnus]').type('TeTe')
-      cy.get('[data-cy=luoSalasana]').type('1234')
-      cy.get('[data-cy=luoSahkoposti]').type('aaa@email.com')
+      cy.get('[data-cy=luoEtunimi]').type('T')
+      cy.get('[data-cy=luoSukunimi]').type('T')
+      cy.get('[data-cy=luoKayttajaTunnus]').type('T')
+      cy.get('[data-cy=luoSalasana]').type('1')
+      cy.get('[data-cy=luoSahkoposti]').type('m')
       cy.get('[data-cy=luoTunnuksetNappi]').click()
-      cy.contains('Käyttäjätunnuksen luominen epäonnistui')
-
-      cy.reload()
-
-      cy.get('[data-cy=kirjauduNav]').click()
-      cy.get('[data-cy=luokayttajaNappi]').click()
-      cy.get('[data-cy=luoEtunimi]').type('Tepi')
-      cy.get('[data-cy=luoSukunimi]').type('Testaaja')
-      cy.get('[data-cy=luoKayttajaTunnus]').type('TeTe')
-      cy.get('[data-cy=luoSalasana]').type('1234')
-      cy.get('[data-cy=luoSahkoposti]').type('tepi.testaaja@email.com')
+      cy.contains('Etunimen pitää')
+      cy.get('[data-cy=luoEtunimi]').type('epi')
+      cy.get('[data-cy=luoTunnuksetNappi]').click()
+      cy.contains('Sähköposti on virheellinen')
+      cy.get('[data-cy=luoSahkoposti]').type('{backspace}tepi.testaaja@email.com')
+      cy.get('[data-cy=luoTunnuksetNappi]').click()
+      cy.contains('Käyttäjätunnuksen pitää')
+      cy.get('[data-cy=luoKayttajaTunnus]').type('{backspace}TeTe')
+      cy.get('[data-cy=luoTunnuksetNappi]').click()
+      cy.contains('Sukunimen pitää')
+      cy.get('[data-cy=luoSukunimi]').type('estaaja')
+      cy.get('[data-cy=luoTunnuksetNappi]').click()
+      cy.contains('Salasanan pitää')
+      cy.get('[data-cy=luoSalasana]').type('2345')
       cy.get('[data-cy=luoTunnuksetNappi]').click()
     })
-  
-    it('Epäonnistunut kirjautuminen sekä kirjautuminen testikäyttäjälle ja uloskirjautuminen', () => {
+
+    it('Epäonnistunut kirjautuminen sekä kirjautuminen testikäyttäjälle', () => {
       cy.visit('/')
 
       cy.get('[data-cy=kirjauduNav]').click()
       cy.get('[data-cy=kirjauduNappi]').click()
       cy.contains('Kirjautuminen epäonnistui')
       cy.get('[data-cy=kirjSahkoposti]').type("tepi.testaaja@email.com")
-      cy.get('[data-cy=kirjSalasana]').type("1234")
+      cy.get('[data-cy=kirjSalasana]').type("12345")
       cy.get('[data-cy=kirjauduNappi]').click()
-      cy.get('[data-cy=profiiliNav]').click() 
-      cy.get('[data-cy=ulosKirjNappi]').click()
-      cy.get('[data-cy=kirjauduNav]')
     })
 
+    //valmis kirjautuminen
     Cypress.Commands.add('login', () => { 
       cy.request({
         method: 'POST',
         url: 'http://localhost:5000/api/auth/login',
         body: {
             email: 'aaa@email.com',
-            password: '1234',
+            password: '12345',
         }
       })
       .then((resp) => {
@@ -104,9 +106,13 @@ describe('Toiminnalisuuksien testailua', () => {
       })
     })
 
-    it('Kirjaudutaan testikäyttäjälle ja katsotaan sieltä käyttäjän varattuja tapahtumia', () => {
+    it('Kirjaudutaan testikäyttäjälle ja katsotaan sieltä käyttäjän varattuja tapahtumia ja uloskirjautuminen', () => {
       cy.login()
       cy.visit('/profile')
-      cy.contains('Varaukset')
+      //toimii vain jos testikäyttäjältä löytyy varattuja tapahtumia
+      //cy.contains('Varaukset')
+      //cy.get('[data-cy=profiiliNav]').click() 
+      cy.get('[data-cy=ulosKirjNappi]').click()
+      cy.get('[data-cy=kirjauduNav]')
     })
   })

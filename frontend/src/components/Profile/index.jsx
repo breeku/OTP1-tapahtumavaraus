@@ -10,6 +10,9 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import { Button } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
 import { AuthContext } from '../../context/auth'
+import { useTranslation } from 'react-i18next'
+
+// Frame for personal profile data rendering
 
 const useStyles = makeStyles(theme => ({
     text_center: {
@@ -65,6 +68,7 @@ export default function Profile() {
     const [events, setEvents] = useState(null)
     const history = useHistory()
     const { authDispatch } = React.useContext(AuthContext)
+    const {t} = useTranslation()
 
     useEffect(() => {
         const getData = async () => {
@@ -88,18 +92,18 @@ export default function Profile() {
             <div className={classes.rootElement}>
                 <h3 className={classes.paper}>
                     <p className={classes.listElement}>
-                        Nimi : {data.first_name} {data.last_name}
+                        {t('Nimi')} : {data.first_name} {data.last_name}
                     </p>
-                    <p className={classes.listElement}>Sähköposti : {data.email}</p>
-                    <p className={classes.listElement}>Käyttäjänimi : {data.username}</p>
+                    <p className={classes.listElement}>{t('SPosti')} : {data.email}</p>
+                    <p className={classes.listElement}>{t('Kayttajanimi')} : {data.username}</p>
                     <Button data-cy="ulosKirjNappi" className={classes.logOutButton} onClick={handleLogout}>
                         <ExitToAppIcon className={classes.logOutButton} />
                     </Button>
 
                     {events && (
                         <>
-                            <h1>Tapahtumat</h1>
-                            <h2>Varaukset</h2>
+                            <h1>{t('Tapahtumat')}</h1>
+                            <h2>{t('Varaukset')}</h2>
                             {events.Reservations.map(reservation => (
                                 <>
                                     <Link
@@ -112,7 +116,7 @@ export default function Profile() {
                                     </Link>
                                 </>
                             ))}
-                            <h2>Arvostelut</h2>
+                            <h2>{t('Arvostelut')}</h2>
                             {events.Reviews.map(review => (
                                 <>
                                     <Link
