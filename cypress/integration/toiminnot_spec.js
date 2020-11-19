@@ -111,14 +111,15 @@ describe('Toiminnalisuuksien testailua', () => {
       cy.get('[data-cy=kirjSalasana]').type("54321")
       cy.get('[data-cy=kirjauduNappi]').click()
       cy.get('[data-cy=kirjauduForm]').submit()
-      cy.visit('/profile')
+      cy.visit('/')
+      cy.get('[data-cy=profiiliNav]').click()
  
       cy.get('[data-cy=ulosKirjNappi]').click()
       cy.get('[data-cy=kirjauduNav]').click()
-      
+
       cy.get('[data-cy=kirjSahkoposti]').type("bb@email.com")
       cy.get('[data-cy=kirjSalasana]').type("54321")
-      cy.get('[data-cy=kirjauduForm]').submit()
+      cy.get('[data-cy=kirjauduForm]').submit() 
     })
 
     //valmis kirjautuminen
