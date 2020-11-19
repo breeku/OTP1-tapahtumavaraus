@@ -28,6 +28,8 @@ const Review = ({ eventId }) => {
     const [sisalto, setSisalto] = React.useState('')
     const [succesfulReview, setSuccesfulReview] = React.useState(false)
     const [unSuccesfulReview, setUnSuccesfulReview] = React.useState(false)
+    const [otsikkoError, setOtsikkoError] = React.useState(false)
+    const [sisaltoError, setSisaltoError] = React.useState(false)
 
     const handleOtsikko = event => {
         setOtsikko(event.target.value)
@@ -38,7 +40,11 @@ const Review = ({ eventId }) => {
     }
 
     const submitReview = async () => {
-        if (otsikko !== '' && sisalto !== '') {
+        if (otsikko.length < 1) {
+            setOtsikkoError(true)
+        } else if (sisalto.length < 1) {
+            setSisaltoError(true)
+        } else {
             const success = await postReview(
                 { header: otsikko, content: sisalto, rating },
                 eventId,
@@ -71,6 +77,12 @@ const Review = ({ eventId }) => {
                 defaultValue=""
                 data-cy="arvosteluOtsikko"
                 onChange={handleOtsikko}
+                error={otsikkoError}
+                helperText={
+                    otsikkoError
+                        ? 'Syötä otsikko'
+                        : ''
+                }
             />
             
                 <div>
@@ -79,8 +91,15 @@ const Review = ({ eventId }) => {
                         id="Arvostelun tekstikenttä"
                         label="Lisätietoja"
                         multiline
+                        required
                         rows={9}
                         onChange={handleSisalto}
+                        error={sisaltoError}
+                        helperText={
+                            sisaltoError
+                                ? 'Syötä arvostelun sisältö'
+                                : ''
+                        }
                     />
                 </div>
             
