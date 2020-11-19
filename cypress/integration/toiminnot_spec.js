@@ -111,7 +111,7 @@ describe('Toiminnalisuuksien testailua', () => {
       cy.get('[data-cy=kirjSalasana]').type("54321")
       cy.get('[data-cy=kirjauduNappi]').click()
       cy.get('[data-cy=kirjauduForm]').submit()
-      cy.visit('/')
+      cy.wait(1000)
       cy.get('[data-cy=profiiliNav]').click()
  
       cy.get('[data-cy=ulosKirjNappi]').click()
