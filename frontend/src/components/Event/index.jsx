@@ -4,9 +4,10 @@ import { useLocation } from 'react-router-dom'
 import { makeStyles, Paper, Button, Grid } from '@material-ui/core/'
 import { getEvent } from '../../services/events'
 import Review from './review'
-import ReviewTextField from './reviewTextField'
 import Reviews from './reviews'
 import ReservationElement from './reservationElement'
+import { AuthContext } from '../../context/auth'
+import { useTranslation } from 'react-i18next'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -90,6 +91,10 @@ export default function Event() {
     const [reviews, setReviews] = useState([])
     const [reservationElement, setReservationElement] = useState(false)
     const [reservationCount, setReservationCount] = useState('')
+    const {
+        authState: { token: loggedIn },
+    } = React.useContext(AuthContext)
+    const { t } = useTranslation()
 
     useEffect(() => {
         const getData = async () => {
@@ -126,7 +131,7 @@ export default function Event() {
                                         setReservationElement(true)
                                         setReviewElement(false)
                                     }}>
-                                    Varaa
+                                    {t('Varaa')}
                                 </Button>
                                 <Button
                                     data-cy="arvosteluNappi"
@@ -135,7 +140,7 @@ export default function Event() {
                                         setReviewElement(true)
                                         setReservationElement(false)
                                     }}>
-                                    Arvostele
+                                    {t('Arvostele')}
                                 </Button>
                             </Grid>
                             <Grid item sm={6}>
@@ -150,15 +155,16 @@ export default function Event() {
                         <div>
                             {reservationElement && !reviewElement && (
                                 <>
-                                    <ReservationElement />
-                                    <h1>{reservationCount}</h1>
+                                    {loggedIn ? <ReservationElement eventId={eventId} /> : <h1>{t('KirjauduVaraus')}</h1>}
+                                    <h1>
+                                        {t('VaraustenKokonaismaara')}
+                                        <br />
+                                        {reservationCount}
+                                    </h1>
                                 </>
                             )}
                             {reviewElement && !reservationElement && (
-                                <>
-                                    <Review />
-                                    <ReviewTextField />
-                                </>
+                                loggedIn ? <><Review eventId={eventId} /></> : <h1>{t('KirjauduArvostelu')}</h1>
                             )}
                             {!reviewElement && !reservationElement && (
                                 <>

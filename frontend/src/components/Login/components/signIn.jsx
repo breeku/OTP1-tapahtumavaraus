@@ -82,7 +82,7 @@ const SignIn = () => {
                 <Typography component="h1" variant="h5">
                     {t('Kirjaudu')}
                 </Typography>
-                <form className={classes.form} noValidate>
+                <form data-cy="kirjauduForm" className={classes.form} noValidate>
                     <TextField
                         data-cy="kirjSahkoposti"
                         variant="outlined"
@@ -90,7 +90,7 @@ const SignIn = () => {
                         required
                         fullWidth
                         id="email"
-                        label="Sähköposti"
+                        label={t('SPosti')}
                         name="email"
                         autoComplete="email"
                         autoFocus
@@ -103,7 +103,7 @@ const SignIn = () => {
                         required
                         fullWidth
                         name="password"
-                        label="Salasana"
+                        label={t('Salasana')}
                         type="password"
                         id="password"
                         autoComplete="current-password"

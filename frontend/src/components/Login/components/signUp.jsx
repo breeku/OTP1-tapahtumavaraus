@@ -76,11 +76,11 @@ const SignUp = () => {
             setFirstNameError(true)
         } else if (re.test(email)===false) {
             setEmailError(true)
-        } else if (username.length <= 3) {
+        } else if (username.length <= 2) {
             setUsernameError(true)
-        } else if (lastName.length <= 3) {
+        } else if (lastName.length <= 2) {
             setLastNameError(true)
-        } else if (password.length <= 5) {
+        } else if (password.length <= 4) {
             setPasswordError(true)
         } else {
             postData()
@@ -117,7 +117,7 @@ const SignUp = () => {
                 <Typography component="h1" variant="h5">
                     {t('LuoKayttajatunnus')}
                 </Typography>
-                <form className={classes.form} noValidate>
+                <form data-cy="luoTunnuksetForm" className={classes.form} noValidate>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField
@@ -126,7 +126,7 @@ const SignUp = () => {
                                 fullWidth
                                 data-cy="luoEtunimi"
                                 id="firstName"
-                                label="Etunimi"
+                                label={t('Etunimi')}
                                 name="firstName"
                                 autoComplete="firstName"
                                 onChange={handleChangeFirstName}
@@ -145,7 +145,7 @@ const SignUp = () => {
                                 fullWidth
                                 data-cy="luoSukunimi"
                                 id="lastName"
-                                label="Sukunimi"
+                                label={t('Sukunimi')}
                                 name="lastName"
                                 autoComplete="email"
                                 onChange={handleChangeLastName}
@@ -164,7 +164,7 @@ const SignUp = () => {
                                 fullWidth
                                 data-cy="luoKayttajaTunnus"
                                 id="username"
-                                label="Käyttäjätunnus"
+                                label={t('Kayttajanimi')}
                                 name="username"
                                 autoComplete="username"
                                 onChange={handleChangeUsername}
@@ -183,7 +183,7 @@ const SignUp = () => {
                                 fullWidth
                                 data-cy="luoSalasana"
                                 name="password"
-                                label="Salasana"
+                                label={t('Salasana')}
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
@@ -203,7 +203,7 @@ const SignUp = () => {
                                 fullWidth
                                 data-cy="luoSahkoposti"
                                 id="email"
-                                label="Sähköposti"
+                                label={t('SPosti')}
                                 name="email"
                                 autoComplete="email"
                                 error={emailError}

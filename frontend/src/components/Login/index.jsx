@@ -48,7 +48,7 @@ export default function Home() {
             {!signInElement && signUpElement && (
                 <>
                     <SignUp/>
-                    <Button className={classes.link_button} onClick={handleShowSignIn}>
+                    <Button data-cy="luoKirjasisaan" className={classes.link_button} onClick={handleShowSignIn}>
                         {t('Kirjaudu')}
                     </Button>
                 </>

@@ -64,21 +64,26 @@ const useStyles = makeStyles(theme => ({
 
 export default function Profile() {
     const classes = useStyles()
-    const data = getProfileData()
+    const [profileData, setProfileData] = useState(null)
     const [events, setEvents] = useState(null)
     const history = useHistory()
     const { authDispatch } = React.useContext(AuthContext)
-    const {t} = useTranslation()
+    const { t } = useTranslation()
 
     useEffect(() => {
         const getData = async () => {
             const token = getToken()
-            const event = await getEvent(token)
-            setEvents(event)
+            if (token) {
+                setProfileData(getProfileData())
+                const event = await getEvent(token)
+                setEvents(event)
+            } else {
+                history.push('/')
+            }
         }
 
         getData()
-    }, [])
+    }, [history])
 
     const handleLogout = async () => {
         authDispatch({
@@ -91,15 +96,26 @@ export default function Profile() {
         <>
             <div className={classes.rootElement}>
                 <h3 className={classes.paper}>
-                    <p className={classes.listElement}>
-                        {t('Nimi')} : {data.first_name} {data.last_name}
-                    </p>
-                    <p className={classes.listElement}>{t('SPosti')} : {data.email}</p>
-                    <p className={classes.listElement}>{t('Kayttajanimi')} : {data.username}</p>
-                    <Button data-cy="ulosKirjNappi" className={classes.logOutButton} onClick={handleLogout}>
-                        <ExitToAppIcon className={classes.logOutButton} />
-                    </Button>
-
+                    {profileData && (
+                        <>
+                            <p className={classes.listElement}>
+                                {t('Nimi')} : {profileData.first_name}{' '}
+                                {profileData.last_name}
+                            </p>
+                            <p className={classes.listElement}>
+                                {t('SPosti')} : {profileData.email}
+                            </p>
+                            <p className={classes.listElement}>
+                                {t('Kayttajanimi')} : {profileData.username}
+                            </p>
+                            <Button
+                                data-cy="ulosKirjNappi"
+                                className={classes.logOutButton}
+                                onClick={handleLogout}>
+                                <ExitToAppIcon className={classes.logOutButton} />
+                            </Button>
+                        </>
+                    )}
                     {events && (
                         <>
                             <h1>{t('Tapahtumat')}</h1>
