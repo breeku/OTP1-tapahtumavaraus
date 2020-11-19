@@ -91,7 +91,7 @@ export default function Navbar() {
                             </Link>
                         )}
                     </Link>
-                    <Button onClick={vaihdaKieli} className={classes.kielenvaihto}>
+                    <Button data-cy="kielenVaihto" onClick={vaihdaKieli} className={classes.kielenvaihto}>
                         {kielivalinta}
                     </Button>
                 </Toolbar>

@@ -82,7 +82,7 @@ const SignIn = () => {
                 <Typography component="h1" variant="h5">
                     {t('Kirjaudu')}
                 </Typography>
-                <form className={classes.form} noValidate>
+                <form data-cy="kirjauduForm" className={classes.form} noValidate>
                     <TextField
                         data-cy="kirjSahkoposti"
                         variant="outlined"

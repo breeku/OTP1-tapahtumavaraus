@@ -50,6 +50,7 @@ const Review = ({ eventId }) => {
 
     return (
         <>
+            <form data-cy="arvosteluForm" className={classes.root}>
             <div>
                 <Box component="fieldset" mb={3} borderColor="transparent">
                     <Typography component="legend">{t('Arvostele')}</Typography>
@@ -68,9 +69,10 @@ const Review = ({ eventId }) => {
                 id="Arvostelun otsikkokenttä"
                 label="Otsikko"
                 defaultValue=""
+                data-cy="arvosteluOtsikko"
                 onChange={handleOtsikko}
             />
-            <form className={classes.root}>
+            
                 <div>
                     <TextField
                         data-cy="arvosteluTekstikentta"
@@ -81,8 +83,9 @@ const Review = ({ eventId }) => {
                         onChange={handleSisalto}
                     />
                 </div>
-            </form>
+            
             <Button
+                data-cy="arvosteluSubmit"
                 aria-label="submit"
                 onClick={() => {
                     submitReview()
@@ -91,6 +94,7 @@ const Review = ({ eventId }) => {
             </Button>
             {succesfulReview && <h1>Arvostelu onnistui!</h1>}
             {unSuccesfulReview && <h1>Arvostelu epäonnistui!</h1>}
+            </form>
         </>
     )
 }

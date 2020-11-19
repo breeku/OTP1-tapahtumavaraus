@@ -1,8 +1,8 @@
 describe('Toiminnalisuuksien testailua', () => {
     it('Pääsee onnistuneesti etusivulle', function () {
-      cy.visit('/')
-
+      cy.visit('/')     
       cy.contains('Koti')
+      cy.get('[data-cy=kielenVaihto]').dblclick();
     })
     it('Navigoinnin testus', () => {
       cy.visit('/')
@@ -14,8 +14,9 @@ describe('Toiminnalisuuksien testailua', () => {
 //Testien otsikot kertovat mitä toimintoja niillä testataan.
 
     it('Hakee tapahtumia, painaa niistä ensimmäistä, arvostelee tapahtuman ja varaa lipun', () => {
+      cy.login()
       cy.visit('/events')
-
+    
       cy.contains('Valitse kieli').click()
       cy.contains('FI').click()
 
@@ -32,17 +33,24 @@ describe('Toiminnalisuuksien testailua', () => {
 
       cy.get('[data-cy=tapahtumaLista]').eq(0).click()
 
-      cy.get('[data-cy=arvosteluNappi]').click()
-      cy.get('[data-cy=arvosteluTekstikentta]').type("Arvostelu tekstiä")
-
-      cy.get('[data-cy=arvosteluTahdet]').click()
-
       cy.get('[data-cy=varaaNappi]').click()
       cy.get('[data-cy=vahennaNappivaraus]').click()
       cy.get('[data-cy=omavarausMaara]').contains('0')
       cy.get('[data-cy=lisaaNappivaraus]').click()
       cy.get('[data-cy=omavarausMaara]').contains('1')
+      cy.get('[data-cy=teeVaraus]').click()
+
+      cy.get('[data-cy=arvosteluNappi]').click()
+      cy.get('[data-cy=arvosteluTekstikentta]').type("Arvostelu tekstiä")
+      cy.get('[data-cy=arvosteluOtsikko]').type('Otsikko')
+      cy.get('[data-cy=arvosteluTahdet]').click()
+      cy.get('[data-cy=arvosteluSubmit]').click()
+      cy.get('[data-cy=arvosteluForm]').submit()
       
+      
+      cy.get('[data-cy=profiiliNav]').click()
+      cy.wait(2000)
+    
       })
 
      //Voidaan ajaa vain jos, jostain tietystä tapahtumasta löytyy arvosteluja.
@@ -78,17 +86,39 @@ describe('Toiminnalisuuksien testailua', () => {
       cy.contains('Salasanan pitää')
       cy.get('[data-cy=luoSalasana]').type('2345')
       cy.get('[data-cy=luoTunnuksetNappi]').click()
+      cy.get('[data-cy=luoTunnuksetForm]').submit()
+
+      cy.get('[data-cy=kirjauduNav]').click()
+      cy.get('[data-cy=luokayttajaNappi]').click()
+      cy.get('[data-cy=luoEtunimi]').type('Tepi')
+      cy.get('[data-cy=luoSukunimi]').type('Testaaja')
+      cy.get('[data-cy=luoKayttajaTunnus]').type('TeTe')
+      cy.get('[data-cy=luoSalasana]').type('12345')
+      cy.get('[data-cy=luoSahkoposti]').type('tepi.testaaja@email.com')
+      cy.get('[data-cy=luoTunnuksetForm]').submit()
     })
 
     it('Epäonnistunut kirjautuminen sekä kirjautuminen testikäyttäjälle', () => {
-      cy.visit('/')
-
+      
       cy.get('[data-cy=kirjauduNav]').click()
       cy.get('[data-cy=kirjauduNappi]').click()
+
       cy.contains('Kirjautuminen epäonnistui')
-      cy.get('[data-cy=kirjSahkoposti]').type("tepi.testaaja@email.com")
-      cy.get('[data-cy=kirjSalasana]').type("12345")
+      cy.get('[data-cy=luokayttajaNappi]').click()
+      cy.get('[data-cy=luoKirjasisaan]').click()
+
+      cy.get('[data-cy=kirjSahkoposti]').type("bbb@email.com")
+      cy.get('[data-cy=kirjSalasana]').type("54321")
       cy.get('[data-cy=kirjauduNappi]').click()
+      cy.get('[data-cy=kirjauduForm]').submit()
+      cy.visit('/profile')
+ 
+      cy.get('[data-cy=ulosKirjNappi]').click()
+      cy.get('[data-cy=kirjauduNav]').click()
+      
+      cy.get('[data-cy=kirjSahkoposti]').type("bb@email.com")
+      cy.get('[data-cy=kirjSalasana]').type("54321")
+      cy.get('[data-cy=kirjauduForm]').submit()
     })
 
     //valmis kirjautuminen
@@ -104,15 +134,5 @@ describe('Toiminnalisuuksien testailua', () => {
       .then((resp) => {
         window.localStorage.setItem('token', resp.body.token)
       })
-    })
-
-    it('Kirjaudutaan testikäyttäjälle ja katsotaan sieltä käyttäjän varattuja tapahtumia ja uloskirjautuminen', () => {
-      cy.login()
-      cy.visit('/profile')
-      //toimii vain jos testikäyttäjältä löytyy varattuja tapahtumia
-      //cy.contains('Varaukset')
-      //cy.get('[data-cy=profiiliNav]').click() 
-      cy.get('[data-cy=ulosKirjNappi]').click()
-      cy.get('[data-cy=kirjauduNav]')
     })
   })
