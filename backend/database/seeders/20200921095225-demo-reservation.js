@@ -31,7 +31,7 @@ module.exports = {
                     })),
                 },
                 {
-                    event_id: 'helsinki:afykkxgoxy',
+                    event_id: 'helmet:213176',
                     ...(await db.User.findOne({
                         where: { username: 'Santeri' },
                         raw: true,
@@ -39,7 +39,7 @@ module.exports = {
                     })),
                 },
                 {
-                    event_id: 'helsinki:afykkxgoxy',
+                    event_id: 'helmet:213176',
                     ...(await db.User.findOne({
                         where: { username: 'Samperi' },
                         raw: true,
