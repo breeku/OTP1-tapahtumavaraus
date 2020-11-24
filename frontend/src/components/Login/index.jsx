@@ -23,7 +23,7 @@ export default function Home() {
     const classes = useStyles()
     const [signInElement, setSignInElement] = useState(true)
     const [signUpElement, setSignUpElement] = useState(false)
-    const {t} = useTranslation()
+    const { t } = useTranslation()
 
     const handleShowSignIn = () => {
         setSignInElement(true)
@@ -40,15 +40,21 @@ export default function Home() {
             {signInElement && !signUpElement && (
                 <>
                     <SignIn />
-                    <Button data-cy="luokayttajaNappi" className={classes.link_button} onClick={handleShowSignUp}>
+                    <Button
+                        data-cy="luokayttajaNappi"
+                        className={classes.link_button}
+                        onClick={handleShowSignUp}>
                         {t('LuoKayttajatunnus')}
                     </Button>
                 </>
             )}
             {!signInElement && signUpElement && (
                 <>
-                    <SignUp/>
-                    <Button data-cy="luoKirjasisaan" className={classes.link_button} onClick={handleShowSignIn}>
+                    <SignUp />
+                    <Button
+                        data-cy="luoKirjasisaan"
+                        className={classes.link_button}
+                        onClick={handleShowSignIn}>
                         {t('Kirjaudu')}
                     </Button>
                 </>

@@ -39,13 +39,9 @@ jobs:
       - name: Cache multiple paths
         uses: actions/cache@v2
         with:
-            path: |
-                    backend/node_modules
-                    frontend/node_modules
-            key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+            path: '**/node_modules'
+            key: ${{ runner.os }}-modules-${{ hashFiles('**/package.lock') }}
       
-      # Performs a clean installation of all dependencies in the `package.json` file
-      # For more information, see https://docs.npmjs.com/cli/ci.html
       - name: Install frontend dependencies
         run: cd frontend && npm i
 
@@ -77,6 +73,9 @@ jobs:
 
       - name: aja testit rootista
         run: npm run test && npm run coverage
+      
+      - name: aja prettier sekä eslint
+        run: npm run prettier:write && npm run eslint:check
 
       - name: Coveralls GitHub Action
         uses: coverallsapp/github-action@v1.1.2
