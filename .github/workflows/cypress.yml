@@ -39,7 +39,9 @@ jobs:
       - name: Cache multiple paths
         uses: actions/cache@v2
         with:
-            path: '**/node_modules'
+            path:  |
+              **/node_modules
+              /home/runner/.cache/Cypress
             key: ${{ runner.os }}-modules-${{ hashFiles('**/package.lock') }}
       
       - name: Install frontend dependencies
