@@ -1,17 +1,20 @@
 describe('Toiminnalisuuksien testailua', () => {
+
+   //Testien otsikot kertovat mitä toimintoja niillä testataan. Testeillä kokeillaan sivuston toimivuutta pääosin käyttöliittymän kautta. Jokaiselle testattavalle elementille on asetettu "data-cy", jonka avulla testit löytävät oikeat elementit käyttöliittymästä
+   //Testien eteen on kerrottu lisätietoja mikäli niitä tarvitaan.
+
     it('Pääsee onnistuneesti etusivulle', function () {
       cy.visit('/')     
       cy.contains('Koti')
       cy.get('[data-cy=kielenVaihto]').dblclick();
     })
-    it('Navigoinnin testus', () => {
+    it('Navigoinnin testaus', () => {
       cy.visit('/')
 
       cy.get('[data-cy=tapahtumaNav]').click()
 
     })
 
-//Testien otsikot kertovat mitä toimintoja niillä testataan.
 
     it('Hakee tapahtumia, painaa niistä ensimmäistä, arvostelee tapahtuman ja varaa lipun', () => {
       cy.login()
@@ -111,7 +114,10 @@ describe('Toiminnalisuuksien testailua', () => {
       cy.get('[data-cy=kirjSalasana]').type("54321")
       cy.get('[data-cy=kirjauduNappi]').click()
       cy.get('[data-cy=kirjauduForm]').submit()
-     /* cy.wait(1000)
+     
+     //Testi väärällä käyttäjällä tarvitsee vielä viimeistelyä
+     
+      /* cy.wait(1000)
       cy.get('[data-cy=profiiliNav]').click()
  
       cy.get('[data-cy=ulosKirjNappi]').click()
@@ -122,7 +128,7 @@ describe('Toiminnalisuuksien testailua', () => {
       cy.get('[data-cy=kirjauduForm]').submit() */
     })
 
-    //valmis kirjautuminen
+    //valmis kirjautuminen testikäyttäjälle
     Cypress.Commands.add('login', () => { 
       cy.request({
         method: 'POST',
