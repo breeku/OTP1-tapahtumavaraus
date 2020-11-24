@@ -155,7 +155,11 @@ export default function Event() {
                         <div>
                             {reservationElement && !reviewElement && (
                                 <>
-                                    {loggedIn ? <ReservationElement eventId={eventId} /> : <h1>{t('KirjauduVaraus')}</h1>}
+                                    {loggedIn ? (
+                                        <ReservationElement eventId={eventId} />
+                                    ) : (
+                                        <h1>{t('KirjauduVaraus')}</h1>
+                                    )}
                                     <h1>
                                         {t('VaraustenKokonaismaara')}
                                         <br />
@@ -163,9 +167,15 @@ export default function Event() {
                                     </h1>
                                 </>
                             )}
-                            {reviewElement && !reservationElement && (
-                                loggedIn ? <><Review eventId={eventId} /></> : <h1>{t('KirjauduArvostelu')}</h1>
-                            )}
+                            {reviewElement &&
+                                !reservationElement &&
+                                (loggedIn ? (
+                                    <>
+                                        <Review eventId={eventId} />
+                                    </>
+                                ) : (
+                                    <h1>{t('KirjauduArvostelu')}</h1>
+                                ))}
                             {!reviewElement && !reservationElement && (
                                 <>
                                     <Reviews data={reviews} />

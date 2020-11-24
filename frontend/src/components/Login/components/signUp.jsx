@@ -56,7 +56,7 @@ const SignUp = () => {
     const history = useHistory()
     const { authDispatch } = React.useContext(AuthContext)
     const [signUpFail, setSignUpFail] = useState(false)
-    const {t} = useTranslation()
+    const { t } = useTranslation()
 
     const handlePostAccount = () => {
         const postData = async () => {
@@ -71,10 +71,10 @@ const SignUp = () => {
                 setSignUpFail(true)
             }
         }
-        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         if (firstName.length <= 3) {
             setFirstNameError(true)
-        } else if (re.test(email)===false) {
+        } else if (re.test(email) === false) {
             setEmailError(true)
         } else if (username.length <= 2) {
             setUsernameError(true)
