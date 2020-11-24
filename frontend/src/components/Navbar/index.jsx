@@ -44,20 +44,21 @@ export default function Navbar() {
     const [kielivalinta, setKielivalinta] = useState('fi')
 
     useEffect(() => {
-        setKielivalinta(localStorage.getItem('lang'))
-        i18n.changeLanguage(localStorage.getItem('lang'))
+        const localLang = localStorage.getItem('lang')
+        setKielivalinta(localLang ? localLang : 'fi')
+        i18n.changeLanguage(localLang ? localLang : 'fi')
     }, [i18n])
 
     const vaihdaKieli = () => {
-            if(kielivalinta === 'fi') {
-                setKielivalinta('en')
-                localStorage.setItem('lang', 'en')
-                i18n.changeLanguage('en')
-            } else {
-                setKielivalinta('fi')
-                localStorage.setItem('lang', 'fi')
-                i18n.changeLanguage('fi')
-            }
+        if (kielivalinta === 'fi') {
+            setKielivalinta('en')
+            localStorage.setItem('lang', 'en')
+            i18n.changeLanguage('en')
+        } else {
+            setKielivalinta('fi')
+            localStorage.setItem('lang', 'fi')
+            i18n.changeLanguage('fi')
+        }
     }
 
     return (
@@ -91,7 +92,10 @@ export default function Navbar() {
                             </Link>
                         )}
                     </Link>
-                    <Button data-cy="kielenVaihto" onClick={vaihdaKieli} className={classes.kielenvaihto}>
+                    <Button
+                        data-cy="kielenVaihto"
+                        onClick={vaihdaKieli}
+                        className={classes.kielenvaihto}>
                         {kielivalinta}
                     </Button>
                 </Toolbar>
