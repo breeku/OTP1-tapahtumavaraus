@@ -157,7 +157,7 @@ export default function SearchBarComponents({
                                 onOpen={handleOpenLang}
                                 value={language}
                                 onChange={handleChangeLang}>
-                                <MenuItem value={'fi'}>FI</MenuItem>
+                                <MenuItem data-cy="hakuFI" value={'fi'}>FI</MenuItem>
                                 <MenuItem value={'en'}>EN</MenuItem>
                                 <MenuItem value={'sv'}>SV</MenuItem>
                                 <MenuItem value={'zh'}>ZH</MenuItem>

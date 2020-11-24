@@ -18,7 +18,7 @@ describe('Toiminnalisuuksien testailua', () => {
       cy.visit('/events')
     
       cy.contains('Valitse kieli').click()
-      cy.contains('FI').click()
+      cy.get('[data-cy=hakuFI]').click()
 
       cy.get('[data-cy=hakuMaara]').click()
       cy.get('[data-cy=hakuKaksi]').click()
