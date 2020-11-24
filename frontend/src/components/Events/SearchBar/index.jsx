@@ -98,7 +98,10 @@ export default function SearchBarComponents({
             <MuiThemeProvider theme={colortheme}>
                 <div className={classes.searchBar}>
                     <div className={classes.searchElement}>
-                        <Button data-cy="tagSearchButton" className={classes.button} onClick={handleOpenTags}>
+                        <Button
+                            data-cy="tagSearchButton"
+                            className={classes.button}
+                            onClick={handleOpenTags}>
                             {t('HakuTag')}
                         </Button>
                         <FormControl className={classes.formControl}>
@@ -114,7 +117,11 @@ export default function SearchBarComponents({
                                 value={tags}
                                 onChange={handleChangeTags}>
                                 {tagList.sort().map(tag => {
-                                    return <MenuItem data-cy="tagiLista" value={tag}>{tag}</MenuItem>
+                                    return (
+                                        <MenuItem data-cy="tagiLista" value={tag}>
+                                            {tag}
+                                        </MenuItem>
+                                    )
                                 })}
                             </Select>
                         </FormControl>
@@ -126,7 +133,9 @@ export default function SearchBarComponents({
                                     <li className={classes.removeTag} value={tag}>
                                         {tag}
                                     </li>
-                                    <Button data-cy="taginPoisto" onClick={() => removeFromTags(tag)}>
+                                    <Button
+                                        data-cy="taginPoisto"
+                                        onClick={() => removeFromTags(tag)}>
                                         <CloseIcon className={classes.closeIcon} />
                                     </Button>
                                 </>
@@ -148,10 +157,7 @@ export default function SearchBarComponents({
                                 onOpen={handleOpenLang}
                                 value={language}
                                 onChange={handleChangeLang}>
-                                <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem>
-                                <MenuItem value={'fi'}>FI</MenuItem>
+                                <MenuItem data-cy="hakuFI" value={'fi'}>FI</MenuItem>
                                 <MenuItem value={'en'}>EN</MenuItem>
                                 <MenuItem value={'sv'}>SV</MenuItem>
                                 <MenuItem value={'zh'}>ZH</MenuItem>
@@ -177,9 +183,15 @@ export default function SearchBarComponents({
                                 onOpen={handleOpenResultLimit}
                                 value={resultLimit}
                                 onChange={handleChangeResultLimit}>
-                                <MenuItem data-cy="hakuYksi" value={10}>10</MenuItem>
-                                <MenuItem data-cy="hakuKaksi" value={20}>20</MenuItem>
-                                <MenuItem data-cy="hakuKolme" value={30}>30</MenuItem>
+                                <MenuItem data-cy="hakuYksi" value={10}>
+                                    10
+                                </MenuItem>
+                                <MenuItem data-cy="hakuKaksi" value={20}>
+                                    20
+                                </MenuItem>
+                                <MenuItem data-cy="hakuKolme" value={30}>
+                                    30
+                                </MenuItem>
                             </Select>
                         </FormControl>
                     </div>
