@@ -69,8 +69,9 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function Events() {
+    const localLang = localStorage.getItem('lang')
     const [events, setEvents] = useState(null)
-    const [language, setLanguage] = useState(null)
+    const [language, setLanguage] = useState(localLang ? localLang : 'fi')
     const [tags, setTags] = useState([])
     const [resultLimit, setResultLimit] = useState(10)
     const classes = useStyles()

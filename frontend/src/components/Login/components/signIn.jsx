@@ -48,7 +48,7 @@ const SignIn = () => {
     const classes = useStyles()
     const { authDispatch } = React.useContext(AuthContext)
     const history = useHistory()
-    const {t} = useTranslation()
+    const { t } = useTranslation()
 
     const handleChangeEmail = event => {
         setEmail(event.target.value)
@@ -82,7 +82,7 @@ const SignIn = () => {
                 <Typography component="h1" variant="h5">
                     {t('Kirjaudu')}
                 </Typography>
-                <form className={classes.form} noValidate>
+                <form data-cy="kirjauduForm" className={classes.form} noValidate>
                     <TextField
                         data-cy="kirjSahkoposti"
                         variant="outlined"
@@ -90,7 +90,7 @@ const SignIn = () => {
                         required
                         fullWidth
                         id="email"
-                        label="Sähköposti"
+                        label={t('SPosti')}
                         name="email"
                         autoComplete="email"
                         autoFocus
@@ -103,7 +103,7 @@ const SignIn = () => {
                         required
                         fullWidth
                         name="password"
-                        label="Salasana"
+                        label={t('Salasana')}
                         type="password"
                         id="password"
                         autoComplete="current-password"
@@ -119,7 +119,9 @@ const SignIn = () => {
                         {t('Kirjaudu')}
                     </Button>
                     {loginFail && (
-                        <div className={classes.loginFail}>{t('KirjautuminenEpaonnistui')}</div>
+                        <div className={classes.loginFail}>
+                            {t('KirjautuminenEpaonnistui')}
+                        </div>
                     )}
                 </form>
             </div>
