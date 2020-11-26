@@ -46,7 +46,7 @@ eventsRouter.post('/review/:id/', async (req, res) => {
     }
 })
 
-eventsRouter.get('/review/:id/delete', async (req, res) => {
+eventsRouter.delete('/review/:id/delete', async (req, res) => {
     const token = req.headers.authorization
     const event_id = req.params.id
     try {
@@ -57,6 +57,26 @@ eventsRouter.get('/review/:id/delete', async (req, res) => {
             res.sendStatus(200)
         } else {
             res.sendStatus(500)
+        }
+    } catch (e) {
+        res.sendStatus(500)
+        console.warn(e)
+    }
+})
+
+eventsRouter.post('/review/:id/update', async (req, res) => {
+    const token = req.headers.authorization
+    const event_id = req.params.id
+    const review = req.body
+    if (!review.rating || !review.header || !review.content) return res.sendStatus(500)
+    try {
+        const { account_id } = jwt.verify(token, JWTKEY)
+        const found = await db.Review.findOne({ where: { event_id, account_id } })
+        if (found) {
+            found.update({ ...review })
+            res.sendStatus(200)
+        } else {
+            res.sendStatus(404)
         }
     } catch (e) {
         res.sendStatus(500)
