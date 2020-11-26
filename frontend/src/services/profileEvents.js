@@ -22,8 +22,9 @@ export const removeReview = async (token,eventID) => {
             },
         })
         console.log(response)
-    } catch(error){
-  
+        return true
+    } catch(error){        
         console.log(error)
+        return false
     }
 }

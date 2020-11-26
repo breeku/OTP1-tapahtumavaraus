@@ -95,7 +95,16 @@ export default function Profile() {
 
     const handleReviewRemove = async (eventID) => {
         const token = getToken()
+
         const success = await removeReview(token, eventID)
+        if (success) {
+            setEvents({
+                ...events,
+                Reviews: events.Reviews.filter(x => x.Event.id !== eventID),
+            })
+        } else {
+            // virheilmotus
+        }
 
         }
 
@@ -160,7 +169,7 @@ export default function Profile() {
                                     />
                                     <p>{review.Review.content}</p>
                                     <Button onClick={()=>handleReviewRemove(review.Event.id)}
-                                    ><HighlightOffIcon/>  poisto</Button>
+                                    ><HighlightOffIcon/>poista</Button>
 
                                 </>
                             ))}
