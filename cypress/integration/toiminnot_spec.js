@@ -15,7 +15,7 @@ describe('Toiminnalisuuksien testailua', () => {
 
     })
 
-
+    
     it('Hakee tapahtumia, painaa niistä ensimmäistä, arvostelee tapahtuman ja varaa lipun', () => {
       cy.login()
       cy.visit('/events')
@@ -57,11 +57,11 @@ describe('Toiminnalisuuksien testailua', () => {
       })
 
      //Voidaan ajaa vain jos, jostain tietystä tapahtumasta löytyy arvosteluja.
-     
+      /*
       it('Tapahtumasta löytyy arvosteluja', () => {
         cy.visit('/events/helsinki:afyho6epwy')
         cy.get('[data-cy=arvosteluLista]').eq(1).contains('Hederi')
-      })
+      }) */
   
     it('Luo käyttäjä toiminnon testaus', () => {
 
@@ -117,7 +117,7 @@ describe('Toiminnalisuuksien testailua', () => {
      
      //Testi väärällä käyttäjällä tarvitsee vielä viimeistelyä
      
-      /* cy.wait(1000)
+      cy.wait(1000)
       cy.get('[data-cy=profiiliNav]').click()
  
       cy.get('[data-cy=ulosKirjNappi]').click()
@@ -125,7 +125,28 @@ describe('Toiminnalisuuksien testailua', () => {
 
       cy.get('[data-cy=kirjSahkoposti]').type("bb@email.com")
       cy.get('[data-cy=kirjSalasana]').type("54321")
-      cy.get('[data-cy=kirjauduForm]').submit() */
+      cy.get('[data-cy=kirjauduNappi]').click()
+      cy.get('[data-cy=kirjauduForm]').submit()
+    })
+
+    it('Arvostelun poisto', () => {
+      cy.seed()
+      cy.login()
+      cy.visit('/profile')
+      cy.get('[data-cy=poistaArvostelu]').eq(0).click()
+    })
+
+    it('Arvostelun muokkaus', () => {
+      cy.seed()
+      cy.login()
+      cy.visit('/profile')
+      cy.get('[data-cy=muokkaaArvostelu]').eq(0).click()
+      cy.get('[data-cy=arvosteluTekstikentta]').type("A")
+      cy.get('[data-cy=arvosteluOtsikko]').type('O')
+      cy.get('[data-cy=arvosteluTahdet]').click()
+      cy.get('[data-cy=arvosteluSubmit]').click()
+      cy.get('[data-cy=arvosteluForm]').submit()
+      cy.wait(1000)
     })
 
     //valmis kirjautuminen testikäyttäjälle
@@ -142,4 +163,14 @@ describe('Toiminnalisuuksien testailua', () => {
         window.localStorage.setItem('token', resp.body.token)
       })
     })
+
+    Cypress.Commands.add('seed', () => { 
+      cy.exec('cd backend && npm run seed:undo').then((result) => {
+        
+      })
+      cy.exec('cd backend && npm run seed').then((result) => {
+        
+      })
+    })
+
   })

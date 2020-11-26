@@ -177,6 +177,7 @@ export default function Profile() {
                                     />
                                     <p>{review.Review.content}</p>
                                     <Button
+                                    data-cy="poistaArvostelu"
                                         onClick={() =>
                                             handleReviewRemove(review.Event.id)
                                         }>
@@ -185,6 +186,7 @@ export default function Profile() {
                                     </Button>
 
                                     <Button
+                                        data-cy="muokkaaArvostelu"
                                         onClick={() =>
                                             setModifyReview(
                                                 modifyReview !== review.Event.id
