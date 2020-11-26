@@ -13,3 +13,17 @@ export const getEvent = async token => {
         console.log(error)
     }
 }
+
+export const removeReview = async (token,eventID) => {
+    try {
+        const response = await axios.delete(BASEURL + '/api/events/review/'+eventID+ '/delete', {
+            headers: {
+                authorization: token,
+            },
+        })
+        console.log(response)
+    } catch(error){
+  
+        console.log(error)
+    }
+}

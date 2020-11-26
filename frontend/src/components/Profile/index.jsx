@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import { makeStyles } from '@material-ui/core/styles'
 import { getProfileData } from '../../services/auth'
-import { getEvent } from '../../services/profileEvents'
+import { getEvent, removeReview } from '../../services/profileEvents'
 import { getToken } from '../../services/auth'
 import { Link } from 'react-router-dom'
 import Rating from '@material-ui/lab/Rating'
@@ -11,6 +11,7 @@ import { Button } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
 import { AuthContext } from '../../context/auth'
 import { useTranslation } from 'react-i18next'
+import HighlightOffIcon from '@material-ui/icons/HighlightOff'
 
 // Frame for personal profile data rendering
 
@@ -92,6 +93,14 @@ export default function Profile() {
         history.push('/')
     }
 
+    const handleReviewRemove = async (eventID) => {
+        const token = getToken()
+        const success = await removeReview(token, eventID)
+
+        }
+
+    
+
     return (
         <>
             <div className={classes.rootElement}>
@@ -150,6 +159,9 @@ export default function Profile() {
                                         readOnly
                                     />
                                     <p>{review.Review.content}</p>
+                                    <Button onClick={()=>handleReviewRemove(review.Event.id)}
+                                    ><HighlightOffIcon/>  poisto</Button>
+
                                 </>
                             ))}
                         </>
