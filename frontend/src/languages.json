@@ -33,7 +33,9 @@
             "MuokkaaArvostelu": "Modify",
             "LahetaArvostelu": "Submit",
             "ArvosteluOnnistui": "Review submit was succesful!",
-            "ArvosteluEpaonnistui": "Review submit was not succesful!"
+            "ArvosteluEpaonnistui": "Review submit was not succesful!",
+            "ArvosteluOtsikko": "Header",
+            "ArvosteluTekstikentta": "Content"
         }
     },
     "fi": {
@@ -70,7 +72,9 @@
             "MuokkaaArvostelu": "Muokkaa",
             "LahetaArvostelu": "Lähetä",
             "ArvosteluOnnistui": "Arvostelu onnistui!",
-            "ArvosteluEpaonnistui": "Arvostelu epäonnistui!"
+            "ArvosteluEpaonnistui": "Arvostelu epäonnistui!",
+            "ArvosteluOtsikko": "Otsikko",
+            "ArvosteluTekstikentta": "Lisätietoja"
         }
     }
 }

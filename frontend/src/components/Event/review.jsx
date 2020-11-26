@@ -86,7 +86,7 @@ const Review = ({ eventId, oldReview }) => {
                 <TextField
                     required
                     id="Arvostelun otsikkokenttä"
-                    label="Otsikko"
+                    label={t('ArvosteluOtsikko')}
                     defaultValue={oldReview ? oldReview.header : ''}
                     data-cy="arvosteluOtsikko"
                     onChange={handleOtsikko}
@@ -98,7 +98,7 @@ const Review = ({ eventId, oldReview }) => {
                     <TextField
                         data-cy="arvosteluTekstikentta"
                         id="Arvostelun tekstikenttä"
-                        label="Lisätietoja"
+                        label={t('ArvosteluTekstikentta')}
                         multiline
                         defaultValue={oldReview ? oldReview.content : ''}
                         required
