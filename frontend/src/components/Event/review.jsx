@@ -8,6 +8,7 @@ import TextField from '@material-ui/core/TextField'
 import { Button } from '@material-ui/core/'
 
 import { postReview } from '../../services/events'
+import { updateReview } from '../../services/events'
 
 //Item for making a review
 
@@ -20,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-const Review = ({ eventId }) => {
+const Review = ({ eventId, updateReview }) => {
     const classes = useStyles()
     const [rating, setRating] = React.useState(2)
     const { t } = useTranslation()
@@ -45,10 +46,12 @@ const Review = ({ eventId }) => {
         } else if (sisalto.length < 1) {
             setSisaltoError(true)
         } else {
-            const success = await postReview(
-                { header: otsikko, content: sisalto, rating },
-                eventId,
-            )
+            const success = updateReview
+                ? await updateReview(
+                      { header: otsikko, content: sisalto, rating },
+                      eventId,
+                  )
+                : await postReview({ header: otsikko, content: sisalto, rating }, eventId)
 
             success ? setSuccesfulReview(true) : setUnSuccesfulReview(true)
         }
@@ -63,7 +66,7 @@ const Review = ({ eventId }) => {
                         <Rating
                             data-cy="arvosteluTahdet"
                             name="Arvostelun tähdet"
-                            value={rating}
+                            value={updateReview ? updateReview.rating : rating}
                             onChange={(event, newValue) => {
                                 setRating(newValue)
                             }}
@@ -74,7 +77,7 @@ const Review = ({ eventId }) => {
                     required
                     id="Arvostelun otsikkokenttä"
                     label="Otsikko"
-                    defaultValue=""
+                    defaultValue={updateReview ? updateReview.header : ''}
                     data-cy="arvosteluOtsikko"
                     onChange={handleOtsikko}
                     error={otsikkoError}
@@ -87,6 +90,7 @@ const Review = ({ eventId }) => {
                         id="Arvostelun tekstikenttä"
                         label="Lisätietoja"
                         multiline
+                        defaultValue={updateReview ? updateReview.content : ''}
                         required
                         rows={9}
                         onChange={handleSisalto}

@@ -12,6 +12,7 @@ import { useHistory } from 'react-router-dom'
 import { AuthContext } from '../../context/auth'
 import { useTranslation } from 'react-i18next'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff'
+import Review from '../Event/review'
 
 // Frame for personal profile data rendering
 
@@ -93,7 +94,7 @@ export default function Profile() {
         history.push('/')
     }
 
-    const handleReviewRemove = async (eventID) => {
+    const handleReviewRemove = async eventID => {
         const token = getToken()
 
         const success = await removeReview(token, eventID)
@@ -105,10 +106,7 @@ export default function Profile() {
         } else {
             // virheilmotus
         }
-
-        }
-
-    
+    }
 
     return (
         <>
@@ -168,9 +166,13 @@ export default function Profile() {
                                         readOnly
                                     />
                                     <p>{review.Review.content}</p>
-                                    <Button onClick={()=>handleReviewRemove(review.Event.id)}
-                                    ><HighlightOffIcon/>poista</Button>
-
+                                    <Button
+                                        onClick={() =>
+                                            handleReviewRemove(review.Event.id)
+                                        }>
+                                        <HighlightOffIcon />
+                                        poista
+                                    </Button>
                                 </>
                             ))}
                         </>
