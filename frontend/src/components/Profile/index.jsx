@@ -65,7 +65,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function Profile() {
-    const [modifyReview, setModifyReview] = useState(false)
+    const [modifyReview, setModifyReview] = useState(null)
     const classes = useStyles()
     const [profileData, setProfileData] = useState(null)
     const [events, setEvents] = useState(null)
@@ -107,6 +107,15 @@ export default function Profile() {
         } else {
             // virheilmotus
         }
+    }
+
+    const setReview = (eventId, review) => {
+        setEvents({
+            ...events,
+            Reviews: events.Reviews.map(x =>
+                x.Event.id === eventId ? { ...x, Review: review } : x,
+            ),
+        })
     }
 
     return (
@@ -176,13 +185,19 @@ export default function Profile() {
                                     </Button>
 
                                     <Button
-                                        onClick={() => setModifyReview(!modifyReview)}>
+                                        onClick={() =>
+                                            setModifyReview(
+                                                modifyReview !== review.Event.id
+                                                    ? review.Event.id
+                                                    : null,
+                                            )
+                                        }>
                                         {t('MuokkaaArvostelu')}
                                     </Button>
-                                    {modifyReview && (
+                                    {modifyReview === review.Event.id && (
                                         <Review
                                             eventId={review.Event.id}
-                                            oldReview={review.Review}
+                                            oldReview={{ ...review.Review, setReview }}
                                         />
                                     )}
                                 </>
