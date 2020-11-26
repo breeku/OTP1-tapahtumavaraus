@@ -105,10 +105,10 @@ const Review = ({ eventId, oldReview }) => {
                     onClick={() => {
                         submitReview()
                     }}>
-                    Submit
+                    {t('LahetaArvostelu')}
                 </Button>
-                {succesfulReview && <h1>Arvostelu onnistui!</h1>}
-                {unSuccesfulReview && <h1>Arvostelu epäonnistui!</h1>}
+                {succesfulReview && <h1>{t('ArvosteluOnnistui')}</h1>}
+                {unSuccesfulReview && <h1>{t('ArvosteluEpaonnistui')}</h1>}
             </form>
         </>
     )

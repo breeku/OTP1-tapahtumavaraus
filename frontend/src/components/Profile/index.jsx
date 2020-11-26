@@ -172,12 +172,12 @@ export default function Profile() {
                                             handleReviewRemove(review.Event.id)
                                         }>
                                         <HighlightOffIcon />
-                                        poista
+                                        {t('PoistaArvostelu')}
                                     </Button>
 
                                     <Button
                                         onClick={() => setModifyReview(!modifyReview)}>
-                                        Modify
+                                        {t('MuokkaaArvostelu')}
                                     </Button>
                                     {modifyReview && (
                                         <Review

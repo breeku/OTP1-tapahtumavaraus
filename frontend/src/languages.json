@@ -28,7 +28,12 @@
             "Arvostele": "Make a review",
             "KirjauduArvostelu": "Login in order to post a review",
             "KirjauduVaraus": "Login in order to book",
-            "VaraustenKokonaismaara": "Full booking count"
+            "VaraustenKokonaismaara": "Full booking count",
+            "PoistaArvostelu": "Delete",
+            "MuokkaaArvostelu": "Modify",
+            "LahetaArvostelu": "Submit",
+            "ArvosteluOnnistui": "Review submit was succesful!",
+            "ArvosteluEpaonnistui": "Review submit was not succesful!"
         }
     },
     "fi": {
@@ -60,7 +65,12 @@
             "Arvostele": "Arvostele",
             "KirjauduVaraus": "Kirjaudu sisään varataksesi",
             "KirjauduArvostelu": "Kirjaudu sisään arvostellaksesi",
-            "VaraustenKokonaismaara": "Varausten kokonaismäärä"
+            "VaraustenKokonaismaara": "Varausten kokonaismäärä",
+            "PoistaArvostelu": "Poista",
+            "MuokkaaArvostelu": "Muokkaa",
+            "LahetaArvostelu": "Lähetä",
+            "ArvosteluOnnistui": "Arvostelu onnistui!",
+            "ArvosteluEpaonnistui": "Arvostelu epäonnistui!"
         }
     }
 }
