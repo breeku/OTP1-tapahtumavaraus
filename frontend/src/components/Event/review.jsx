@@ -46,14 +46,24 @@ const Review = ({ eventId, oldReview }) => {
         } else if (sisalto.length < 1) {
             setSisaltoError(true)
         } else {
-            const success = updateReview
+            const success = oldReview
                 ? await updateReview(
                       { header: otsikko, content: sisalto, rating },
                       eventId,
                   )
                 : await postReview({ header: otsikko, content: sisalto, rating }, eventId)
 
-            success ? setSuccesfulReview(true) : setUnSuccesfulReview(true)
+            if (success) {
+                oldReview &&
+                    oldReview.setReview(eventId, {
+                        header: otsikko,
+                        content: sisalto,
+                        rating,
+                    })
+                setSuccesfulReview(true)
+            } else {
+                setUnSuccesfulReview(true)
+            }
         }
     }
 

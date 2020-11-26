@@ -109,6 +109,15 @@ export default function Profile() {
         }
     }
 
+    const setReview = (eventId, review) => {
+        setEvents({
+            ...events,
+            Reviews: events.Reviews.map(x =>
+                x.Event.id === eventId ? { ...x, Review: review } : x,
+            ),
+        })
+    }
+
     return (
         <>
             <div className={classes.rootElement}>
@@ -182,7 +191,7 @@ export default function Profile() {
                                     {modifyReview && (
                                         <Review
                                             eventId={review.Event.id}
-                                            oldReview={review.Review}
+                                            oldReview={{ ...review.Review, setReview }}
                                         />
                                     )}
                                 </>
