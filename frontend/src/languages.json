@@ -32,8 +32,8 @@
             "PoistaArvostelu": "Delete",
             "MuokkaaArvostelu": "Modify",
             "LahetaArvostelu": "Submit",
-            "ArvosteluOnnistui": "Review submit was succesful!",
-            "ArvosteluEpaonnistui": "Review submit was not succesful!",
+            "ArvosteluOnnistui": "Review was submitted successfully!",
+            "ArvosteluEpaonnistui": "Review was not submitted successfully!",
             "ArvosteluOtsikko": "Header",
             "ArvosteluTekstikentta": "Content"
         }
@@ -71,8 +71,8 @@
             "PoistaArvostelu": "Poista",
             "MuokkaaArvostelu": "Muokkaa",
             "LahetaArvostelu": "Lähetä",
-            "ArvosteluOnnistui": "Arvostelu onnistui!",
-            "ArvosteluEpaonnistui": "Arvostelu epäonnistui!",
+            "ArvosteluOnnistui": "Arvostelun lähetys onnistui!",
+            "ArvosteluEpaonnistui": "Arvostelun lähetys epäonnistui!",
             "ArvosteluOtsikko": "Otsikko",
             "ArvosteluTekstikentta": "Lisätietoja"
         }
