@@ -46,7 +46,7 @@ eventsRouter.post('/review/:id/', async (req, res) => {
     }
 })
 
-eventsRouter.get('/review/:id/delete', async (req, res) => {
+eventsRouter.delete('/review/:id/delete', async (req, res) => {
     const token = req.headers.authorization
     const event_id = req.params.id
     try {
