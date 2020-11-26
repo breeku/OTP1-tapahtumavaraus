@@ -65,6 +65,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function Profile() {
+    const [modifyReview, setModifyReview] = useState(false)
     const classes = useStyles()
     const [profileData, setProfileData] = useState(null)
     const [events, setEvents] = useState(null)
@@ -173,6 +174,17 @@ export default function Profile() {
                                         <HighlightOffIcon />
                                         poista
                                     </Button>
+
+                                    <Button
+                                        onClick={() => setModifyReview(!modifyReview)}>
+                                        Modify
+                                    </Button>
+                                    {modifyReview && (
+                                        <Review
+                                            eventId={review.Event.id}
+                                            oldReview={review.Review}
+                                        />
+                                    )}
                                 </>
                             ))}
                         </>

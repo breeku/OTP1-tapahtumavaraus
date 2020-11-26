@@ -48,3 +48,22 @@ export const postReview = async (arvostelu, eventId) => {
         return false
     }
 }
+
+export const updateReview = async (arvostelu, eventId) => {
+    try {
+        const token = getToken()
+        await axios.post(
+            BASEURL + '/api/events/review/' + eventId + '/update',
+            arvostelu,
+            {
+                headers: {
+                    authorization: token,
+                },
+            },
+        )
+        return true
+    } catch (error) {
+        console.log(error)
+        return false
+    }
+}

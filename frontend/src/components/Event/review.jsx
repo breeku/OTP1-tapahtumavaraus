@@ -21,9 +21,9 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-const Review = ({ eventId, updateReview }) => {
+const Review = ({ eventId, oldReview }) => {
     const classes = useStyles()
-    const [rating, setRating] = React.useState(2)
+    const [rating, setRating] = React.useState(oldReview ? oldReview.rating : 2)
     const { t } = useTranslation()
     const [otsikko, setOtsikko] = React.useState('')
     const [sisalto, setSisalto] = React.useState('')
@@ -66,7 +66,7 @@ const Review = ({ eventId, updateReview }) => {
                         <Rating
                             data-cy="arvosteluTahdet"
                             name="Arvostelun tähdet"
-                            value={updateReview ? updateReview.rating : rating}
+                            value={rating}
                             onChange={(event, newValue) => {
                                 setRating(newValue)
                             }}
@@ -77,7 +77,7 @@ const Review = ({ eventId, updateReview }) => {
                     required
                     id="Arvostelun otsikkokenttä"
                     label="Otsikko"
-                    defaultValue={updateReview ? updateReview.header : ''}
+                    defaultValue={oldReview ? oldReview.header : ''}
                     data-cy="arvosteluOtsikko"
                     onChange={handleOtsikko}
                     error={otsikkoError}
@@ -90,7 +90,7 @@ const Review = ({ eventId, updateReview }) => {
                         id="Arvostelun tekstikenttä"
                         label="Lisätietoja"
                         multiline
-                        defaultValue={updateReview ? updateReview.content : ''}
+                        defaultValue={oldReview ? oldReview.content : ''}
                         required
                         rows={9}
                         onChange={handleSisalto}
