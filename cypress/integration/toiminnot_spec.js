@@ -101,7 +101,7 @@ describe('Toiminnalisuuksien testailua', () => {
       cy.get('[data-cy=luoTunnuksetForm]').submit()
     })
 
-    it('Epäonnistunut kirjautuminen sekä kirjautuminen testikäyttäjälle', () => {
+    it('Kirjautuminen testikäyttäjälle', () => {
       
       cy.get('[data-cy=kirjauduNav]').click()
       cy.get('[data-cy=kirjauduNappi]').click()
@@ -114,30 +114,16 @@ describe('Toiminnalisuuksien testailua', () => {
       cy.get('[data-cy=kirjSalasana]').type("54321")
       cy.get('[data-cy=kirjauduNappi]').click()
       cy.get('[data-cy=kirjauduForm]').submit()
-     
-     //Testi väärällä käyttäjällä tarvitsee vielä viimeistelyä
-     
-      cy.wait(1000)
-      cy.get('[data-cy=profiiliNav]').click()
- 
-      cy.get('[data-cy=ulosKirjNappi]').click()
-      cy.get('[data-cy=kirjauduNav]').click()
+    })
 
+    it('Epäonnistunut kirjautuminen', () => {
       cy.get('[data-cy=kirjSahkoposti]').type("bb@email.com")
       cy.get('[data-cy=kirjSalasana]').type("54321")
       cy.get('[data-cy=kirjauduNappi]').click()
       cy.get('[data-cy=kirjauduForm]').submit()
     })
 
-    it('Arvostelun poisto', () => {
-      cy.seed()
-      cy.login()
-      cy.visit('/profile')
-      cy.get('[data-cy=poistaArvostelu]').eq(0).click()
-    })
-
     it('Arvostelun muokkaus', () => {
-      cy.seed()
       cy.login()
       cy.visit('/profile')
       cy.get('[data-cy=muokkaaArvostelu]').eq(0).click()
@@ -147,6 +133,12 @@ describe('Toiminnalisuuksien testailua', () => {
       cy.get('[data-cy=arvosteluSubmit]').click()
       cy.get('[data-cy=arvosteluForm]').submit()
       cy.wait(1000)
+    })
+ 
+    it('Arvostelun poisto', () => {
+      cy.login()
+      cy.visit('/profile')
+      cy.get('[data-cy=poistaArvostelu]').eq(0).click()
     })
 
     //valmis kirjautuminen testikäyttäjälle
@@ -164,6 +156,7 @@ describe('Toiminnalisuuksien testailua', () => {
       })
     })
 
+    /* tietokannan seedaus -- tarvitsee muokkausta
     Cypress.Commands.add('seed', () => { 
       cy.exec('cd backend && npm run seed:undo').then((result) => {
         
@@ -171,6 +164,6 @@ describe('Toiminnalisuuksien testailua', () => {
       cy.exec('cd backend && npm run seed').then((result) => {
         
       })
-    })
+    }) */
 
   })
