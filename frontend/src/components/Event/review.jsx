@@ -57,34 +57,30 @@ const Review = ({ eventId }) => {
     return (
         <>
             <form data-cy="arvosteluForm" className={classes.root}>
-            <div>
-                <Box component="fieldset" mb={3} borderColor="transparent">
-                    <Typography component="legend">{t('Arvostele')}</Typography>
-                    <Rating
-                        data-cy="arvosteluTahdet"
-                        name="Arvostelun tähdet"
-                        value={rating}
-                        onChange={(event, newValue) => {
-                            setRating(newValue)
-                        }}
-                    />
-                </Box>
-            </div>
-            <TextField
-                required
-                id="Arvostelun otsikkokenttä"
-                label="Otsikko"
-                defaultValue=""
-                data-cy="arvosteluOtsikko"
-                onChange={handleOtsikko}
-                error={otsikkoError}
-                helperText={
-                    otsikkoError
-                        ? 'Syötä otsikko'
-                        : ''
-                }
-            />
-            
+                <div>
+                    <Box component="fieldset" mb={3} borderColor="transparent">
+                        <Typography component="legend">{t('Arvostele')}</Typography>
+                        <Rating
+                            data-cy="arvosteluTahdet"
+                            name="Arvostelun tähdet"
+                            value={rating}
+                            onChange={(event, newValue) => {
+                                setRating(newValue)
+                            }}
+                        />
+                    </Box>
+                </div>
+                <TextField
+                    required
+                    id="Arvostelun otsikkokenttä"
+                    label="Otsikko"
+                    defaultValue=""
+                    data-cy="arvosteluOtsikko"
+                    onChange={handleOtsikko}
+                    error={otsikkoError}
+                    helperText={otsikkoError ? 'Syötä otsikko' : ''}
+                />
+
                 <div>
                     <TextField
                         data-cy="arvosteluTekstikentta"
@@ -95,24 +91,20 @@ const Review = ({ eventId }) => {
                         rows={9}
                         onChange={handleSisalto}
                         error={sisaltoError}
-                        helperText={
-                            sisaltoError
-                                ? 'Syötä arvostelun sisältö'
-                                : ''
-                        }
+                        helperText={sisaltoError ? 'Syötä arvostelun sisältö' : ''}
                     />
                 </div>
-            
-            <Button
-                data-cy="arvosteluSubmit"
-                aria-label="submit"
-                onClick={() => {
-                    submitReview()
-                }}>
-                Submit
-            </Button>
-            {succesfulReview && <h1>Arvostelu onnistui!</h1>}
-            {unSuccesfulReview && <h1>Arvostelu epäonnistui!</h1>}
+
+                <Button
+                    data-cy="arvosteluSubmit"
+                    aria-label="submit"
+                    onClick={() => {
+                        submitReview()
+                    }}>
+                    Submit
+                </Button>
+                {succesfulReview && <h1>Arvostelu onnistui!</h1>}
+                {unSuccesfulReview && <h1>Arvostelu epäonnistui!</h1>}
             </form>
         </>
     )

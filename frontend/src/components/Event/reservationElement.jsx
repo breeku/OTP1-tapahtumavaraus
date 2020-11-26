@@ -31,7 +31,7 @@ const ReservationElement = ({ eventId }) => {
 
     const submitReservations = async () => {
         console.log(eventId, count)
-        const success = await postReservationCount(eventId , count)
+        const success = await postReservationCount(eventId, count)
 
         success ? setSuccessfulReservation(true) : setUnsuccessfulReservation(true)
     }
@@ -39,7 +39,10 @@ const ReservationElement = ({ eventId }) => {
     return (
         <div className={classes.root}>
             <div>
-                <Badge data-cy="omavarausMaara" color="secondary" badgeContent={count}></Badge>
+                <Badge
+                    data-cy="omavarausMaara"
+                    color="secondary"
+                    badgeContent={count}></Badge>
                 <ButtonGroup>
                     <Button
                         data-cy="vahennaNappivaraus"

@@ -48,7 +48,7 @@ const SignIn = () => {
     const classes = useStyles()
     const { authDispatch } = React.useContext(AuthContext)
     const history = useHistory()
-    const {t} = useTranslation()
+    const { t } = useTranslation()
 
     const handleChangeEmail = event => {
         setEmail(event.target.value)
@@ -119,7 +119,9 @@ const SignIn = () => {
                         {t('Kirjaudu')}
                     </Button>
                     {loginFail && (
-                        <div className={classes.loginFail}>{t('KirjautuminenEpaonnistui')}</div>
+                        <div className={classes.loginFail}>
+                            {t('KirjautuminenEpaonnistui')}
+                        </div>
                     )}
                 </form>
             </div>

@@ -18,32 +18,32 @@ export const App = () => {
     }, [])
     return (
         <Suspense fallback="loading">
-        <AuthContext.Provider
-            value={{
-                authState,
-                authDispatch,
-            }}>
-            <Router>
-                <Navbar />
-                <Switch>
-                    <Route path="/events/:id" exact={true}>
-                        <Event />
-                    </Route>
-                    <Route path="/events">
-                        <Events />
-                    </Route>
-                    <Route path="/login">
-                        <Login />
-                    </Route>
-                    <Route path="/profile">
-                        <Profile />
-                    </Route>
-                    <Route path="/">
-                        <Home />
-                    </Route>
-                </Switch>
-            </Router>
-        </AuthContext.Provider>
+            <AuthContext.Provider
+                value={{
+                    authState,
+                    authDispatch,
+                }}>
+                <Router>
+                    <Navbar />
+                    <Switch>
+                        <Route path="/events/:id" exact={true}>
+                            <Event />
+                        </Route>
+                        <Route path="/events">
+                            <Events />
+                        </Route>
+                        <Route path="/login">
+                            <Login />
+                        </Route>
+                        <Route path="/profile">
+                            <Profile />
+                        </Route>
+                        <Route path="/">
+                            <Home />
+                        </Route>
+                    </Switch>
+                </Router>
+            </AuthContext.Provider>
         </Suspense>
     )
 }
