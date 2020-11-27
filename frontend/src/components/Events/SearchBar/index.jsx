@@ -99,18 +99,18 @@ export default function SearchBarComponents({
                 <div className={classes.searchBar}>
                     <div className={classes.searchElement}>
                         <Button
-                            data-cy="tagSearchButton"
+                            data-cy='tagSearchButton'
                             className={classes.button}
                             onClick={handleOpenTags}>
                             {t('HakuTag')}
                         </Button>
                         <FormControl className={classes.formControl}>
-                            <InputLabel id="tag-label">{t('Tag')}</InputLabel>
+                            <InputLabel id='tag-label'>{t('Tag')}</InputLabel>
                             <Select
                                 disableUnderline
                                 class={classes.searchSelect}
-                                labelId="tag-label"
-                                id="tag-label"
+                                labelId='tag-label'
+                                id='tag-label'
                                 open={openTags}
                                 onClose={handleCloseTags}
                                 onOpen={handleOpenTags}
@@ -118,7 +118,7 @@ export default function SearchBarComponents({
                                 onChange={handleChangeTags}>
                                 {tagList.sort().map(tag => {
                                     return (
-                                        <MenuItem data-cy="tagiLista" value={tag}>
+                                        <MenuItem data-cy='tagiLista' value={tag}>
                                             {tag}
                                         </MenuItem>
                                     )
@@ -134,7 +134,7 @@ export default function SearchBarComponents({
                                         {tag}
                                     </li>
                                     <Button
-                                        data-cy="taginPoisto"
+                                        data-cy='taginPoisto'
                                         onClick={() => removeFromTags(tag)}>
                                         <CloseIcon className={classes.closeIcon} />
                                     </Button>
@@ -147,51 +147,51 @@ export default function SearchBarComponents({
                             {t('ValitseKieli')}
                         </Button>
                         <FormControl className={classes.formControl}>
-                            <InputLabel id="lang-label">{t('Kieli')}</InputLabel>
+                            <InputLabel id='lang-label'>{t('Kieli')}</InputLabel>
                             <Select
                                 disableUnderline
-                                labelId="lang-label"
-                                id="lang-label"
+                                labelId='lang-label'
+                                id='lang-label'
                                 open={openLang}
                                 onClose={handleCloseLang}
                                 onOpen={handleOpenLang}
                                 value={language}
                                 onChange={handleChangeLang}>
-                                <MenuItem data-cy="hakuFI" value="fi">
+                                <MenuItem data-cy='hakuFI' value='fi'>
                                     FI
                                 </MenuItem>
-                                <MenuItem value="en">EN</MenuItem>
-                                <MenuItem value="sv">SV</MenuItem>
-                                <MenuItem value="zh">ZH</MenuItem>
+                                <MenuItem value='en'>EN</MenuItem>
+                                <MenuItem value='sv'>SV</MenuItem>
+                                <MenuItem value='zh'>ZH</MenuItem>
                             </Select>
                         </FormControl>
                     </div>
                     <div className={classes.searchElement}>
                         <Button
-                            data-cy="hakuMaara"
+                            data-cy='hakuMaara'
                             className={classes.button}
-                            id="resultLimit"
+                            id='resultLimit'
                             onClick={handleOpenResultLimit}>
                             {t('HakutulostenMaara')}
                         </Button>
                         <FormControl className={classes.formControl}>
-                            <InputLabel id="count-label">{t('Maara')}</InputLabel>
+                            <InputLabel id='count-label'>{t('Maara')}</InputLabel>
                             <Select
                                 disableUnderline
-                                labelId="count-label"
-                                id="count-label"
+                                labelId='count-label'
+                                id='count-label'
                                 open={openResult}
                                 onClose={handleCloseResultLimit}
                                 onOpen={handleOpenResultLimit}
                                 value={resultLimit}
                                 onChange={handleChangeResultLimit}>
-                                <MenuItem data-cy="hakuYksi" value={10}>
+                                <MenuItem data-cy='hakuYksi' value={10}>
                                     10
                                 </MenuItem>
-                                <MenuItem data-cy="hakuKaksi" value={20}>
+                                <MenuItem data-cy='hakuKaksi' value={20}>
                                     20
                                 </MenuItem>
-                                <MenuItem data-cy="hakuKolme" value={30}>
+                                <MenuItem data-cy='hakuKolme' value={30}>
                                     30
                                 </MenuItem>
                             </Select>

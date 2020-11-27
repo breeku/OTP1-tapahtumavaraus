@@ -108,7 +108,7 @@ export default function Profile() {
                                 {t('Kayttajanimi')} : {profileData.username}
                             </p>
                             <Button
-                                data-cy="ulosKirjNappi"
+                                data-cy='ulosKirjNappi'
                                 className={classes.logOutButton}
                                 onClick={handleLogout}>
                                 <ExitToAppIcon className={classes.logOutButton} />
@@ -144,7 +144,7 @@ export default function Profile() {
                                     </Link>
                                     <h4>{review.Review.header}</h4>
                                     <Rating
-                                        name="simple-controlled"
+                                        name='simple-controlled'
                                         value={review.Review.rating}
                                         readOnly
                                     />

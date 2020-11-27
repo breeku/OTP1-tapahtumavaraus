@@ -73,47 +73,47 @@ const SignIn = () => {
     }
 
     return (
-        <Container component="main" maxWidth="xs">
+        <Container component='main' maxWidth='xs'>
             <CssBaseline />
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
                     <LockOutlinedIcon />
                 </Avatar>
-                <Typography component="h1" variant="h5">
+                <Typography component='h1' variant='h5'>
                     {t('Kirjaudu')}
                 </Typography>
-                <form data-cy="kirjauduForm" className={classes.form} noValidate>
+                <form data-cy='kirjauduForm' className={classes.form} noValidate>
                     <TextField
-                        data-cy="kirjSahkoposti"
-                        variant="outlined"
-                        margin="normal"
+                        data-cy='kirjSahkoposti'
+                        variant='outlined'
+                        margin='normal'
                         required
                         fullWidth
-                        id="email"
+                        id='email'
                         label={t('SPosti')}
-                        name="email"
-                        autoComplete="email"
+                        name='email'
+                        autoComplete='email'
                         autoFocus
                         onChange={handleChangeEmail}
                     />
                     <TextField
-                        data-cy="kirjSalasana"
-                        variant="outlined"
-                        margin="normal"
+                        data-cy='kirjSalasana'
+                        variant='outlined'
+                        margin='normal'
                         required
                         fullWidth
-                        name="password"
+                        name='password'
                         label={t('Salasana')}
-                        type="password"
-                        id="password"
-                        autoComplete="current-password"
+                        type='password'
+                        id='password'
+                        autoComplete='current-password'
                         onChange={handleChangePassword}
                     />
                     <Button
-                        data-cy="kirjauduNappi"
+                        data-cy='kirjauduNappi'
                         fullWidth
-                        variant="contained"
-                        color="primary"
+                        variant='contained'
+                        color='primary'
                         className={classes.submit}
                         onClick={handleLogin}>
                         {t('Kirjaudu')}

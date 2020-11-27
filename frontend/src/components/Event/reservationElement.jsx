@@ -38,31 +38,31 @@ const ReservationElement = ({ eventId }) => {
     return (
         <div className={classes.root}>
             <div>
-                <Badge data-cy="omavarausMaara" color="secondary" badgeContent={count} />
+                <Badge data-cy='omavarausMaara' color='secondary' badgeContent={count} />
                 <ButtonGroup>
                     <Button
-                        data-cy="vahennaNappivaraus"
-                        aria-label="reduce"
+                        data-cy='vahennaNappivaraus'
+                        aria-label='reduce'
                         onClick={() => {
                             setCount(Math.max(count - 1, 0))
                         }}>
-                        <RemoveIcon fontSize="small" />
+                        <RemoveIcon fontSize='small' />
                     </Button>
                     <Button
-                        data-cy="lisaaNappivaraus"
-                        aria-label="increase"
+                        data-cy='lisaaNappivaraus'
+                        aria-label='increase'
                         onClick={() => {
                             setCount(count + 1)
                         }}>
-                        <AddIcon fontSize="small" />
+                        <AddIcon fontSize='small' />
                     </Button>
                     <Button
-                        data-cy="teeVaraus"
-                        aria-label="submit"
+                        data-cy='teeVaraus'
+                        aria-label='submit'
                         onClick={() => {
                             submitReservations()
                         }}>
-                        <CheckIcon fontSize="small" />
+                        <CheckIcon fontSize='small' />
                     </Button>
                 </ButtonGroup>
                 {successfulReservation && <h1>Varaaminen onnistui!</h1>}

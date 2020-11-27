@@ -108,27 +108,27 @@ const SignUp = () => {
     }
 
     return (
-        <Container component="main" maxWidth="xs">
+        <Container component='main' maxWidth='xs'>
             <CssBaseline />
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
                     <LockOutlinedIcon />
                 </Avatar>
-                <Typography component="h1" variant="h5">
+                <Typography component='h1' variant='h5'>
                     {t('LuoKayttajatunnus')}
                 </Typography>
-                <form data-cy="luoTunnuksetForm" className={classes.form} noValidate>
+                <form data-cy='luoTunnuksetForm' className={classes.form} noValidate>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField
-                                variant="outlined"
+                                variant='outlined'
                                 required
                                 fullWidth
-                                data-cy="luoEtunimi"
-                                id="firstName"
+                                data-cy='luoEtunimi'
+                                id='firstName'
                                 label={t('Etunimi')}
-                                name="firstName"
-                                autoComplete="firstName"
+                                name='firstName'
+                                autoComplete='firstName'
                                 onChange={handleChangeFirstName}
                                 error={firstNameError}
                                 helperText={
@@ -140,14 +140,14 @@ const SignUp = () => {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-                                variant="outlined"
+                                variant='outlined'
                                 required
                                 fullWidth
-                                data-cy="luoSukunimi"
-                                id="lastName"
+                                data-cy='luoSukunimi'
+                                id='lastName'
                                 label={t('Sukunimi')}
-                                name="lastName"
-                                autoComplete="email"
+                                name='lastName'
+                                autoComplete='email'
                                 onChange={handleChangeLastName}
                                 error={lastNameError}
                                 helperText={
@@ -159,14 +159,14 @@ const SignUp = () => {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-                                variant="outlined"
+                                variant='outlined'
                                 required
                                 fullWidth
-                                data-cy="luoKayttajaTunnus"
-                                id="username"
+                                data-cy='luoKayttajaTunnus'
+                                id='username'
                                 label={t('Kayttajanimi')}
-                                name="username"
-                                autoComplete="username"
+                                name='username'
+                                autoComplete='username'
                                 onChange={handleChangeUsername}
                                 error={usernameError}
                                 helperText={
@@ -178,15 +178,15 @@ const SignUp = () => {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-                                variant="outlined"
+                                variant='outlined'
                                 required
                                 fullWidth
-                                data-cy="luoSalasana"
-                                name="password"
+                                data-cy='luoSalasana'
+                                name='password'
                                 label={t('Salasana')}
-                                type="password"
-                                id="password"
-                                autoComplete="current-password"
+                                type='password'
+                                id='password'
+                                autoComplete='current-password'
                                 error={passwordError}
                                 helperText={
                                     passwordError
@@ -198,14 +198,14 @@ const SignUp = () => {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-                                variant="outlined"
+                                variant='outlined'
                                 required
                                 fullWidth
-                                data-cy="luoSahkoposti"
-                                id="email"
+                                data-cy='luoSahkoposti'
+                                id='email'
                                 label={t('SPosti')}
-                                name="email"
-                                autoComplete="email"
+                                name='email'
+                                autoComplete='email'
                                 error={emailError}
                                 helperText={
                                     emailError
@@ -218,9 +218,9 @@ const SignUp = () => {
                     </Grid>
                     <Button
                         fullWidth
-                        variant="contained"
-                        color="primary"
-                        data-cy="luoTunnuksetNappi"
+                        variant='contained'
+                        color='primary'
+                        data-cy='luoTunnuksetNappi'
                         className={classes.submit}
                         onClick={handlePostAccount}>
                         {t('LuoKayttajatunnus')}

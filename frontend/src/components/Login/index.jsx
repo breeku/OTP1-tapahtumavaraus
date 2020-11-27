@@ -41,7 +41,7 @@ export default function Home() {
                 <>
                     <SignIn />
                     <Button
-                        data-cy="luokayttajaNappi"
+                        data-cy='luokayttajaNappi'
                         className={classes.link_button}
                         onClick={handleShowSignUp}>
                         {t('LuoKayttajatunnus')}
@@ -52,7 +52,7 @@ export default function Home() {
                 <>
                     <SignUp />
                     <Button
-                        data-cy="luoKirjasisaan"
+                        data-cy='luoKirjasisaan'
                         className={classes.link_button}
                         onClick={handleShowSignIn}>
                         {t('Kirjaudu')}
