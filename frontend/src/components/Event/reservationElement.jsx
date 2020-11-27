@@ -8,7 +8,7 @@ import CheckIcon from '@material-ui/icons/Check'
 import RemoveIcon from '@material-ui/icons/Remove'
 import { postReservationCount } from '../../services/events'
 
-//Item for making reservations
+// Item for making reservations
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -30,7 +30,6 @@ const ReservationElement = ({ eventId }) => {
     const [unsuccessfulReservation, setUnsuccessfulReservation] = useState(false)
 
     const submitReservations = async () => {
-        console.log(eventId, count)
         const success = await postReservationCount(eventId, count)
 
         success ? setSuccessfulReservation(true) : setUnsuccessfulReservation(true)
@@ -39,10 +38,7 @@ const ReservationElement = ({ eventId }) => {
     return (
         <div className={classes.root}>
             <div>
-                <Badge
-                    data-cy="omavarausMaara"
-                    color="secondary"
-                    badgeContent={count}></Badge>
+                <Badge data-cy="omavarausMaara" color="secondary" badgeContent={count} />
                 <ButtonGroup>
                     <Button
                         data-cy="vahennaNappivaraus"

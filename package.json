@@ -12,7 +12,7 @@
   "devDependencies": {},
   "scripts": {
     "prettier:write": "cd frontend && npx prettier --write . && cd ../backend && npx prettier --write .",
-    "eslint:check": "cd frontend && npx eslint . && cd ../backend && npx eslint .",
+    "eslint:check": "cd frontend && npx eslint --ext .js,.jsx ./src && cd ../backend && npx eslint .",
     "coverage": "nyc report --reporter=text",
     "test": "cypress run"
   },

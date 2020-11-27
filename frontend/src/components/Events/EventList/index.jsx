@@ -55,9 +55,8 @@ export default function EventsList({ events, classes, language, tags }) {
                                             <img
                                                 alt={event.description.intro}
                                                 className={classes.eventImage}
-                                                src={
-                                                    event.description.images[0].url
-                                                }></img>
+                                                src={event.description.images[0].url}
+                                            />
                                         )}
                                     </div>
                                 </Paper>

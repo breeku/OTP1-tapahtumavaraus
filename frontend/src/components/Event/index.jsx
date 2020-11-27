@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react'
 
 import { useLocation } from 'react-router-dom'
 import { makeStyles, Paper, Button, Grid } from '@material-ui/core/'
+import { useTranslation } from 'react-i18next'
 import { getEvent } from '../../services/events'
 import Review from './review'
 import Reviews from './reviews'
 import ReservationElement from './reservationElement'
 import { AuthContext } from '../../context/auth'
-import { useTranslation } from 'react-i18next'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
     root: {
         background:
             'url("https://upload.wikimedia.org/wikipedia/commons/b/b8/The_Stairs_Paola_Italy_Black_And_White_Street_Photography_%28233602113%29.jpeg") no-repeat center center fixed',
@@ -148,7 +148,8 @@ export default function Event() {
                                     <img
                                         alt={event.description.intro}
                                         className={classes.eventImage}
-                                        src={event.description.images[0].url}></img>
+                                        src={event.description.images[0].url}
+                                    />
                                 )}
                             </Grid>
                         </Grid>

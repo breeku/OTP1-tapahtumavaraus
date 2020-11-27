@@ -12,9 +12,9 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 
+import { useTranslation } from 'react-i18next'
 import { AuthContext } from '../../../context/auth'
 import { register } from '../../../services/auth'
-import { useTranslation } from 'react-i18next'
 
 // Sign up -functionality and rendering
 

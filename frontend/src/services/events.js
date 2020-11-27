@@ -4,15 +4,13 @@ import { getToken } from './auth'
 
 export const getEvents = async (language, resultLimit, tags) => {
     const response = await axios.get(
-        BASEURL + '/api/events/' + language + '/' + resultLimit + '/' + tags,
+        `${BASEURL}/api/events/${language}/${resultLimit}/${tags}`,
     )
     return response
 }
 
 export const getEvent = async (eventId, fetchEvent) => {
-    const response = await axios.get(
-        BASEURL + '/api/events/' + eventId + '/' + fetchEvent,
-    )
+    const response = await axios.get(`${BASEURL}/api/events/${eventId}/${fetchEvent}`)
     return response
 }
 
@@ -20,7 +18,7 @@ export const postReservationCount = async (eventId, reservationCount) => {
     try {
         const token = getToken()
         await axios.get(
-            BASEURL + '/api/events/reservation/' + eventId + '/' + reservationCount,
+            `${BASEURL}/api/events/reservation/${eventId}/${reservationCount}`,
             {
                 headers: {
                     authorization: token,
@@ -37,7 +35,7 @@ export const postReservationCount = async (eventId, reservationCount) => {
 export const postReview = async (arvostelu, eventId) => {
     try {
         const token = getToken()
-        await axios.post(BASEURL + '/api/events/review/' + eventId, arvostelu, {
+        await axios.post(`${BASEURL}/api/events/review/${eventId}`, arvostelu, {
             headers: {
                 authorization: token,
             },

@@ -9,7 +9,7 @@ import { Button } from '@material-ui/core/'
 
 import { postReview } from '../../services/events'
 
-//Item for making a review
+// Item for making a review
 
 const useStyles = makeStyles(theme => ({
     root: {

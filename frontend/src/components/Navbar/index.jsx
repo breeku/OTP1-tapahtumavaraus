@@ -45,8 +45,8 @@ export default function Navbar() {
 
     useEffect(() => {
         const localLang = localStorage.getItem('lang')
-        setKielivalinta(localLang ? localLang : 'fi')
-        i18n.changeLanguage(localLang ? localLang : 'fi')
+        setKielivalinta(localLang || 'fi')
+        i18n.changeLanguage(localLang || 'fi')
     }, [i18n])
 
     const vaihdaKieli = () => {

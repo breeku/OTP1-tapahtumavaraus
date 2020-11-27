@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 
 import { makeStyles } from '@material-ui/core/styles'
-import SignIn from './components/signIn'
-import SignUp from './components/signUp'
 import { Button } from '@material-ui/core'
 import { useTranslation } from 'react-i18next'
+import SignIn from './components/signIn'
+import SignUp from './components/signUp'
 
 // Frame for sign in- and sign up-functionalities
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
     link_button: {
         color: '#3f51b5',
         display: 'flex',
