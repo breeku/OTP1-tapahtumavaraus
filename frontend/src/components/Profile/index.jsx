@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react'
 
 import { makeStyles } from '@material-ui/core/styles'
-import { getProfileData } from '../../services/auth'
-import { getEvent } from '../../services/profileEvents'
-import { getToken } from '../../services/auth'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import Rating from '@material-ui/lab/Rating'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import { Button } from '@material-ui/core'
-import { useHistory } from 'react-router-dom'
-import { AuthContext } from '../../context/auth'
+
 import { useTranslation } from 'react-i18next'
+import { AuthContext } from '../../context/auth'
+import { getToken, getProfileData } from '../../services/auth'
+import { getEvent } from '../../services/profileEvents'
 
 // Frame for personal profile data rendering
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
     text_center: {
         color: 'white',
         textAlign: 'center',
@@ -109,7 +108,7 @@ export default function Profile() {
                                 {t('Kayttajanimi')} : {profileData.username}
                             </p>
                             <Button
-                                data-cy="ulosKirjNappi"
+                                data-cy='ulosKirjNappi'
                                 className={classes.logOutButton}
                                 onClick={handleLogout}>
                                 <ExitToAppIcon className={classes.logOutButton} />
@@ -145,7 +144,7 @@ export default function Profile() {
                                     </Link>
                                     <h4>{review.Review.header}</h4>
                                     <Rating
-                                        name="simple-controlled"
+                                        name='simple-controlled'
                                         value={review.Review.rating}
                                         readOnly
                                     />

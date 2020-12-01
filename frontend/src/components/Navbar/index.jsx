@@ -45,8 +45,8 @@ export default function Navbar() {
 
     useEffect(() => {
         const localLang = localStorage.getItem('lang')
-        setKielivalinta(localLang ? localLang : 'fi')
-        i18n.changeLanguage(localLang ? localLang : 'fi')
+        setKielivalinta(localLang || 'fi')
+        i18n.changeLanguage(localLang || 'fi')
     }, [i18n])
 
     const vaihdaKieli = () => {
@@ -63,37 +63,37 @@ export default function Navbar() {
 
     return (
         <div className={classes.root}>
-            <AppBar position="static" className={classes.appBar}>
+            <AppBar position='static' className={classes.appBar}>
                 <Toolbar>
-                    <Typography variant="h6" className={classes.title}>
-                        <Link to="/" className={classes.link}>
+                    <Typography variant='h6' className={classes.title}>
+                        <Link to='/' className={classes.link}>
                             {t('Tapahtumavaraus')}
                         </Link>
                     </Typography>
 
-                    <Link to="/events" className={classes.link}>
-                        <Button data-cy="tapahtumaNav" color="inherit">
+                    <Link to='/events' className={classes.link}>
+                        <Button data-cy='tapahtumaNav' color='inherit'>
                             {t('Tapahtumat')}
                         </Button>
                     </Link>
 
-                    <Link to="/login" className={classes.link}>
+                    <Link to='/login' className={classes.link}>
                         {authToken ? (
-                            <Link to="/profile" className={classes.link}>
-                                <Button data-cy="profiiliNav" color="inherit">
+                            <Link to='/profile' className={classes.link}>
+                                <Button data-cy='profiiliNav' color='inherit'>
                                     {t('Profiili')}
                                 </Button>
                             </Link>
                         ) : (
-                            <Link to="/login" className={classes.link}>
-                                <Button data-cy="kirjauduNav" color="inherit">
+                            <Link to='/login' className={classes.link}>
+                                <Button data-cy='kirjauduNav' color='inherit'>
                                     {t('Kirjaudu')}
                                 </Button>
                             </Link>
                         )}
                     </Link>
                     <Button
-                        data-cy="kielenVaihto"
+                        data-cy='kielenVaihto'
                         onClick={vaihdaKieli}
                         className={classes.kielenvaihto}>
                         {kielivalinta}

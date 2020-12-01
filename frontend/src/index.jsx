@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
+
 import { App } from './App'
 import './i18n'
 import './root.css'
-
-import { createMuiTheme } from '@material-ui/core/styles'
-import { ThemeProvider } from '@material-ui/core/styles'
 
 const theme = createMuiTheme({
     text_center: {

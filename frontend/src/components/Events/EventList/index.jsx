@@ -35,7 +35,7 @@ export default function EventsList({ events, classes, language, tags }) {
                                 className={classes.link}
                                 to={{ pathname: `/events/${event.id}`, state: event }}>
                                 <Paper
-                                    data-cy="tapahtumaLista"
+                                    data-cy='tapahtumaLista'
                                     elevation={3}
                                     className={classes.paper}>
                                     <div className={classes.event}>
@@ -55,9 +55,8 @@ export default function EventsList({ events, classes, language, tags }) {
                                             <img
                                                 alt={event.description.intro}
                                                 className={classes.eventImage}
-                                                src={
-                                                    event.description.images[0].url
-                                                }></img>
+                                                src={event.description.images[0].url}
+                                            />
                                         )}
                                     </div>
                                 </Paper>

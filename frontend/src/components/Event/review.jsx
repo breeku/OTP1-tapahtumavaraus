@@ -9,7 +9,7 @@ import { Button } from '@material-ui/core/'
 
 import { postReview } from '../../services/events'
 
-//Item for making a review
+// Item for making a review
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -56,13 +56,13 @@ const Review = ({ eventId }) => {
 
     return (
         <>
-            <form data-cy="arvosteluForm" className={classes.root}>
+            <form data-cy='arvosteluForm' className={classes.root}>
                 <div>
-                    <Box component="fieldset" mb={3} borderColor="transparent">
-                        <Typography component="legend">{t('Arvostele')}</Typography>
+                    <Box component='fieldset' mb={3} borderColor='transparent'>
+                        <Typography component='legend'>{t('Arvostele')}</Typography>
                         <Rating
-                            data-cy="arvosteluTahdet"
-                            name="Arvostelun tähdet"
+                            data-cy='arvosteluTahdet'
+                            name='Arvostelun tähdet'
                             value={rating}
                             onChange={(event, newValue) => {
                                 setRating(newValue)
@@ -72,10 +72,10 @@ const Review = ({ eventId }) => {
                 </div>
                 <TextField
                     required
-                    id="Arvostelun otsikkokenttä"
-                    label="Otsikko"
-                    defaultValue=""
-                    data-cy="arvosteluOtsikko"
+                    id='Arvostelun otsikkokenttä'
+                    label='Otsikko'
+                    defaultValue=''
+                    data-cy='arvosteluOtsikko'
                     onChange={handleOtsikko}
                     error={otsikkoError}
                     helperText={otsikkoError ? 'Syötä otsikko' : ''}
@@ -83,9 +83,9 @@ const Review = ({ eventId }) => {
 
                 <div>
                     <TextField
-                        data-cy="arvosteluTekstikentta"
-                        id="Arvostelun tekstikenttä"
-                        label="Lisätietoja"
+                        data-cy='arvosteluTekstikentta'
+                        id='Arvostelun tekstikenttä'
+                        label='Lisätietoja'
                         multiline
                         required
                         rows={9}
@@ -96,8 +96,8 @@ const Review = ({ eventId }) => {
                 </div>
 
                 <Button
-                    data-cy="arvosteluSubmit"
-                    aria-label="submit"
+                    data-cy='arvosteluSubmit'
+                    aria-label='submit'
                     onClick={() => {
                         submitReview()
                     }}>
