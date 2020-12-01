@@ -35,20 +35,24 @@ userRouter.get('/', async (req, res) => {
             ),
         ]
         for (const event_id of event_ids) {
-            const { data: event } = await axios.get(BASEURL + 'v1/event/' + event_id)
-            const review = user.Reviews.find(x => x.event_id === event_id)
-            const reservation = user.Reservations.find(x => x.event_id === event_id)
-            if (review) {
-                response.Reviews.push({
-                    Review: review.get({ plain: true }),
-                    Event: event,
-                })
-            }
-            if (reservation) {
-                response.Reservations.push({
-                    Reservation: reservation.get({ plain: true }),
-                    Event: event,
-                })
+            try {
+                const { data: event } = await axios.get(BASEURL + 'v1/event/' + event_id)
+                const review = user.Reviews.find(x => x.event_id === event_id)
+                const reservation = user.Reservations.find(x => x.event_id === event_id)
+                if (review) {
+                    response.Reviews.push({
+                        Review: review.get({ plain: true }),
+                        Event: event,
+                    })
+                }
+                if (reservation) {
+                    response.Reservations.push({
+                        Reservation: reservation.get({ plain: true }),
+                        Event: event,
+                    })
+                }
+            } catch (e) {
+                console.warn('Tapahtumaa ei enää löytynyt') // poista tai näytä että tapahtuma on poistettu
             }
         }
         // eslint-disable-next-line no-unused-vars
