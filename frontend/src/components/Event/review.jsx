@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import { Button } from '@material-ui/core/'
 
-import { postReview } from '../../services/events'
+import { postReview, updateReview } from '../../services/events'
 
 // Item for making a review
 
@@ -20,9 +20,9 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-const Review = ({ eventId }) => {
+const Review = ({ eventId, oldReview, color }) => {
     const classes = useStyles()
-    const [rating, setRating] = React.useState(2)
+    const [rating, setRating] = React.useState(oldReview ? oldReview.rating : 2)
     const { t } = useTranslation()
     const [otsikko, setOtsikko] = React.useState('')
     const [sisalto, setSisalto] = React.useState('')
@@ -45,12 +45,24 @@ const Review = ({ eventId }) => {
         } else if (sisalto.length < 1) {
             setSisaltoError(true)
         } else {
-            const success = await postReview(
-                { header: otsikko, content: sisalto, rating },
-                eventId,
-            )
+            const success = oldReview
+                ? await updateReview(
+                      { header: otsikko, content: sisalto, rating },
+                      eventId,
+                  )
+                : await postReview({ header: otsikko, content: sisalto, rating }, eventId)
 
-            success ? setSuccesfulReview(true) : setUnSuccesfulReview(true)
+            if (success) {
+                if (oldReview)
+                    oldReview.setReview(eventId, {
+                        header: otsikko,
+                        content: sisalto,
+                        rating,
+                    })
+                setSuccesfulReview(true)
+            } else {
+                setUnSuccesfulReview(true)
+            }
         }
     }
 
@@ -71,11 +83,12 @@ const Review = ({ eventId }) => {
                     </Box>
                 </div>
                 <TextField
+                    style={{backgroundColor: color}}
                     required
-                    id='Arvostelun otsikkokenttä'
-                    label='Otsikko'
-                    defaultValue=''
-                    data-cy='arvosteluOtsikko'
+                    id="Arvostelun otsikkokenttä"
+                    label={t('ArvosteluOtsikko')}
+                    defaultValue={oldReview ? oldReview.header : ''}
+                    data-cy="arvosteluOtsikko"
                     onChange={handleOtsikko}
                     error={otsikkoError}
                     helperText={otsikkoError ? 'Syötä otsikko' : ''}
@@ -83,10 +96,12 @@ const Review = ({ eventId }) => {
 
                 <div>
                     <TextField
-                        data-cy='arvosteluTekstikentta'
-                        id='Arvostelun tekstikenttä'
-                        label='Lisätietoja'
+                        style={{backgroundColor: color}}
+                        data-cy="arvosteluTekstikentta"
+                        id="Arvostelun tekstikenttä"
+                        label={t('ArvosteluTekstikentta')}
                         multiline
+                        defaultValue={oldReview ? oldReview.content : ''}
                         required
                         rows={9}
                         onChange={handleSisalto}
@@ -96,15 +111,16 @@ const Review = ({ eventId }) => {
                 </div>
 
                 <Button
-                    data-cy='arvosteluSubmit'
-                    aria-label='submit'
+                    style={{backgroundColor: color}}
+                    data-cy="arvosteluSubmit"
+                    aria-label="submit"
                     onClick={() => {
                         submitReview()
                     }}>
-                    Submit
+                    {t('LahetaArvostelu')}
                 </Button>
-                {succesfulReview && <h1>Arvostelu onnistui!</h1>}
-                {unSuccesfulReview && <h1>Arvostelu epäonnistui!</h1>}
+                {succesfulReview && <h1>{t('ArvosteluOnnistui')}</h1>}
+                {unSuccesfulReview && <h1>{t('ArvosteluEpaonnistui')}</h1>}
             </form>
         </>
     )

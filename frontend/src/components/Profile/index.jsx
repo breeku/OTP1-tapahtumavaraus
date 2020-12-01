@@ -7,9 +7,11 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import { Button } from '@material-ui/core'
 
 import { useTranslation } from 'react-i18next'
+import HighlightOffIcon from '@material-ui/icons/HighlightOff'
+import Review from '../Event/review'
 import { AuthContext } from '../../context/auth'
 import { getToken, getProfileData } from '../../services/auth'
-import { getEvent } from '../../services/profileEvents'
+import { getEvent, removeReview } from '../../services/profileEvents'
 
 // Frame for personal profile data rendering
 
@@ -62,6 +64,7 @@ const useStyles = makeStyles(() => ({
 }))
 
 export default function Profile() {
+    const [modifyReview, setModifyReview] = useState(null)
     const classes = useStyles()
     const [profileData, setProfileData] = useState(null)
     const [events, setEvents] = useState(null)
@@ -89,6 +92,29 @@ export default function Profile() {
             type: 'LOGOUT',
         })
         history.push('/')
+    }
+
+    const handleReviewRemove = async eventID => {
+        const token = getToken()
+
+        const success = await removeReview(token, eventID)
+        if (success) {
+            setEvents({
+                ...events,
+                Reviews: events.Reviews.filter(x => x.Event.id !== eventID),
+            })
+        } else {
+            // virheilmotus
+        }
+    }
+
+    const setReview = (eventId, review) => {
+        setEvents({
+            ...events,
+            Reviews: events.Reviews.map(x =>
+                x.Event.id === eventId ? { ...x, Review: review } : x,
+            ),
+        })
     }
 
     return (
@@ -149,6 +175,33 @@ export default function Profile() {
                                         readOnly
                                     />
                                     <p>{review.Review.content}</p>
+                                    <Button
+                                    data-cy="poistaArvostelu"
+                                        onClick={() =>
+                                            handleReviewRemove(review.Event.id)
+                                        }>
+                                        <HighlightOffIcon />
+                                        {t('PoistaArvostelu')}
+                                    </Button>
+
+                                    <Button
+                                        data-cy="muokkaaArvostelu"
+                                        onClick={() =>
+                                            setModifyReview(
+                                                modifyReview !== review.Event.id
+                                                    ? review.Event.id
+                                                    : null,
+                                            )
+                                        }>
+                                        {t('MuokkaaArvostelu')}
+                                    </Button>
+                                    {modifyReview === review.Event.id && (
+                                        <Review
+                                            color='lightgrey'
+                                            eventId={review.Event.id}
+                                            oldReview={{ ...review.Review, setReview }}
+                                        />
+                                    )}
                                 </>
                             ))}
                         </>
