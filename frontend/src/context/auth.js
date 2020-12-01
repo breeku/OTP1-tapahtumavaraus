@@ -10,9 +10,9 @@ export const authInitialState = {
 }
 
 export const authReducer = (state, action) => {
+    const token = getToken()
     switch (action.type) {
         case 'CHECK_TOKEN':
-            const token = getToken()
             return {
                 ...state,
                 token,

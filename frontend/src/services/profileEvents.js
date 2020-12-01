@@ -3,7 +3,7 @@ import { BASEURL } from './config'
 
 export const getEvent = async token => {
     try {
-        const { data } = await axios.get(BASEURL + '/api/user/', {
+        const { data } = await axios.get(`${BASEURL}/api/user/`, {
             headers: {
                 authorization: token,
             },
@@ -11,6 +11,7 @@ export const getEvent = async token => {
         return data
     } catch (error) {
         console.log(error)
+        return false
     }
 }
 

@@ -10,7 +10,7 @@ import { Button } from '@material-ui/core/'
 import { postReview } from '../../services/events'
 import { updateReview } from '../../services/events'
 
-//Item for making a review
+// Item for making a review
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -69,13 +69,13 @@ const Review = ({ eventId, oldReview, color }) => {
 
     return (
         <>
-            <form data-cy="arvosteluForm" className={classes.root}>
+            <form data-cy='arvosteluForm' className={classes.root}>
                 <div>
-                    <Box component="fieldset" mb={3} borderColor="transparent">
-                        <Typography component="legend">{t('Arvostele')}</Typography>
+                    <Box component='fieldset' mb={3} borderColor='transparent'>
+                        <Typography component='legend'>{t('Arvostele')}</Typography>
                         <Rating
-                            data-cy="arvosteluTahdet"
-                            name="Arvostelun tähdet"
+                            data-cy='arvosteluTahdet'
+                            name='Arvostelun tähdet'
                             value={rating}
                             onChange={(event, newValue) => {
                                 setRating(newValue)

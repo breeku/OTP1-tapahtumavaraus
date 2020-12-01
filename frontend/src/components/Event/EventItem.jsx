@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import { Paper, makeStyles, Button, Grid } from '@material-ui/core/'
-import Review from './review'
-import ReviewTextField from './reviewTextField'
 import { useTranslation } from 'react-i18next'
+import Review from './review'
 
-//Item for rendering a single event item
+// Item for rendering a single event item
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
     eventHeader: {
         width: '80%',
         margin: 'auto',
@@ -104,7 +103,8 @@ const EventItem = ({ event }) => {
                                     <img
                                         alt={event.description.intro}
                                         className={classes.eventImage}
-                                        src={event.description.images[0].url}></img>
+                                        src={event.description.images[0].url}
+                                    />
                                 )}
                             </Grid>
                         </Grid>
@@ -112,7 +112,6 @@ const EventItem = ({ event }) => {
                             {reviewView && (
                                 <>
                                     <Review />
-                                    <ReviewTextField />
                                 </>
                             )}
                         </div>
