@@ -20,6 +20,17 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
+/**
+ * Arvostelun tekemisen komponentti
+ *
+ * @component
+ * @example
+ * eventId = 'helsinki:afyho6epwy'
+ * return (
+ *  <Review eventId={eventId}/>
+ * )
+ */
+
 const Review = ({ eventId }) => {
     const classes = useStyles()
     const [rating, setRating] = React.useState(2)

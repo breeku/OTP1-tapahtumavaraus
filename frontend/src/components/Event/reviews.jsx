@@ -4,6 +4,17 @@ import Rating from '@material-ui/lab/Rating'
 
 // Item for rendering a review
 
+/**
+ * Arvostelujen komponentti
+ *
+ * @component
+ * @example
+ * data = {}
+ * return (
+ *  <Reviews data={data}/>
+ * )
+ */
+
 const Reviews = ({ data }) => {
     return (
         <ul>

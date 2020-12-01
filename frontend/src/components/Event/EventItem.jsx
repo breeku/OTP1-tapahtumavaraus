@@ -68,6 +68,12 @@ const useStyles = makeStyles(() => ({
     },
 }))
 
+/**
+ * Tapahtuman komponentti
+ *
+ * @component
+ */
+
 const EventItem = ({ event }) => {
     const classes = useStyles()
     const [reviewView, setReviewView] = useState(false)

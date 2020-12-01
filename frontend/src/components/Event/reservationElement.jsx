@@ -23,6 +23,17 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
+/**
+ * Varauksen komponentti
+ *
+ * @component
+ * @example
+ * eventId = 'helsinki:afyho6epwy'
+ * return (
+ *  <ReservationElement eventId={eventId}/>
+ * )
+ */
+
 const ReservationElement = ({ eventId }) => {
     const classes = useStyles()
     const [count, setCount] = React.useState(1)

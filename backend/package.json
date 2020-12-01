@@ -40,5 +40,7 @@
         "sequelize-cli": "^6.2.0",
         "@cypress/code-coverage": "^3.8.1"
     },
-    "devDependencies": {}
+    "devDependencies": {
+        "jsdoc": "^3.6.6"
+    }
 }
