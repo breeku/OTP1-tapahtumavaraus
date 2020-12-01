@@ -51,7 +51,7 @@ export const updateReview = async (arvostelu, eventId) => {
     try {
         const token = getToken()
         await axios.post(
-            BASEURL + '/api/events/review/' + eventId + '/update',
+            `${BASEURL}/api/events/review/${eventId}/update`,
             arvostelu,
             {
                 headers: {

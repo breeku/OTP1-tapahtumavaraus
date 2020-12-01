@@ -7,8 +7,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import { Button } from '@material-ui/core/'
 
-import { postReview } from '../../services/events'
-import { updateReview } from '../../services/events'
+import { postReview, updateReview } from '../../services/events'
 
 // Item for making a review
 
@@ -54,7 +53,7 @@ const Review = ({ eventId, oldReview, color }) => {
                 : await postReview({ header: otsikko, content: sisalto, rating }, eventId)
 
             if (success) {
-                oldReview &&
+                if (oldReview)
                     oldReview.setReview(eventId, {
                         header: otsikko,
                         content: sisalto,

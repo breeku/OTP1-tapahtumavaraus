@@ -17,7 +17,7 @@ export const getEvent = async token => {
 
 export const removeReview = async (token, eventID) => {
     try {
-        await axios.delete(BASEURL + '/api/events/review/' + eventID + '/delete', {
+        await axios.delete(`${BASEURL}/api/events/review/${eventID}/delete`, {
             headers: {
                 authorization: token,
             },
