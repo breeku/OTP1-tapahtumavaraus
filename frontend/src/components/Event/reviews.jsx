@@ -8,11 +8,7 @@ import Rating from '@material-ui/lab/Rating'
  * Arvostelujen komponentti
  *
  * @component
- * @example
- * data = {}
- * return (
- *  <Reviews data={data}/>
- * )
+ * @category Tapahtuma
  */
 
 const Reviews = ({ data }) => {

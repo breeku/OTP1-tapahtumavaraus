@@ -9,6 +9,7 @@
         "axios": "^0.20.0",
         "i18next": "^19.8.2",
         "jwt-decode": "^3.0.0",
+        "prop-types": "^15.7.2",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
         "react-i18next": "^11.7.3",
@@ -22,7 +23,7 @@
         "eject": "react-scripts eject",
         "lint": "eslint --ext .js,.jsx ./src",
         "lint:fix": "eslint --ext .js,.jsx ./src --fix",
-        "jsdoc": "jsdoc . -c jsdoc.json"
+        "jsdoc": "jsdoc -c jsdoc.conf.json"
     },
     "eslintConfig": {
         "extends": "react-app"

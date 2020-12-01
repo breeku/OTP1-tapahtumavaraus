@@ -24,11 +24,7 @@ const useStyles = makeStyles(theme => ({
  * Arvostelun tekemisen komponentti
  *
  * @component
- * @example
- * eventId = 'helsinki:afyho6epwy'
- * return (
- *  <Review eventId={eventId}/>
- * )
+ * @category Tapahtuma
  */
 
 const Review = ({ eventId }) => {

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import { Paper, makeStyles, Button, Grid } from '@material-ui/core/'
 import { useTranslation } from 'react-i18next'
 import Review from './review'
@@ -72,6 +73,7 @@ const useStyles = makeStyles(() => ({
  * Tapahtuman komponentti
  *
  * @component
+ * @category Tapahtuma
  */
 
 const EventItem = ({ event }) => {
@@ -126,6 +128,28 @@ const EventItem = ({ event }) => {
             )}
         </div>
     )
+}
+
+EventItem.propTypes = {
+    event: PropTypes.shape({
+        /**
+         * Event name in 4 possible languages
+         */
+        name: PropTypes.shape({
+            fi: PropTypes.string,
+            en: PropTypes.string,
+            sv: PropTypes.string,
+            zh: PropTypes.string,
+        }),
+
+        /**
+         * Event's description
+         */
+        description: PropTypes.shape({
+            images: PropTypes.arrayOf(PropTypes.shape({ url: PropTypes.string })),
+            intro: PropTypes.string,
+        }),
+    }).isRequired,
 }
 
 export default EventItem
