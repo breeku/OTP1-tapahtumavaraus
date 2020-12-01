@@ -198,6 +198,7 @@ export default function Profile() {
                                     </Button>
                                     {modifyReview === review.Event.id && (
                                         <Review
+                                            color='lightgrey'
                                             eventId={review.Event.id}
                                             oldReview={{ ...review.Review, setReview }}
                                         />

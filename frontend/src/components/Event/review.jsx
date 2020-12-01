@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-const Review = ({ eventId, oldReview }) => {
+const Review = ({ eventId, oldReview, color }) => {
     const classes = useStyles()
     const [rating, setRating] = React.useState(oldReview ? oldReview.rating : 2)
     const { t } = useTranslation()
@@ -84,6 +84,7 @@ const Review = ({ eventId, oldReview }) => {
                     </Box>
                 </div>
                 <TextField
+                    style={{backgroundColor: color}}
                     required
                     id="Arvostelun otsikkokenttä"
                     label={t('ArvosteluOtsikko')}
@@ -96,6 +97,7 @@ const Review = ({ eventId, oldReview }) => {
 
                 <div>
                     <TextField
+                        style={{backgroundColor: color}}
                         data-cy="arvosteluTekstikentta"
                         id="Arvostelun tekstikenttä"
                         label={t('ArvosteluTekstikentta')}
@@ -110,6 +112,7 @@ const Review = ({ eventId, oldReview }) => {
                 </div>
 
                 <Button
+                    style={{backgroundColor: color}}
                     data-cy="arvosteluSubmit"
                     aria-label="submit"
                     onClick={() => {
