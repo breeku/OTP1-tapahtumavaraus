@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import Badge from '@material-ui/core/Badge'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
@@ -77,6 +78,10 @@ const ReservationElement = ({ eventId }) => {
             </div>
         </div>
     )
+}
+
+ReservationElement.propTypes = {
+    eventId: PropTypes.string.isRequired,
 }
 
 export default ReservationElement

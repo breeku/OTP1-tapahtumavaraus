@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Rating from '@material-ui/lab/Rating'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
@@ -132,5 +133,19 @@ const Review = ({ eventId, oldReview, color }) => {
         </>
     )
 }
+
+Review.propTypes = {
+    color: PropTypes.string,
+    oldReview: PropTypes.shape({
+        rating: PropTypes.number,
+        header: PropTypes.string,
+        content: PropTypes.string,
+        setReview: PropTypes.func,
+    }),
+
+    eventId: PropTypes.string.isRequired,
+}
+
+Review.defaultProps = { color: 'transparent', oldReview: null }
 
 export default Review

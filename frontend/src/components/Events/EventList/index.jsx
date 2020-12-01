@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Paper } from '@material-ui/core'
 
 import { Link } from 'react-router-dom'
@@ -6,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 
 // Item for rendering an event list
 
-export default function EventsList({ events, classes, language, tags }) {
+const EventsList = ({ events, classes, language, tags }) => {
     const { t } = useTranslation()
 
     return (
@@ -68,3 +69,38 @@ export default function EventsList({ events, classes, language, tags }) {
         </div>
     )
 }
+
+EventsList.propTypes = {
+    events: PropTypes.shape({
+        data: PropTypes.arrayOf(
+            PropTypes.shape({
+                id: PropTypes.string,
+
+                name: PropTypes.shape({
+                    fi: PropTypes.string,
+                    en: PropTypes.string,
+                    sv: PropTypes.string,
+                    zh: PropTypes.string,
+                }),
+
+                event_dates: PropTypes.shape({
+                    starting_day: PropTypes.string,
+                }),
+
+                description: PropTypes.shape({
+                    intro: PropTypes.string,
+                    images: PropTypes.arrayOf(PropTypes.shape({ url: PropTypes.string })),
+                }),
+
+                location: PropTypes.shape({
+                    address: PropTypes.shape({
+                        locality: PropTypes.string,
+                        street_address: PropTypes.string,
+                    }),
+                }),
+            }),
+        ),
+    }).isRequired,
+}
+
+export default EventsList
