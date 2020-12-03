@@ -7,6 +7,13 @@ const { BASEURL } = require('../config/index')
 const eventsRouter = express.Router()
 const JWTKEY = process.env.JWTKEY
 
+/**
+ * Route Tapahtumien varausmäärän hakemiselle, arvostelun hakemiselle, poistamiselle ja päivittämiselle sekä tapahtumien fetchaukselle ja kategorioittain hakemiselle
+ * 
+ * @component
+ * @category Tapahtumat
+ */
+
 eventsRouter.get('/reservation/:id/:count', async (req, res) => {
     const token = req.headers.authorization
     const event_id = req.params.id

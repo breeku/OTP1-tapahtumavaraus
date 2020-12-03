@@ -7,6 +7,13 @@ const { BASEURL } = require('../config/index')
 const userRouter = express.Router()
 const JWTKEY = process.env.JWTKEY
 
+/**
+ * Route käyttäjätietojen hakemiselle
+ * 
+ * @component
+ * @category Käyttäjätiedot
+ */
+
 userRouter.get('/', async (req, res) => {
     const token = req.headers.authorization
     let response = { Reservations: [], Reviews: [], User: {} }

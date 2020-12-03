@@ -4,6 +4,13 @@ const db = require('../database/models/index')
 
 const tagsRouter = express.Router()
 
+/**
+ * Route tagien hakemiselle
+ * 
+ * @component
+ * @category Tagit
+ */
+
 tagsRouter.get('/', async (req, res) => {
     try {
         const allTags = await db.Tag.findAll({ raw: true })
