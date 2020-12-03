@@ -11,6 +11,13 @@ import Profile from './components/Profile'
 
 import { AuthContext, authInitialState, authReducer } from './context/auth'
 
+/**
+ * Sovelluksen pääkomponentti
+ * 
+ * @component
+ * @category Pääkomponentti
+ */
+
 export const App = () => {
     const [authState, authDispatch] = React.useReducer(authReducer, authInitialState)
     useEffect(() => {

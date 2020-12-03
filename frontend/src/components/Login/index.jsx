@@ -6,7 +6,12 @@ import { useTranslation } from 'react-i18next'
 import SignIn from './components/signIn'
 import SignUp from './components/signUp'
 
-// Frame for sign in- and sign up-functionalities
+/**
+ * Kirjautumisen pääkomponentti
+ * 
+ * @component
+ * @category Kirjautuminen
+ */
 
 const useStyles = makeStyles(() => ({
     link_button: {

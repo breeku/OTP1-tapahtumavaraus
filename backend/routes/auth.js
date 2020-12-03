@@ -7,6 +7,13 @@ const { ValidationError } = require('sequelize')
 const JWTKEY = process.env.JWTKEY
 const authRouter = express.Router()
 
+/**
+ * Route sisäänkirjautumiseen ja käyttäjätilin luomiseen
+ * 
+ * @component
+ * @category Kirjautuminen
+ */
+
 authRouter.post('/login', async (req, res) => {
     const credentials = req.body
     if (credentials.email && credentials.password) {

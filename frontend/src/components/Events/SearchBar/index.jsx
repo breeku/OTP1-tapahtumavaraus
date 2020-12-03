@@ -8,8 +8,12 @@ import PropTypes from 'prop-types'
 
 import { getTagNames } from '../../../services/getTagNames'
 
-
-// Search bar for event search
+/**
+ * Tapahtumien hakutoiminnallisuuspalkki
+ * 
+ * @component
+ * @category Tapahtumat
+ */
 
 const colortheme = createMuiTheme({
     palette: {

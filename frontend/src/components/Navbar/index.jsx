@@ -11,7 +11,12 @@ import { useTranslation } from 'react-i18next'
 
 import { AuthContext } from '../../context/auth'
 
-// Navigation bar for the application
+/**
+ * Navigointipalkin pääkomponentti
+ * 
+ * @component
+ * @category Navigointi
+ */
 
 const useStyles = makeStyles(theme => ({
     root: {

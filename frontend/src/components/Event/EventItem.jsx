@@ -4,7 +4,12 @@ import { Paper, makeStyles, Button, Grid } from '@material-ui/core/'
 import { useTranslation } from 'react-i18next'
 import Review from './review'
 
-// Item for rendering a single event item
+/**
+ * Tapahtumakomponentin tapahtuman tiedot
+ * 
+ * @component
+ * @category Tapahtuma
+ */
 
 const useStyles = makeStyles(() => ({
     eventHeader: {
