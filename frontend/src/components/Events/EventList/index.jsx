@@ -101,6 +101,13 @@ EventsList.propTypes = {
             }),
         ),
     }).isRequired,
+
+    classes: PropTypes.arrayOf(PropTypes.shape({
+    })).isRequired,
+
+    language: PropTypes.string.isRequired,
+
+    tags: PropTypes.arrayOf(PropTypes.shape({length: PropTypes.number})).isRequired,
 }
 
 export default EventsList

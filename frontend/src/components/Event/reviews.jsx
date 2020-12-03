@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Rating from '@material-ui/lab/Rating'
+import PropTypes from 'prop-types'
 
 // Item for rendering a review
 
@@ -25,5 +26,22 @@ const Reviews = ({ data }) => {
         </ul>
     )
 }
+
+
+
+Reviews.propTypes = {
+     data: PropTypes.arrayOf(
+            PropTypes.shape({   
+                header: PropTypes.string,
+                id: PropTypes.string,
+                content: PropTypes.string,
+                User: PropTypes.shape({
+                    username: PropTypes.string,
+                }),
+            }),      
+        ).isRequired,
+}
+
+
 
 export default Reviews
