@@ -6,7 +6,12 @@ import { getEvents } from '../../services/events'
 import EventList from './EventList'
 import SearchBarComponents from './SearchBar'
 
-// Frame for event search page
+/**
+ * Tapahtumalistauksen pääkomponentti
+ * 
+ * @component
+ * @category Tapahtumat
+ */
 
 const useStyles = makeStyles(theme => ({
     text_center: {

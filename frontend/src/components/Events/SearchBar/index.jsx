@@ -7,7 +7,12 @@ import { useTranslation } from 'react-i18next'
 
 import { getTagNames } from '../../../services/getTagNames'
 
-// Search bar for event search
+/**
+ * Tapahtumien hakutoiminnallisuuspalkki
+ * 
+ * @component
+ * @category Tapahtumat
+ */
 
 const colortheme = createMuiTheme({
     palette: {

@@ -16,7 +16,12 @@ import { useTranslation } from 'react-i18next'
 import { AuthContext } from '../../../context/auth'
 import { register } from '../../../services/auth'
 
-// Sign up -functionality and rendering
+/**
+ * Käyttäjän luomiseen tarkoitettu komponentti
+ * 
+ * @component
+ * @category Kirjautuminen
+ */
 
 const useStyles = makeStyles(theme => ({
     paper: {

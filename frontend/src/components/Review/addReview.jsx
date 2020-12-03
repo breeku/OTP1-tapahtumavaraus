@@ -1,6 +1,11 @@
 import React from 'react'
 
-// Useless element
+/**
+ * Turha komponentti
+ * 
+ * @component
+ * @category Turha
+ */
 
 export default function Event() {
     return (

@@ -3,7 +3,12 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { useTranslation } from 'react-i18next'
 
-// Frame for home page
+/**
+ * Kotisivun pääkomponentti
+ * 
+ * @component
+ * @category Koti
+ */
 
 const useStyles = makeStyles(theme => ({
     text_center: {

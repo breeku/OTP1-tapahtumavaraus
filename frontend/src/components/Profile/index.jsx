@@ -13,7 +13,12 @@ import { AuthContext } from '../../context/auth'
 import { getToken, getProfileData } from '../../services/auth'
 import { getEvent, removeReview } from '../../services/profileEvents'
 
-// Frame for personal profile data rendering
+/**
+ * Profiilisivun pääkomponentti
+ * 
+ * @component
+ * @category Profiili
+ */
 
 const useStyles = makeStyles(() => ({
     text_center: {
