@@ -1,14 +1,28 @@
+/** Express router
+ * @module routers/tags
+ * @requires express
+ */
+
 const express = require('express')
-const { Op } = require('sequelize')
 const db = require('../database/models/index')
+
+/**
+ * Mount express router
+ * @type {object}
+ * @const
+ * @namespace tagsRouter
+ */
 
 const tagsRouter = express.Router()
 
 /**
- * Route tagien hakemiselle
- *
- * @category Tagit
- * @subcategory backend
+ * Tagien hakeminen
+ * @name get/
+ * @function
+ * @memberof module:routers/tags~tagsRouter
+ * @inner
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
  */
 
 tagsRouter.get('/', async (req, res) => {
@@ -19,20 +33,6 @@ tagsRouter.get('/', async (req, res) => {
     } catch (e) {
         console.warn(e)
     }
-})
-
-tagsRouter.get('/:search', async (req, res) => {
-    const search = req.params.search
-    const matchTags = await db.Tag.findAll({
-        raw: true,
-        where: {
-            name: {
-                [Op.iLike]: '%' + search + '%',
-            },
-        },
-    })
-    const names = matchTags.map(x => x.name)
-    res.send(names)
 })
 
 module.exports = tagsRouter

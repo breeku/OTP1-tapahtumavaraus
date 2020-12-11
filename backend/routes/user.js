@@ -1,17 +1,32 @@
+/** Express router
+ * @module routers/user
+ * @requires express
+ */
+
 const express = require('express')
 const db = require('../database/models/index')
 const jwt = require('jsonwebtoken')
 const axios = require('axios')
 const { BASEURL } = require('../config/index')
 
+/**
+ * Mount express router
+ * @type {object}
+ * @const
+ * @namespace userRouter
+ */
+
 const userRouter = express.Router()
 const JWTKEY = process.env.JWTKEY
 
 /**
- * Route käyttäjätietojen hakemiselle
- *
- * @category Käyttäjätiedot
- * @subcategory backend
+ * Käyttäjän tietojen hakeminen
+ * @name get/
+ * @function
+ * @memberof module:routers/user~userRouter
+ * @inner
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
  */
 
 userRouter.get('/', async (req, res) => {

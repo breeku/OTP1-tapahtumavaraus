@@ -10,8 +10,7 @@
     ],
     "source": {
         "include": ["frontend/src", "backend/routes"],
-        "includePattern": ".+\\.js(doc|x)?$",
-        "excludePattern": "node_modules"
+        "includePattern": ".+\\.js(doc|x)?$"
     },
     "templates": {
         "better-docs": {
