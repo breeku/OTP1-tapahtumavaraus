@@ -2,9 +2,18 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/breeku/OTP1-tapahtumavaraus/badge.svg?branch=master)](https://coveralls.io/github/breeku/OTP1-tapahtumavaraus?branch=master)
 
-Tapahtumavaraus is an application with which event organizers are able to gather
-their events into one application and travellers may filter their events in
-order to reserve tickets.
+Tapahtumavaraus on web-sovellus millä tapahtumajärjestäjät voivat tuoda yhteen heidän tapahtumansa yhden sovelluksen alle ja matkustajat voivat suodattaa tapahtumia varataakseen liput.
+
+SOVELLUKSEN ARKITEHTUURI JA KÄYTETYT TEKNOLOGIAT
+
+•Frontend: React, Material-UI, i18next
+•Backend: Node.js, Express, PostgreSQL, Sequelize, Jsonwebtoken
+•Version hallinta: Git and GitHub
+•Testit: Cypress, Istanbul.js
+•Deployment: frontend –Netlify, backend –VPS
+•Rajapinta-haku:http://open-api.myhelsinki.fi/
+•Jatkuva integrointi: GitHub Actions
+•Dokumentaatio: JSDoc
 
 ## Devaus
 
