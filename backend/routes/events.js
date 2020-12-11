@@ -1,12 +1,34 @@
+/** Express router
+ * @module routers/events
+ * @requires express
+ */
+
 const express = require('express')
 const axios = require('axios')
 const jwt = require('jsonwebtoken')
 
 const db = require('../database/models')
 const { BASEURL } = require('../config/index')
+
+/**
+ * Mount express router
+ * @type {object}
+ * @const
+ * @namespace eventsRouter
+ */
 const eventsRouter = express.Router()
+
 const JWTKEY = process.env.JWTKEY
 
+/**
+ * Varausten tekeminen
+ * @name get/reservation/:id/:count
+ * @function
+ * @memberof module:routers/events~eventsRouter
+ * @inner
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
+ */
 eventsRouter.get('/reservation/:id/:count', async (req, res) => {
     const token = req.headers.authorization
     const event_id = req.params.id
@@ -27,6 +49,16 @@ eventsRouter.get('/reservation/:id/:count', async (req, res) => {
     res.sendStatus(200)
 })
 
+/**
+ * Arvostelun luominen
+ * @name post/review/:id
+ * @function
+ * @memberof module:routers/events~eventsRouter
+ * @inner
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
+ */
+
 eventsRouter.post('/review/:id/', async (req, res) => {
     const token = req.headers.authorization
     const event_id = req.params.id
@@ -46,6 +78,16 @@ eventsRouter.post('/review/:id/', async (req, res) => {
     }
 })
 
+/**
+ * Arvostelun poistaminen
+ * @name delete/review/:id/delete
+ * @function
+ * @memberof module:routers/events~eventsRouter
+ * @inner
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
+ */
+
 eventsRouter.delete('/review/:id/delete', async (req, res) => {
     const token = req.headers.authorization
     const event_id = req.params.id
@@ -63,6 +105,16 @@ eventsRouter.delete('/review/:id/delete', async (req, res) => {
         console.warn(e)
     }
 })
+
+/**
+ * Arvostelun päivitys
+ * @name post/review/:id/update
+ * @function
+ * @memberof module:routers/events~eventsRouter
+ * @inner
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
+ */
 
 eventsRouter.post('/review/:id/update', async (req, res) => {
     const token = req.headers.authorization
@@ -83,6 +135,16 @@ eventsRouter.post('/review/:id/update', async (req, res) => {
         console.warn(e)
     }
 })
+
+/**
+ * Tapahtuman hakeminen event idn perusteella
+ * @name get/:id/fetch
+ * @function
+ * @memberof module:routers/events~eventsRouter
+ * @inner
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
+ */
 
 eventsRouter.get('/:id/:fetch', async (req, res) => {
     const id = req.params.id
@@ -130,6 +192,16 @@ eventsRouter.get('/:id/:fetch', async (req, res) => {
         console.warn(e)
     }
 })
+
+/**
+ * Tapahtumien hakeminen tagin perusteella
+ * @name get/:lang/:limit/:tags
+ * @function
+ * @memberof module:routers/events~eventsRouter
+ * @inner
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
+ */
 
 eventsRouter.get('/:lang/:limit/:tags', async (req, res) => {
     const language = req.params.lang

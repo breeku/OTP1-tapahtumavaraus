@@ -2,6 +2,14 @@ import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import languages from './languages.json'
 
+/**
+ * Kielenvaihdon pääkomponentti
+ *
+ * @component
+ * @category Kielenvaihto
+ * @subcategory frontend
+ */
+
 i18n.use(initReactI18next) // passes i18n down to react-i18next
     .init({
         resources: languages,

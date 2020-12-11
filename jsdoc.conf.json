@@ -1,0 +1,25 @@
+{
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc", "closure"]
+    },
+    "plugins": [
+        "plugins/markdown",
+        "node_modules/better-docs/category"
+    ],
+    "source": {
+        "include": ["frontend/src", "backend/routes"],
+        "includePattern": ".+\\.js(doc|x)?$"
+    },
+    "templates": {
+        "better-docs": {
+            "name": "Tapahtumavaraus"
+        }
+    },
+    "opts": {
+        "destination": "docs",
+        "recurse": true,
+        "readme": "README.md",
+        "template": "node_modules/better-docs"
+    }
+}

@@ -1,3 +1,8 @@
+/** Express router
+ * @module routers/auth
+ * @requires express
+ */
+
 const express = require('express')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
@@ -5,7 +10,24 @@ const db = require('../database/models/index')
 const { ValidationError } = require('sequelize')
 
 const JWTKEY = process.env.JWTKEY
+
+/**
+ * Mount express router
+ * @type {object}
+ * @const
+ * @namespace authRouter
+ */
 const authRouter = express.Router()
+
+/**
+ * Sisäänkirjautuminen
+ * @name post/login
+ * @function
+ * @memberof module:routers/auth~authRouter
+ * @inner
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
+ */
 
 authRouter.post('/login', async (req, res) => {
     const credentials = req.body
@@ -34,6 +56,16 @@ authRouter.post('/login', async (req, res) => {
         res.send(500)
     }
 })
+
+/**
+ * Rekisteröityminen
+ * @name post/register
+ * @function
+ * @memberof module:routers/auth~authRouter
+ * @inner
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
+ */
 
 authRouter.post('/register', async (req, res) => {
     const credentials = req.body

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Rating from '@material-ui/lab/Rating'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
@@ -19,6 +20,14 @@ const useStyles = makeStyles(theme => ({
         },
     },
 }))
+
+/**
+ * Arvostelun tekemisen komponentti
+ *
+ * @component
+ * @category Tapahtuma
+ * @subcategory frontend
+ */
 
 const Review = ({ eventId, oldReview, color }) => {
     const classes = useStyles()
@@ -83,12 +92,12 @@ const Review = ({ eventId, oldReview, color }) => {
                     </Box>
                 </div>
                 <TextField
-                    style={{backgroundColor: color}}
+                    style={{ backgroundColor: color }}
                     required
-                    id="Arvostelun otsikkokenttä"
+                    id='Arvostelun otsikkokenttä'
                     label={t('ArvosteluOtsikko')}
                     defaultValue={oldReview ? oldReview.header : ''}
-                    data-cy="arvosteluOtsikko"
+                    data-cy='arvosteluOtsikko'
                     onChange={handleOtsikko}
                     error={otsikkoError}
                     helperText={otsikkoError ? 'Syötä otsikko' : ''}
@@ -96,9 +105,9 @@ const Review = ({ eventId, oldReview, color }) => {
 
                 <div>
                     <TextField
-                        style={{backgroundColor: color}}
-                        data-cy="arvosteluTekstikentta"
-                        id="Arvostelun tekstikenttä"
+                        style={{ backgroundColor: color }}
+                        data-cy='arvosteluTekstikentta'
+                        id='Arvostelun tekstikenttä'
                         label={t('ArvosteluTekstikentta')}
                         multiline
                         defaultValue={oldReview ? oldReview.content : ''}
@@ -111,9 +120,9 @@ const Review = ({ eventId, oldReview, color }) => {
                 </div>
 
                 <Button
-                    style={{backgroundColor: color}}
-                    data-cy="arvosteluSubmit"
-                    aria-label="submit"
+                    style={{ backgroundColor: color }}
+                    data-cy='arvosteluSubmit'
+                    aria-label='submit'
                     onClick={() => {
                         submitReview()
                     }}>
@@ -125,5 +134,19 @@ const Review = ({ eventId, oldReview, color }) => {
         </>
     )
 }
+
+Review.propTypes = {
+    color: PropTypes.string,
+    oldReview: PropTypes.shape({
+        rating: PropTypes.number,
+        header: PropTypes.string,
+        content: PropTypes.string,
+        setReview: PropTypes.func,
+    }),
+
+    eventId: PropTypes.string.isRequired,
+}
+
+Review.defaultProps = { color: 'transparent', oldReview: null }
 
 export default Review

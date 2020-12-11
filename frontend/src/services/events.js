@@ -2,6 +2,14 @@ import axios from 'axios'
 import { BASEURL } from './config'
 import { getToken } from './auth'
 
+/**
+ * @method
+ * @param {string} language
+ * @param {number} resultLimit
+ * @param {string} tags
+ * @returns {string} events by search
+ */
+
 export const getEvents = async (language, resultLimit, tags) => {
     const response = await axios.get(
         `${BASEURL}/api/events/${language}/${resultLimit}/${tags}`,
@@ -9,10 +17,24 @@ export const getEvents = async (language, resultLimit, tags) => {
     return response
 }
 
+/**
+ * @method
+ * @param {number} eventId
+ * @param {boolean} fetchEvent
+ * @returns {string} event
+ */
+
 export const getEvent = async (eventId, fetchEvent) => {
     const response = await axios.get(`${BASEURL}/api/events/${eventId}/${fetchEvent}`)
     return response
 }
+
+/**
+ * @method
+ * @param {number} eventId
+ * @param {number} reservationCount
+ * @returns {boolean} succesful
+ */
 
 export const postReservationCount = async (eventId, reservationCount) => {
     try {
@@ -32,6 +54,13 @@ export const postReservationCount = async (eventId, reservationCount) => {
     }
 }
 
+/**
+ * @method
+ * @param {string} arvostelu
+ * @param {number} eventId
+ * @returns {boolean} succesful
+ */
+
 export const postReview = async (arvostelu, eventId) => {
     try {
         const token = getToken()
@@ -47,18 +76,21 @@ export const postReview = async (arvostelu, eventId) => {
     }
 }
 
+/**
+ * @method
+ * @param {string} arvostelu
+ * @param {number} eventId
+ * @returns {boolean} succesful
+ */
+
 export const updateReview = async (arvostelu, eventId) => {
     try {
         const token = getToken()
-        await axios.post(
-            `${BASEURL}/api/events/review/${eventId}/update`,
-            arvostelu,
-            {
-                headers: {
-                    authorization: token,
-                },
+        await axios.post(`${BASEURL}/api/events/review/${eventId}/update`, arvostelu, {
+            headers: {
+                authorization: token,
             },
-        )
+        })
         return true
     } catch (error) {
         console.log(error)

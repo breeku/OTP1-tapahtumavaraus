@@ -82,7 +82,14 @@ const useStyles = makeStyles(() => ({
     },
 }))
 
-export default function Event() {
+/**
+ * Tapahtuman komponentti
+ *
+ * @component
+ * @category Tapahtuma
+ * @subcategory frontend
+ */
+const Event = () => {
     const location = useLocation()
     const [event, setEvent] = useState(location && location.state)
     const eventId = location && location.pathname.substring(8)
@@ -189,3 +196,5 @@ export default function Event() {
         </div>
     )
 }
+
+export default Event
