@@ -1,6 +1,12 @@
 import axios from 'axios'
 import { BASEURL } from './config'
 
+/**
+ *
+ * @param {string} token
+ * @returns {string} single event
+ */
+
 export const getEvent = async token => {
     try {
         const { data } = await axios.get(`${BASEURL}/api/user/`, {
@@ -14,6 +20,13 @@ export const getEvent = async token => {
         return false
     }
 }
+
+/**
+ *
+ * @param {string} token
+ * @param {number} eventID
+ * @returns {boolean} succesful
+ */
 
 export const removeReview = async (token, eventID) => {
     try {
