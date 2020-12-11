@@ -2,7 +2,7 @@ import axios from 'axios'
 import { BASEURL } from './config'
 
 /**
- *
+ * @method
  * @param {string} token
  * @returns {string} single event
  */
@@ -22,7 +22,7 @@ export const getEvent = async token => {
 }
 
 /**
- *
+ * @method
  * @param {string} token
  * @param {number} eventID
  * @returns {boolean} succesful

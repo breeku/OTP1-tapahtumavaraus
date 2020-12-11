@@ -3,7 +3,7 @@ import { BASEURL } from './config'
 import { getToken } from './auth'
 
 /**
- *
+ * @method
  * @param {string} language
  * @param {number} resultLimit
  * @param {string} tags
@@ -18,7 +18,7 @@ export const getEvents = async (language, resultLimit, tags) => {
 }
 
 /**
- *
+ * @method
  * @param {number} eventId
  * @param {boolean} fetchEvent
  * @returns {string} event
@@ -30,7 +30,7 @@ export const getEvent = async (eventId, fetchEvent) => {
 }
 
 /**
- *
+ * @method
  * @param {number} eventId
  * @param {number} reservationCount
  * @returns {boolean} succesful
@@ -55,7 +55,7 @@ export const postReservationCount = async (eventId, reservationCount) => {
 }
 
 /**
- *
+ * @method
  * @param {string} arvostelu
  * @param {number} eventId
  * @returns {boolean} succesful
@@ -77,7 +77,7 @@ export const postReview = async (arvostelu, eventId) => {
 }
 
 /**
- *
+ * @method
  * @param {string} arvostelu
  * @param {number} eventId
  * @returns {boolean} succesful

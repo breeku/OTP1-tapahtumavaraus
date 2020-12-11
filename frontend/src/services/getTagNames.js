@@ -2,6 +2,7 @@ import axios from 'axios'
 import { BASEURL } from './config'
 
 /**
+ * @method
  * @returns {string} tags' names
  */
 

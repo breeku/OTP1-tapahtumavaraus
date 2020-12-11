@@ -4,7 +4,7 @@ import jwt_decode from 'jwt-decode'
 import { BASEURL } from './config'
 
 /**
- *
+ * @method
  * @param {string} email
  * @param {string} password
  * @returns {string} token for login
@@ -25,7 +25,7 @@ export const login = async (email, password) => {
 }
 
 /**
- *
+ * @method
  * @param {string} firstName
  * @param {string} lastName
  * @param {string} username
@@ -54,6 +54,7 @@ export const register = async (firstName, lastName, username, email, password) =
 }
 
 /**
+ * @method
  * removes token for logging out
  */
 
@@ -62,6 +63,7 @@ export const logout = () => {
 }
 
 /**
+ * @method
  * @returns {string} decoded user data
  */
 
@@ -72,6 +74,7 @@ export const getProfileData = () => {
 }
 
 /**
+ * @method
  * @returns {string} current token
  */
 
