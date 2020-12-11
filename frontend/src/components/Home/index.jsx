@@ -3,13 +3,6 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { useTranslation } from 'react-i18next'
 
-/**
- * Kotisivun pääkomponentti
- * 
- * @component
- * @category Koti
- */
-
 const useStyles = makeStyles(theme => ({
     text_center: {
         color: 'white',
@@ -36,7 +29,15 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-export default function Home() {
+/**
+ * Kotisivun pääkomponentti
+ *
+ * @component
+ * @category Koti
+ * @subcategory frontend
+ */
+
+const Home = () => {
     const classes = useStyles()
     const { t } = useTranslation()
 
@@ -60,3 +61,5 @@ export default function Home() {
         </div>
     )
 }
+
+export default Home

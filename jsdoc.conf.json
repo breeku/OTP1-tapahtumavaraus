@@ -9,13 +9,13 @@
         "node_modules/better-docs/category"
     ],
     "source": {
-        "include": ["src"],
+        "include": ["frontend/src", "backend/routes"],
         "includePattern": ".+\\.js(doc|x)?$",
-        "excludePattern": "(^|\\/|\\\\)_"
+        "excludePattern": "node_modules"
     },
     "templates": {
         "better-docs": {
-            "name": "My React components"
+            "name": "Tapahtumavaraus"
         }
     },
     "opts": {

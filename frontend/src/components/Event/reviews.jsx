@@ -10,6 +10,7 @@ import PropTypes from 'prop-types'
  *
  * @component
  * @category Tapahtuma
+ * @subcategory frontend
  */
 
 const Reviews = ({ data }) => {
@@ -27,21 +28,17 @@ const Reviews = ({ data }) => {
     )
 }
 
-
-
 Reviews.propTypes = {
-     data: PropTypes.arrayOf(
-            PropTypes.shape({   
-                header: PropTypes.string,
-                id: PropTypes.string,
-                content: PropTypes.string,
-                User: PropTypes.shape({
-                    username: PropTypes.string,
-                }),
-            }),      
-        ).isRequired,
+    data: PropTypes.arrayOf(
+        PropTypes.shape({
+            header: PropTypes.string,
+            id: PropTypes.string,
+            content: PropTypes.string,
+            User: PropTypes.shape({
+                username: PropTypes.string,
+            }),
+        }),
+    ).isRequired,
 }
-
-
 
 export default Reviews

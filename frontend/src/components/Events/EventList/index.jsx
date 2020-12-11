@@ -7,9 +7,10 @@ import { useTranslation } from 'react-i18next'
 
 /**
  * Tapahtumien listakomponentti
- * 
+ *
  * @component
  * @category Tapahtumat
+ * @subcategory frontend
  */
 
 const EventsList = ({ events, classes, language, tags }) => {
@@ -107,12 +108,11 @@ EventsList.propTypes = {
         ),
     }).isRequired,
 
-    classes: PropTypes.arrayOf(PropTypes.shape({
-    })).isRequired,
+    classes: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 
     language: PropTypes.string.isRequired,
 
-    tags: PropTypes.arrayOf(PropTypes.shape({length: PropTypes.number})).isRequired,
+    tags: PropTypes.arrayOf(PropTypes.shape({ length: PropTypes.number })).isRequired,
 }
 
 export default EventsList

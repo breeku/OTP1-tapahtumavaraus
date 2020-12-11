@@ -15,13 +15,6 @@ import Container from '@material-ui/core/Container'
 import { login } from '../../../services/auth'
 import { AuthContext } from '../../../context/auth'
 
-/**
- * Sisäänkirjautumisen komponentti
- * 
- * @component
- * @category Kirjautuminen
- */
-
 const useStyles = makeStyles(theme => ({
     text_center: theme.text_center,
     paper: {
@@ -45,6 +38,14 @@ const useStyles = makeStyles(theme => ({
         color: 'red',
     },
 }))
+
+/**
+ * Sisäänkirjautumisen komponentti
+ *
+ * @component
+ * @category Kirjautuminen
+ * @subcategory frontend
+ */
 
 const SignIn = () => {
     const [email, setEmail] = useState('')

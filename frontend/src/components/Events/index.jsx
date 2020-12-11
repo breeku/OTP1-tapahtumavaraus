@@ -6,13 +6,6 @@ import { getEvents } from '../../services/events'
 import EventList from './EventList'
 import SearchBarComponents from './SearchBar'
 
-/**
- * Tapahtumalistauksen pääkomponentti
- * 
- * @component
- * @category Tapahtumat
- */
-
 const useStyles = makeStyles(theme => ({
     text_center: {
         color: 'white',
@@ -73,7 +66,15 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-export default function Events() {
+/**
+ * Tapahtumalistauksen pääkomponentti
+ *
+ * @component
+ * @category Tapahtumat
+ * @subcategory frontend
+ */
+
+const Events = () => {
     const localLang = localStorage.getItem('lang')
     const [events, setEvents] = useState(null)
     const [language, setLanguage] = useState(localLang || 'fi')
@@ -110,3 +111,5 @@ export default function Events() {
         </div>
     )
 }
+
+export default Events

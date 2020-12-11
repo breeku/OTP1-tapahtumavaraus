@@ -87,6 +87,7 @@ const useStyles = makeStyles(() => ({
  *
  * @component
  * @category Tapahtuma
+ * @subcategory frontend
  */
 const Event = () => {
     const location = useLocation()

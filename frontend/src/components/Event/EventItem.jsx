@@ -4,13 +4,6 @@ import { Paper, makeStyles, Button, Grid } from '@material-ui/core/'
 import { useTranslation } from 'react-i18next'
 import Review from './review'
 
-/**
- * Tapahtumakomponentin tapahtuman tiedot
- * 
- * @component
- * @category Tapahtuma
- */
-
 const useStyles = makeStyles(() => ({
     eventHeader: {
         width: '80%',
@@ -75,10 +68,11 @@ const useStyles = makeStyles(() => ({
 }))
 
 /**
- * Tapahtuman komponentti
+ * Tapahtumakomponentin tapahtuman tiedot
  *
  * @component
  * @category Tapahtuma
+ * @subcategory frontend
  */
 
 const EventItem = ({ event }) => {

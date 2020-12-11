@@ -6,13 +6,6 @@ import { useTranslation } from 'react-i18next'
 import SignIn from './components/signIn'
 import SignUp from './components/signUp'
 
-/**
- * Kirjautumisen pääkomponentti
- * 
- * @component
- * @category Kirjautuminen
- */
-
 const useStyles = makeStyles(() => ({
     link_button: {
         color: '#3f51b5',
@@ -24,7 +17,15 @@ const useStyles = makeStyles(() => ({
     },
 }))
 
-export default function Home() {
+/**
+ * Kirjautumisen pääkomponentti
+ *
+ * @component
+ * @category Kirjautuminen
+ * @subcategory frontend
+ */
+
+const Login = () => {
     const classes = useStyles()
     const [signInElement, setSignInElement] = useState(true)
     const [signUpElement, setSignUpElement] = useState(false)
@@ -67,3 +68,5 @@ export default function Home() {
         </div>
     )
 }
+
+export default Login

@@ -9,12 +9,16 @@
     "istanbul-lib-coverage": "^3.0.0",
     "nyc": "^15.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "better-docs": "^2.3.2",
+    "jsdoc": "^3.6.6"
+  },
   "scripts": {
     "prettier:write": "cd frontend && npx prettier --write . && cd ../backend && npx prettier --write .",
     "eslint:check": "cd frontend && npx eslint --ext .js,.jsx ./src && cd ../backend && npx eslint .",
     "coverage": "nyc report --reporter=text",
-    "test": "cypress run"
+    "test": "cypress run",
+    "jsdoc": "jsdoc -c jsdoc.conf.json"
   },
   "repository": {
     "type": "git",

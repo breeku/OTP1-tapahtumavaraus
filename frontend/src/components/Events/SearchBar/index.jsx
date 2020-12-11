@@ -8,13 +8,6 @@ import PropTypes from 'prop-types'
 
 import { getTagNames } from '../../../services/getTagNames'
 
-/**
- * Tapahtumien hakutoiminnallisuuspalkki
- * 
- * @component
- * @category Tapahtumat
- */
-
 const colortheme = createMuiTheme({
     palette: {
         primary: { main: '#ffffff', contrastText: '#fff' },
@@ -36,7 +29,23 @@ const colortheme = createMuiTheme({
     },
 })
 
-const SearchBarComponents = ({classes, tags, language, resultLimit, setTags, setLanguage, setResultLimit}) => {
+/**
+ * Tapahtumien hakutoiminnallisuuspalkki
+ *
+ * @component
+ * @category Tapahtumat
+ * @subcategory frontend
+ */
+
+const SearchBarComponents = ({
+    classes,
+    tags,
+    language,
+    resultLimit,
+    setTags,
+    setLanguage,
+    setResultLimit,
+}) => {
     const [openLang, setOpenLang] = useState(false)
     const [openResult, setOpenResult] = useState(false)
     const [openTags, setOpenTags] = useState(false)
@@ -202,11 +211,9 @@ const SearchBarComponents = ({classes, tags, language, resultLimit, setTags, set
 }
 
 SearchBarComponents.propTypes = {
-    classes: PropTypes.arrayOf(PropTypes.shape({
-    })).isRequired,
+    classes: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 
-    tags: PropTypes.arrayOf(PropTypes.shape({
-    })).isRequired,
+    tags: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 
     language: PropTypes.string.isRequired,
     resultLimit: PropTypes.number.isRequired,

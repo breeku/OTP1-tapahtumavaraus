@@ -13,9 +13,10 @@ import { AuthContext, authInitialState, authReducer } from './context/auth'
 
 /**
  * Sovelluksen pääkomponentti
- * 
+ *
  * @component
  * @category Pääkomponentti
+ * @subcategory frontend
  */
 
 export const App = () => {

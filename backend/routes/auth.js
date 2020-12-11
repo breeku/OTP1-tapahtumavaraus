@@ -9,9 +9,9 @@ const authRouter = express.Router()
 
 /**
  * Route sisäänkirjautumiseen ja käyttäjätilin luomiseen
- * 
- * @component
+ *
  * @category Kirjautuminen
+ * @subcategory backend
  */
 
 authRouter.post('/login', async (req, res) => {

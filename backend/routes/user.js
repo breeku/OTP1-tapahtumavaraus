@@ -9,9 +9,9 @@ const JWTKEY = process.env.JWTKEY
 
 /**
  * Route käyttäjätietojen hakemiselle
- * 
- * @component
+ *
  * @category Käyttäjätiedot
+ * @subcategory backend
  */
 
 userRouter.get('/', async (req, res) => {

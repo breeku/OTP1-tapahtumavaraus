@@ -6,9 +6,9 @@ const tagsRouter = express.Router()
 
 /**
  * Route tagien hakemiselle
- * 
- * @component
+ *
  * @category Tagit
+ * @subcategory backend
  */
 
 tagsRouter.get('/', async (req, res) => {

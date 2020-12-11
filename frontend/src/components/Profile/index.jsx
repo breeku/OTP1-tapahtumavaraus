@@ -13,13 +13,6 @@ import { AuthContext } from '../../context/auth'
 import { getToken, getProfileData } from '../../services/auth'
 import { getEvent, removeReview } from '../../services/profileEvents'
 
-/**
- * Profiilisivun pääkomponentti
- * 
- * @component
- * @category Profiili
- */
-
 const useStyles = makeStyles(() => ({
     text_center: {
         color: 'white',
@@ -68,7 +61,15 @@ const useStyles = makeStyles(() => ({
     },
 }))
 
-export default function Profile() {
+/**
+ * Profiilisivun pääkomponentti
+ *
+ * @component
+ * @category Profiili
+ * @subcategory frontend
+ */
+
+const Profile = () => {
     const [modifyReview, setModifyReview] = useState(null)
     const classes = useStyles()
     const [profileData, setProfileData] = useState(null)
@@ -181,7 +182,7 @@ export default function Profile() {
                                     />
                                     <p>{review.Review.content}</p>
                                     <Button
-                                    data-cy="poistaArvostelu"
+                                        data-cy='poistaArvostelu'
                                         onClick={() =>
                                             handleReviewRemove(review.Event.id)
                                         }>
@@ -190,7 +191,7 @@ export default function Profile() {
                                     </Button>
 
                                     <Button
-                                        data-cy="muokkaaArvostelu"
+                                        data-cy='muokkaaArvostelu'
                                         onClick={() =>
                                             setModifyReview(
                                                 modifyReview !== review.Event.id
@@ -216,3 +217,5 @@ export default function Profile() {
         </>
     )
 }
+
+export default Profile

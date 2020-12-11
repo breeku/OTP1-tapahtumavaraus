@@ -9,9 +9,9 @@ const JWTKEY = process.env.JWTKEY
 
 /**
  * Route Tapahtumien varausmäärän hakemiselle, arvostelun hakemiselle, poistamiselle ja päivittämiselle sekä tapahtumien fetchaukselle ja kategorioittain hakemiselle
- * 
- * @component
+ *
  * @category Tapahtumat
+ * @subcategory backend
  */
 
 eventsRouter.get('/reservation/:id/:count', async (req, res) => {

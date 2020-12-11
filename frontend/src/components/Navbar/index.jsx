@@ -11,13 +11,6 @@ import { useTranslation } from 'react-i18next'
 
 import { AuthContext } from '../../context/auth'
 
-/**
- * Navigointipalkin pääkomponentti
- * 
- * @component
- * @category Navigointi
- */
-
 const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
@@ -40,7 +33,15 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-export default function Navbar() {
+/**
+ * Navigointipalkin pääkomponentti
+ *
+ * @component
+ * @category Navigointi
+ * @subcategory frontend
+ */
+
+const Navbar = () => {
     const classes = useStyles()
     const {
         authState: { token: authToken },
@@ -108,3 +109,5 @@ export default function Navbar() {
         </div>
     )
 }
+
+export default Navbar

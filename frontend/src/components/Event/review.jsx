@@ -26,6 +26,7 @@ const useStyles = makeStyles(theme => ({
  *
  * @component
  * @category Tapahtuma
+ * @subcategory frontend
  */
 
 const Review = ({ eventId, oldReview, color }) => {
