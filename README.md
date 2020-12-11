@@ -1,13 +1,18 @@
 # Tapahtumavaraus
 [![Coverage Status](https://coveralls.io/repos/github/breeku/OTP1-tapahtumavaraus/badge.svg?branch=master)](https://coveralls.io/github/breeku/OTP1-tapahtumavaraus?branch=master)
 
-## Devaus
+Tapahtumavaraus is an application with which event organizers are able to gather
+their events into one application and travellers may filter their events in
+order to reserve tickets.
 
-### Projektin kloonaus
+[![Coverage Status](https://coveralls.io/repos/github/breeku/OTP1-tapahtumavaraus/badge.svg?branch=master)](https://coveralls.io/github/breeku/OTP1-tapahtumavaraus?branch=master)
+
+## Devaus
+@ -7,7 +12,7 @@
 
 Vs-code:ssa tai muussa kehitysympäristössä etsi "clone repository" -toiminto, ja kopioi alla oleva linkki sen URL-kenttään:
 
-`git clone https://gitlab.com/breeku/tapahtumavaraus.git`
+`git clone https://github.com/breeku/OTP1-tapahtumavaraus`
 
 ### Riippuvuuksien asennus
 
