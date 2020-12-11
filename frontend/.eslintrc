@@ -10,7 +10,7 @@
     "rules": {
         "semi": 0,
         "no-console": "off",
-        "react/prop-types": "off",
+        "react/prop-types": "error",
         "no-unused-expressions": [1, { "allowTernary": true }],
         "import/prefer-default-export": "off",
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]

@@ -4,10 +4,9 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import { InputLabel, MenuItem, FormControl, Select, Button } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
 import { useTranslation } from 'react-i18next'
+import PropTypes from 'prop-types'
 
 import { getTagNames } from '../../../services/getTagNames'
-
-// Search bar for event search
 
 const colortheme = createMuiTheme({
     palette: {
@@ -30,7 +29,15 @@ const colortheme = createMuiTheme({
     },
 })
 
-export default function SearchBarComponents({
+/**
+ * Tapahtumien hakutoiminnallisuuspalkki
+ *
+ * @component
+ * @category Tapahtumat
+ * @subcategory frontend
+ */
+
+const SearchBarComponents = ({
     classes,
     tags,
     language,
@@ -38,7 +45,7 @@ export default function SearchBarComponents({
     setTags,
     setLanguage,
     setResultLimit,
-}) {
+}) => {
     const [openLang, setOpenLang] = useState(false)
     const [openResult, setOpenResult] = useState(false)
     const [openTags, setOpenTags] = useState(false)
@@ -202,3 +209,17 @@ export default function SearchBarComponents({
         </div>
     )
 }
+
+SearchBarComponents.propTypes = {
+    classes: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+
+    tags: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+
+    language: PropTypes.string.isRequired,
+    resultLimit: PropTypes.number.isRequired,
+    setTags: PropTypes.func.isRequired,
+    setLanguage: PropTypes.func.isRequired,
+    setResultLimit: PropTypes.func.isRequired,
+}
+
+export default SearchBarComponents

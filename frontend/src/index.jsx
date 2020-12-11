@@ -7,6 +7,14 @@ import { App } from './App'
 import './i18n'
 import './root.css'
 
+/**
+ * Sovelluksen renderauksen pääkomponentti
+ *
+ * @component
+ * @category Renderaus
+ * @subcategory frontend
+ */
+
 const theme = createMuiTheme({
     text_center: {
         textAlign: 'center',

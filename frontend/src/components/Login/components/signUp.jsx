@@ -16,8 +16,6 @@ import { useTranslation } from 'react-i18next'
 import { AuthContext } from '../../../context/auth'
 import { register } from '../../../services/auth'
 
-// Sign up -functionality and rendering
-
 const useStyles = makeStyles(theme => ({
     paper: {
         marginTop: theme.spacing(8),
@@ -40,6 +38,14 @@ const useStyles = makeStyles(theme => ({
         color: 'red',
     },
 }))
+
+/**
+ * Käyttäjän luomiseen tarkoitettu komponentti
+ *
+ * @component
+ * @category Kirjautuminen
+ * @subcategory frontend
+ */
 
 const SignUp = () => {
     const classes = useStyles()
