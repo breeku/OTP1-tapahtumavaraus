@@ -156,7 +156,7 @@ describe('Toiminnalisuuksien testailua', () => {
       })
     })
 
-    /* tietokannan seedaus -- tarvitsee muokkausta
+    // tietokannan seedaus -- voidaan ajaa tarvittaessa testin yhteydessä
     Cypress.Commands.add('seed', () => { 
       cy.exec('cd backend && npm run seed:undo').then((result) => {
         
@@ -164,6 +164,6 @@ describe('Toiminnalisuuksien testailua', () => {
       cy.exec('cd backend && npm run seed').then((result) => {
         
       })
-    }) */
+    })
 
   })
