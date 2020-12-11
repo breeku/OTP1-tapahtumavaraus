@@ -41,6 +41,12 @@ Tietokannalle on myös mock dataa, jotka saat ajamalla `npm run seed` backend ka
 
 Testit voi ajaa projektin rootista `npm run test` , ja testien kattavuuden saa `npm run coverage`.
 
+### Dokumentaatio
+
+Dokumentoinnin projektille voi generoida ajamalla rootista `npm run jsdoc`. Dokumentaatio generoituu /docs/ kansioon.
+
+**Dokumentaatio löytyy osoitteesta [http://docs.tapahtumavaraus.tk/](http://docs.tapahtumavaraus.tk/)**
+
 ### Muuta
 
 **[prettier](https://prettier.io/)**
