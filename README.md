@@ -1,14 +1,12 @@
 # Tapahtumavaraus
+
 [![Coverage Status](https://coveralls.io/repos/github/breeku/OTP1-tapahtumavaraus/badge.svg?branch=master)](https://coveralls.io/github/breeku/OTP1-tapahtumavaraus?branch=master)
 
 Tapahtumavaraus is an application with which event organizers are able to gather
 their events into one application and travellers may filter their events in
 order to reserve tickets.
 
-[![Coverage Status](https://coveralls.io/repos/github/breeku/OTP1-tapahtumavaraus/badge.svg?branch=master)](https://coveralls.io/github/breeku/OTP1-tapahtumavaraus?branch=master)
-
 ## Devaus
-@ -7,7 +12,7 @@
 
 Vs-code:ssa tai muussa kehitysympäristössä etsi "clone repository" -toiminto, ja kopioi alla oleva linkki sen URL-kenttään:
 

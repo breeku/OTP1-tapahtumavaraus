@@ -11,8 +11,7 @@
   },
   "devDependencies": {
     "better-docs": "^2.3.2",
-    "jsdoc": "^3.6.6",
-    "parcel": "^1.12.4"
+    "jsdoc": "^3.6.6"
   },
   "scripts": {
     "prettier:write": "cd frontend && npx prettier --write . && cd ../backend && npx prettier --write .",
